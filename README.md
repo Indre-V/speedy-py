@@ -91,14 +91,8 @@ The python files have all been passed through [PEP8 Online](http://pep8online.co
 
 ![PEP8](docs/pep8-test-result.png)
 
-### JavaScript
 
-JS code was validated on [JSHint](https://jshint.com/ "JSHint"). No errors identified.
-
-![JS Validation Image](docs/js-test-result.png)
-
-[Back to top](#contents)
-
+### Error Handling
 
 ## User Story Testing
 
