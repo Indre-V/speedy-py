@@ -8,12 +8,55 @@ By practicing regularly with Speedy-Py, users can enhance their typing skills an
 [Deployed Application Link](https://speedy-py.herokuapp.com)
 
 
-
 ![Speedy-Py](docs/typing-test-responsive-display.png)
+
+- [Speedy-Py](#speedy-py)
+- [Contents](#contents)
+- [User Experience (UX)](#user-experience--ux-)
+  * [Colour Scheme](#colour-scheme)
+  * [Design Choices](#design-choices)
+  * [How to Play](#how-to-play)
+  * [User Goals](#user-goals)
+  * [User Stories](#user-stories)
+  * [Website Goals and Objectives](#website-goals-and-objectives)
+  * [Target Audience](#target-audience)
+- [Logic](#logic)
+  * [Python Logic](#python-logic)
+  * [Data Model](#data-model)
+  * [Database structure](#database-structure)
+- [Features](#features)
+  * [Existing Features](#existing-features)
+    + [Title and Introduction Section](#title-and-introduction-section)
+    + [Options menu](#options-menu)
+    + [Game Over Menu](#game-over-menu)
+    + [Leaderboard](#leaderboard)
+  * [Future Enhancements](#future-enhancements)
+- [Testing](#testing)
+  * [Accessibility](#accessibility)
+  * [Bugs](#bugs)
+  * [Responsiveness Tests](#responsiveness-tests)
+  * [Code Validation](#code-validation)
+    + [PEP8 Testing](#pep8-testing)
+    + [Error Handling](#error-handling)
+  * [User Story Testing](#user-story-testing)
+  * [Manual testing](#manual-testing)
+  * [Lighthouse Testing](#lighthouse-testing)
+  * [Browser Testing](#browser-testing)
+- [Deployment](#deployment)
+  * [To deploy the project](#to-deploy-the-project)
+  * [To fork the project](#to-fork-the-project)
+  * [To clone the project](#to-clone-the-project)
+- [Technology](#technology)
+  * [Languages used](#languages-used)
+  * [Python Libraries:](#python-libraries-)
+  * [Tools](#tools)
+- [Credits](#credits)
+  * [Disclaimer](#disclaimer)
+
 
 # User Experience (UX)
 
-It is deployed to Heroku to ensure a seamless user experience for players.
+It is deployed with Heroku to ensure a seamless user experience for players.
 
 ##  Colour Scheme
 
