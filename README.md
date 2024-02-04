@@ -1,6 +1,11 @@
-# Typing Test
+# Speedy-Py
 
-[Speedy-Py](https://speedy-py.herokuapp.com)
+Speedy-Py typing test is a tool designed to evaluate typing speed and accuracy. It provides users with a platform to assess their typing skills in terms of words per minute (WPM) and accuracy rate. The test typically presents users with a passage or a series of random words that they need to type accurately and swiftly within a specified time frame.
+
+By practicing regularly with Speedy-Py, users can enhance their typing skills and become more efficient at keyboard-based tasks.
+
+
+[Deployed Application Link](https://speedy-py.herokuapp.com)
 
 
 
