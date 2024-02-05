@@ -5,6 +5,8 @@ from colorama import Fore, Back, Style, init
 from os import system, name  
 import time
 
+
+
 # Colorama colors
 
 color_blue = Fore.BLUE+Style.NORMAL
@@ -33,11 +35,9 @@ def clear_terminal():
     """
     Clears all data from terminal when called
     """
-    # for windows
     if name == 'nt':
         _ = system('cls')
 
-    # for mac and linux(here, os.name is 'posix')
     else:
         _ = system('clear')
 
@@ -45,7 +45,7 @@ def main_menu():
 
     print(GAME_LOGO)
 
-    print(Fore.MAGENTA + """
+    print(color_magenta + """
     1. Start Test
     2. View Instructions
     3. Tips and Tricks
@@ -81,14 +81,54 @@ def display_menu():
             view_leaderboard()
         elif option == "5":
             delete_results()
-        elif user_choice == "6":
-            time.sleep(4)
-            clear_terminal()
-            exit()
-            
+        elif option == "6":
+            exit_app()
+
+def exit_app():
+    """
+    confirms with user whether they want to exit
+    """
+    while True:
+        confirm = input(Fore.LIGHTYELLOW_EX
+                             + "\nAre you sure you want to quit? Y/N: "
+                             + Style.RESET_ALL)
+        if validate_response(confirm):
+
+            if confirm.lower() == "y":
+                clear_terminal()
+                print(color_yellow
+                      + f"Thank you for using Speedy_Py app!"
+                      + Style.RESET_ALL)
+                print(color_red + "\nTerminating..."
+                                          + Style.RESET_ALL)
+                exit()
+            else:
+                clear_terminal()
+                display_menu()  
+                break
+        
+
+def validate_response(user_input):
+    """
+    Validates Y/N inputs provided by the user. 
+    If the input is invalid, it prints feedback to the user
+    """
+    try:
+        permitted_values = ["y", "Y", "n", "N"]
+        if user_input in permitted_values:
+            return True
+        else:
+            raise ValueError
+    except ValueError:
+        clear_terminal()
+        print(color_red
+              + "\nIncorrect input, please enter \"Y\" or \"N\".\n"
+              + Style.RESET_ALL)
+
+           
 def main():
     """
-    Main function of the program. Shows app menu, from where user can start
+    Main function of the program. Shows application menu, from where user can start
     and proceed use all the app functionalities.
     """
     display_menu()
