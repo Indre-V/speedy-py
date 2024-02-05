@@ -29,7 +29,11 @@ GAME_LOGO = color_yellow + """
          ██ ██      ██      ██      ██   ██    ██          ██         ██    
     ███████ ██      ███████ ███████ ██████     ██          ██         ██    
                                                      
-    """
+    """ 
+
+print(color_yellow
+          + f"Welcome! Here you can learn to type faster and test your skills!")
+       
 
 def clear_terminal():
     """
