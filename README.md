@@ -10,6 +10,7 @@ By practicing regularly with Speedy-Py, users can enhance their typing skills an
 
 ![Speedy-Py](docs/typing-test-responsive-display.png)
 
+# Contents 
 - [Speedy-Py](#speedy-py)
 - [Contents](#contents)
 - [User Experience (UX)](#user-experience--ux-)
