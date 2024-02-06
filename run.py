@@ -56,6 +56,24 @@ def wrap_text(text):
     wrapped_text = wrapper.fill(text=text)
     return wrapped_text
 
+
+def validate_response(user_input):
+    """
+    Validates Y/N inputs provided by the user. 
+    If the input is invalid, it prints feedback to the user
+    """
+    try:
+        permitted_values = ["y", "Y", "n", "N"]
+        if user_input in permitted_values:
+            return True
+        else:
+            raise ValueError
+    except ValueError:
+        clear_terminal()
+        print(color_red
+              + "\nIncorrect input, please enter \"Y\" or \"N\".\n"
+              + Style.RESET_ALL)
+
 def main_menu():
 
     print(GAME_LOGO)
@@ -157,14 +175,34 @@ def show_results(input_text, paragraph, time_start):
     wpm = calculate_wpm(input_text, total_time)
     results ="\n" + f"Time: {round(total_time)} secs   Accuracy: {accuracy}%   WPM: {wpm}"
     print(results)
+    prompt_save_test()
 
+
+def prompt_save_test():
+    """
+    Prompt the user to save the test results or return to the main menu.
+    """
+    while True:
+        confirm = input(color_yellow
+                        + "\nWould you like to save the test results? Y/N: "
+                        + Style.RESET_ALL)
+        if validate_response(confirm):
+            if confirm.lower() == "y":
+                clear_terminal()
+                save_data()
+                display_menu()
+            else:
+                clear_terminal()
+                display_menu()
+                break
+    
 
 def exit_app():
     """
     confirms with user whether they want to exit
     """
     while True:
-        confirm = input(Fore.LIGHTYELLOW_EX
+        confirm = input(color_yellow
                              + "\nAre you sure you want to quit? Y/N: "
                              + Style.RESET_ALL)
         if validate_response(confirm):
@@ -181,26 +219,8 @@ def exit_app():
                 clear_terminal()
                 display_menu()  
                 break
-        
 
-def validate_response(user_input):
-    """
-    Validates Y/N inputs provided by the user. 
-    If the input is invalid, it prints feedback to the user
-    """
-    try:
-        permitted_values = ["y", "Y", "n", "N"]
-        if user_input in permitted_values:
-            return True
-        else:
-            raise ValueError
-    except ValueError:
-        clear_terminal()
-        print(color_red
-              + "\nIncorrect input, please enter \"Y\" or \"N\".\n"
-              + Style.RESET_ALL)
 
-           
 def main():
     """
     Main function of the program. Shows application menu, from where user can start
