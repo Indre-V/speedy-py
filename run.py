@@ -112,6 +112,21 @@ def create_paragraph():
     paragraph = ' '.join(random_sentences)
     return paragraph
 
+def calculate_accuracy(input_text, paragraph):
+    """
+    Calculate the accuracy of the user's input compared to the given paragraph.
+    """
+    correct_chars = sum(1 for i, c in enumerate(input_text) if i < len(paragraph) and input_text[i] == paragraph[i])
+    return round(correct_chars / len(paragraph) * 100, 2)
+
+def calculate_wpm(input_text, total_time):
+    """
+    Calculate words per minute (WPM) based on the user's input and the total time taken.
+    Value 12 assumes an average word length of 5 characters plus spaces and punctuation marks
+    """
+    return round(len(input_text) * 12 / total_time)
+
+
 def exit_app():
     """
     confirms with user whether they want to exit
