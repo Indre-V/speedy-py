@@ -46,6 +46,16 @@ def clear_terminal():
     else:
         _ = system('clear')
 
+
+def wrap_text(text):
+    """
+    The function uses textwrap library to wrap long strings
+    over 79 characters to the new line.
+    """
+    wrapper = textwrap.TextWrapper(width=79)
+    wrapped_text = wrapper.fill(text=text)
+    return wrapped_text
+
 def main_menu():
 
     print(GAME_LOGO)
@@ -99,6 +109,8 @@ def start_test():
     print(paragraph)
 
     time_start = time.time()
+    input_text = textwrap.fill(input_text, width=70)
+
     input_text = input("Start Typing Now >>> ")
 
     show_results(input_text, paragraph, time_start)
@@ -111,13 +123,15 @@ def create_paragraph():
     random_sentences = [RandomSentence().sentence() for _ in range(3)]
     paragraph = ' '.join(random_sentences)
     return paragraph
+    
 
 def calculate_accuracy(input_text, paragraph):
     """
-    Calculate the accuracy of the user's input compared to the given paragraph.
+    Calculate th1e accuracy of the user's input compared to the given paragraph.
     """
     correct_chars = sum(1 for i, c in enumerate(input_text) if i < len(paragraph) and input_text[i] == paragraph[i])
     return round(correct_chars / len(paragraph) * 100, 2)
+
 
 def calculate_wpm(input_text, total_time):
     """
@@ -125,6 +139,17 @@ def calculate_wpm(input_text, total_time):
     Value 12 assumes an average word length of 5 characters plus spaces and punctuation marks
     """
     return round(len(input_text) * 12 / total_time)
+
+
+def show_results(input_text, paragraph, time_start):
+    """
+    Display the results g time taken, accuracy, and WPM.
+    """
+    total_time = time.time() - time_start
+    accuracy = calculate_accuracy(input_text, paragraph)
+    wpm = calculate_wpm(input_text, total_time)
+    results = f"Time: {round(total_time)} secs   Accuracy: {accuracy}%   WPM: {wpm}"
+    print(results)
 
 
 def exit_app():
