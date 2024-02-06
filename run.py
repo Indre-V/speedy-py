@@ -4,6 +4,7 @@ from google.oauth2.service_account import Credentials
 from colorama import Fore, Back, Style, init
 from os import system, name  
 import time
+import textwrap
 from wonderwords import RandomSentence
 
 
@@ -93,7 +94,7 @@ def start_test():
     """
     Run the typing speed test game.
     """
-    paragraph = generate_random_paragraph()
+    paragraph = create_paragraph()
     print("Type the following paragraph:")
     print(paragraph)
 
@@ -102,6 +103,14 @@ def start_test():
 
     show_results(input_text, paragraph, time_start)
 
+
+def create_paragraph():
+    """
+    Generate a random paragraph of three random sentences.
+    """
+    random_sentences = [RandomSentence().sentence() for _ in range(3)]
+    paragraph = ' '.join(random_sentences)
+    return paragraph
 
 def exit_app():
     """
