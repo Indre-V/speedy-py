@@ -4,7 +4,7 @@ from google.oauth2.service_account import Credentials
 from colorama import Fore, Back, Style, init
 from os import system, name  
 import time
-
+from wonderwords import RandomSentence
 
 
 # Colorama colors
@@ -88,6 +88,21 @@ def display_menu():
         elif option == "6":
             exit_app()
 
+def start_test():
+
+    """
+    Run the typing speed test game.
+    """
+    paragraph = generate_random_paragraph()
+    print("Type the following paragraph:")
+    print(paragraph)
+
+    time_start = time.time()
+    input_text = input("Start Typing Now >>> ")
+
+    show_results(input_text, paragraph, time_start)
+
+
 def exit_app():
     """
     confirms with user whether they want to exit
@@ -138,5 +153,3 @@ def main():
     display_menu()
 
 main()
-                                                                                                                   
- 
