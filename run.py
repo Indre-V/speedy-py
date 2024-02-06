@@ -61,12 +61,13 @@ def main_menu():
     print(GAME_LOGO)
 
     print(color_magenta + """
-    1. Start Test
-    2. View Instructions
-    3. Tips and Tricks
-    4. View Leaderboard
-    5. Delete Results
-    6. Quit
+    1. View Instructions
+    2. Start Test
+    3. Practice Accuracy
+    4. Tips and Tricks
+    5. View Leaderboard
+    6. Delete Test Results
+    7. Quit
     """ + Style.RESET_ALL)
 
 def display_menu():
@@ -78,25 +79,27 @@ def display_menu():
                             + Style.RESET_ALL)
         clear_terminal()
         
-        validate_range = ['1', '2', '3', '4', '5', '6']
+        validate_range = ['1', '2', '3', '4', '5', '6', '7']
         
         if option not in validate_range:
             print(color_red + "Invalid choice.")
-            print(color_green + "Please choose options 1 to 6 only.")
+            print(color_green + "Please choose options 1 to 7 only.")
             time.sleep(3)
             display_menu()
          
         elif option == "1":
-            start_test()
-        elif option == "2":
             view_instructions()
-        elif option == "3":
-            tips_tricks()
+        elif option == "2":
+            start_test()
+        elif option == "3": 
+            pract_acc()
         elif option == "4":
-            view_leaderboard()
+            tips_tricks()
         elif option == "5":
-            delete_results()
+            view_leaderboard()
         elif option == "6":
+            delete_results()
+        elif option == "7":
             exit_app()
 
 def start_test():
