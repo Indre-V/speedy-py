@@ -105,13 +105,14 @@ def start_test():
     Run the typing speed test game.
     """
     paragraph = create_paragraph()
-    print("Type the following paragraph:")
+    print("Type the following paragraph:"+ "\n")
     print(paragraph)
 
     time_start = time.time()
-    input_text = textwrap.fill(input_text, width=70)
+    
 
     input_text = input("Start Typing Now >>> ")
+    input_text = textwrap.fill(input_text, width=70)
 
     show_results(input_text, paragraph, time_start)
 
@@ -120,9 +121,9 @@ def create_paragraph():
     """
     Generate a random paragraph of three random sentences.
     """
-    random_sentences = [RandomSentence().sentence() for _ in range(3)]
+    random_sentences = [RandomSentence().sentence() for _ in range(4)]
     paragraph = ' '.join(random_sentences)
-    return paragraph
+    return paragraph + "\n"
     
 
 def calculate_accuracy(input_text, paragraph):
@@ -148,7 +149,7 @@ def show_results(input_text, paragraph, time_start):
     total_time = time.time() - time_start
     accuracy = calculate_accuracy(input_text, paragraph)
     wpm = calculate_wpm(input_text, total_time)
-    results = f"Time: {round(total_time)} secs   Accuracy: {accuracy}%   WPM: {wpm}"
+    results ="\n" + f"Time: {round(total_time)} secs   Accuracy: {accuracy}%   WPM: {wpm}"
     print(results)
 
 
