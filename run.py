@@ -92,7 +92,7 @@ def display_menu():
     while True:
         main_menu() 
         option = input(color_green
-                            + "Please select an option from 1 to 6 "
+                            + "Please select an option from 1 to 7 "
                               "to continue: "
                             + Style.RESET_ALL)
         clear_terminal()
@@ -126,7 +126,7 @@ def start_test():
     Run the typing speed test game.
     """
     paragraph = create_paragraph()
-    print("Type the following paragraph:"+ "\n")
+    print(color_blue + "Type the following paragraph:"+ "\n")
     print(paragraph)
 
     time_start = time.time()
@@ -182,7 +182,15 @@ def show_results(input_text, paragraph, time_start):
     accuracy = calculate_accuracy(input_text, paragraph)
     wpm = calculate_wpm(input_text, total_time, accuracy)
     results ="\n" + f"Time: {round(total_time)} secs   Accuracy: {accuracy}%   WPM: {wpm}"
-    print(results)
+    print(color_blue+results)
+     # Additional feedback based on WPM performance
+    if wpm < 10:
+        print(color_magenta+"\nYour typing speed is quite slow. You may want to focus on accuracy and practice more.")
+    elif wpm < 30:
+        print(color_blue+"\nYour typing speed is average. Keep practicing to improve your speed and accuracy.")
+    else:
+        print(color_green+"\nCongratulations! You have a good typing speed. Keep practicing to maintain and improve it.")
+    
     prompt_save_test()
 
 
