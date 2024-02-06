@@ -130,18 +130,19 @@ def calculate_accuracy(input_text, paragraph):
     """
     Calculate th1e accuracy of the user's input compared to the given paragraph.
     """
-    correct_chars = sum(1 for i, c in enumerate(input_text) if i < len(paragraph) and input_text[i] == paragraph[i])
+    correct_chars = sum(
+        1 for i, c in enumerate(input_text) 
+        if i < len(paragraph) and input_text[i] == paragraph[i]
+    )
     return round(correct_chars / len(paragraph) * 100, 2)
 
 
-def calculate_wpm(input_text, total_time, accuracy):
+def calculate_wpm(input_text, total_time):
     """
-    Calculate adjusted words per minute (WPM) based on the user's input, total time taken,
-    and accuracy percentage.
+    Calculate words per minute (WPM) based on the user's input and the total time taken.
+    Value 12 assumes an average word length of 5 characters plus spaces and punctuation marks
     """
-    standard_wpm = len(input_text.split()) * 12 / total_time  # Calculate standard WPM
-    adjusted_wpm = max(0, standard_wpm - (standard_wpm * (1 - accuracy / 100)))
-    return round(adjusted_wpm)
+    return round(len(input_text) * 12 / total_time)
 
 
 def show_results(input_text, paragraph, time_start):
@@ -150,7 +151,7 @@ def show_results(input_text, paragraph, time_start):
     """
     total_time = time.time() - time_start
     accuracy = calculate_accuracy(input_text, paragraph)
-    wpm = calculate_wpm(input_text, total_time, accuracy)
+    wpm = calculate_wpm(input_text, total_time)
     results ="\n" + f"Time: {round(total_time)} secs   Accuracy: {accuracy}%   WPM: {wpm}"
     print(results)
 
