@@ -23,6 +23,7 @@ init(autoreset=True)
 
 
 GAME_LOGO = (
+
     color_yellow
     + """
     ███████ ██████  ███████ ███████ ██████  ██    ██       ██████  ██    ██
@@ -31,11 +32,7 @@ GAME_LOGO = (
          ██ ██      ██      ██      ██   ██    ██          ██         ██
     ███████ ██      ███████ ███████ ██████     ██          ██         ██
     """
-)
-
-print(
-    color_yellow
-    + "Welcome! Here you can learn to type faster and test your skills!"
+    + "\nWelcome! Here you can learn to type faster and test your skills!"
 )
 
 
