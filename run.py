@@ -3,7 +3,7 @@ from google.oauth2.service_account import Credentials
 
 from colorama import Fore, Back, Style, init
 from os import system, name  
-import time
+import time,sys
 import textwrap
 from wonderwords import RandomSentence
 
@@ -92,8 +92,8 @@ def main_menu():
     print(color_magenta + """
     1. View Instructions
     2. Start Test
-    3. Practice Accuracy
-    4. Tips and Tricks
+    3. Tips and Tricks
+    4. Practice Accuracy
     5. View Leaderboard
     6. Delete Test Results
     7. Quit
@@ -120,10 +120,10 @@ def display_menu():
             view_instructions()
         elif option == "2":
             start_test()
-        elif option == "3": 
+        elif option == "3":
+            typing_skills_advice()
+        elif option == "4": 
             pract_acc()
-        elif option == "4":
-            tips_tricks()
         elif option == "5":
             view_leaderboard()
         elif option == "6":
@@ -263,6 +263,38 @@ def exit_app():
                 clear_terminal()
                 display_menu()  
                 break
+
+def typing_skills_advice():
+    """
+    Provides tips and tricks to improve typing speed.
+    """
+    print(color_blue + "Tips and Tricks to Improve Typing Speed:\n")
+
+    tips =  """
+    1. Touch Typing: Learn to type without looking at the keyboard.
+    2. Proper Posture: Maintain good posture while typing.
+    3. Finger Placement: Keep your fingers on the home row keys.
+    4. Use All Fingers: Utilize all your fingers for typing.
+    5. Practice Regularly: Practice typing regularly to build muscle memory.
+    6. Start Slow: Begin by typing slowly and focus on accuracy.
+    7. Take Breaks: Take short breaks during typing sessions.
+    8. Use Typing Games: Engage in typing games and exercises for fun practice.
+    9. Focus on Weak Areas: Identify and improve specific weak areas.
+    10. Monitor Progress: Track your typing speed and accuracy over time.
+    11. Learn Shortcuts: Familiarize yourself with keyboard shortcuts.
+    12. Stay Relaxed: Keep your hands and fingers relaxed while typing.
+    """
+    typingPrint(tips)
+    print()
+    
+    return_to_menu()
+
+def typingPrint(text):
+  for character in text:
+    sys.stdout.write(character)
+    sys.stdout.flush()
+    time.sleep(0.05)
+
 
 
 def main():
