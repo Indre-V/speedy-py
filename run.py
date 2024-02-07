@@ -10,7 +10,7 @@ from wonderwords import RandomSentence
 
 # Colorama colors
 
-color_blue = Fore.BLUE+Style.NORMAL
+color_blue = Fore.BLUE+Style.BRIGHT
 color_cyan = Fore.CYAN+Style.BRIGHT
 color_yellow = Fore.YELLOW+Style.BRIGHT
 color_red = Fore.RED+Style.BRIGHT
@@ -74,6 +74,17 @@ def validate_response(user_input):
               + "\nIncorrect input, please enter \"Y\" or \"N\".\n"
               + Style.RESET_ALL)
 
+
+def return_to_menu():
+    """
+    Return the user to the beginning of the program
+    """
+    print(color_green + "\nHit enter to return to the main menu.\n")
+    if input() == "":
+        clear_terminal()
+    
+    display_menu()
+
 def main_menu():
 
     print(GAME_LOGO)
@@ -120,8 +131,25 @@ def display_menu():
         elif option == "7":
             exit_app()
 
-def start_test():
+def view_instructions():
+    """
+    Displays instructions for the typing test.
+    """
+    instructions = """
+    Instructions:
 
+    1. You will be presented with a paragraph to type.
+    2. Type the paragrah exactly as it appears.
+    3. Time, accuracy and speed will be measured.
+    4. After typing, press Enter to see your results.
+    5. Enjoy typing!
+    6. Select whether to save the result or return to the main menu.
+    """
+    print (color_blue + instructions)
+    return_to_menu()
+
+
+def start_test():
     """
     Run the typing speed test game.
     """
@@ -130,7 +158,6 @@ def start_test():
     print(paragraph)
 
     time_start = time.time()
-    
 
     input_text = input("Start Typing Now >>> ")
     input_text = textwrap.fill(input_text, width=70)
@@ -162,6 +189,7 @@ def calculate_wpm(input_text, total_time, accuracy):
     adjusted_wpm = max(0, gross_wpm * accuracy / 100)
     
     return round(adjusted_wpm)
+
 
 def calculate_accuracy(input_text, paragraph):
     """
