@@ -103,7 +103,7 @@ def display_menu():
         main_menu() 
         option = input(color_green
                             + "Please select an option from 1 to 7 "
-                              "to continue: "
+                              "to continue: \n"
                             + Style.RESET_ALL)
         clear_terminal()
         
@@ -232,7 +232,7 @@ def prompt_save_test():
     """
     while True:
         confirm = input(color_yellow
-                        + "\nWould you like to save the test results? Y/N: "
+                        + "\nWould you like to save the test results? Y/N: \n"
                         + Style.RESET_ALL)
         if validate_response(confirm):
             if confirm.lower() == "y":
@@ -262,7 +262,7 @@ def pract_acc():
 
     while True:
         confirm = input(color_yellow
-                             + "\nWould you like to try again? Y/N:"
+                             + "\nWould you like to try again? Y/N: \n"
                              + Style.RESET_ALL)
         if validate_response(confirm):
 
@@ -282,7 +282,7 @@ def exit_app():
     """
     while True:
         confirm = input(color_yellow
-                             + "\nAre you sure you want to quit? Y/N: "
+                             + "\nAre you sure you want to quit? Y/N: \n"
                              + Style.RESET_ALL)
         if validate_response(confirm):
 
