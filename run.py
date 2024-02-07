@@ -7,7 +7,6 @@ import time,sys
 import textwrap
 from wonderwords import RandomSentence
 
-
 # Colorama colors
 
 color_blue = Fore.BLUE+Style.BRIGHT
@@ -159,7 +158,10 @@ def start_test():
 
     time_start = time.time()
 
-    input_text = input("Start Typing Now >>> ")
+    input_text = input(color_green 
+                            + "Start Typing Now >>> \n" 
+                            + Style.RESET_ALL)
+
     input_text = textwrap.fill(input_text, width=70)
 
     show_results(input_text, paragraph, time_start)
@@ -179,13 +181,11 @@ def calculate_wpm(input_text, total_time, accuracy):
     Calculate adjusted words per minute (WPM) based on the user's input, total time taken,
     and accuracy percentage.
     """
-    # Calculate gross WPM based on the number of characters typed and the total time taken
     if total_time != 0:
        gross_wpm = len(input_text) * 12 / total_time
     else:
         gross_wpm = 0
     
-    # Adjust WPM based on accuracy
     adjusted_wpm = max(0, gross_wpm * accuracy / 100)
     
     return round(adjusted_wpm)
@@ -195,11 +195,15 @@ def calculate_accuracy(input_text, paragraph):
     """
     Calculate the accuracy of the user's input compared to the given paragraph.
     """
-    correct_chars = sum(
-        1 for i, c in enumerate(input_text) 
-        if i < len(paragraph) and input_text[i] == paragraph[i]
-    )
-    return round(correct_chars / len(paragraph) * 100, 2)
+
+    input_words = input_text.split()
+    paragraph_words = paragraph.split()
+
+    num_correct_words = sum(a == b for a, b in zip(input_words, paragraph_words))
+
+    accuracy_percentage = (num_correct_words / len(paragraph_words)) * 100
+
+    return round(accuracy_percentage, 1)
 
 
 def show_results(input_text, paragraph, time_start):
@@ -211,7 +215,7 @@ def show_results(input_text, paragraph, time_start):
     wpm = calculate_wpm(input_text, total_time, accuracy)
     results ="\n" + f"Time: {round(total_time)} secs   Accuracy: {accuracy}%   WPM: {wpm}"
     print(color_blue+results)
-     # Additional feedback based on WPM performance
+  
     if wpm < 10:
         print(color_magenta+"\nYour typing speed is quite slow. You may want to focus on accuracy and practice more.")
     elif wpm < 30:
@@ -239,11 +243,42 @@ def prompt_save_test():
                 clear_terminal()
                 display_menu()
                 break
-    
+
+
+def pract_acc():
+    paragraph = create_paragraph()
+    print(color_blue + "Type the following paragraph: \n")
+    print(paragraph)
+    input_text = input(color_green 
+                            + "Start Typing Now >>> \n" 
+                            + Style.RESET_ALL)
+    input_text = textwrap.fill(input_text, width=70)
+
+    accuracy = calculate_accuracy(input_text, paragraph)
+    if accuracy == 100:
+        print(color_green + "\nCongratulations! Your accuracy is 100%.")
+    else:
+        print(color_red + "\n"+ f"Your accuracy is {accuracy}%.")
+
+    while True:
+        confirm = input(color_yellow
+                             + "\nWould you like to try again? Y/N:"
+                             + Style.RESET_ALL)
+        if validate_response(confirm):
+
+            if confirm.lower() == "y":
+                clear_terminal()
+                pract_acc()
+            else:
+                clear_terminal()
+                display_menu()
+                break
+        
+
 
 def exit_app():
     """
-    confirms with user whether they want to exit
+    Confirms with user whether they want to exit
     """
     while True:
         confirm = input(color_yellow
