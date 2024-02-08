@@ -2,7 +2,7 @@
 from wonderwords import RandomSentence
 import time
 import constants
-from validation import validate_response
+from utils.validation import validate_response
 from utils.utils import clear_terminal, wrap_text
 
 

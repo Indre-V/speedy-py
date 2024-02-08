@@ -1,5 +1,7 @@
 from colorama import Fore, Style
-from utils.utils import return_to_menu
+from utils.utils import return_to_menu, typing_Print
+import time
+from src.game import create_paragraph
 
 def view_instructions():
     """
@@ -18,53 +20,38 @@ def view_instructions():
     print(Fore.LIGHTBLUE_EX + instructions)
     return_to_menu()
 
-    def view_instructions():
-        """
-         Displays instructions for the typing test.
-        """
-
-    instructions = """
-    Instructions:
-
-    1. You will be presented with a paragraph to type.
-    2. Type the paragrah exactly as it appears.
-    3. Time, accuracy and speed will be measured.
-    4. After typing, press Enter to see your results.
-    5. Enjoy typing!
-    6. Select whether to save the result or return to the main menu.
-    """
-    print(Fore.LIGHTBLUE_EX + instructions)
-    return_to_menu()
 
 def typing_skills_advice():
     """
     Provides tips and tricks to improve typing speed.
     """
-    print(Fore.LIGHTBLUE_EX + "Tips and Tricks to Improve Typing Speed:\n")
+    print(Fore.LIGHTBLUE_EX + "12 Tips and Tricks to Improve Typing Speed:\n"
+          + Fore.LIGHTMAGENTA_EX + "\nPress Enter to reveal each T&T\n" 
+          + Style.RESET_ALL)
 
-    tips = """
-    1. Touch Typing: Learn to type without looking at the keyboard.
-    2. Proper Posture: Maintain good posture while typing.
-    3. Finger Placement: Keep your fingers on the home row keys.
-    4. Use All Fingers: Utilize all your fingers for typing.
-    5. Practice Regularly: Practice typing regularly to build muscle memory.
-    6. Start Slow: Begin by typing slowly and focus on accuracy.
-    7. Take Breaks: Take short breaks during typing sessions.
-    8. Use Typing Games: Engage in typing games and exercises for fun practice.
-    9. Focus on Weak Areas: Identify and improve specific weak areas.
-    10. Monitor Progress: Track your typing speed and accuracy over time.
-    11. Learn Shortcuts: Familiarize yourself with keyboard shortcuts.
-    12. Stay Relaxed: Keep your hands and fingers relaxed while typing.
-    """
-    typingPrint(tips)
-    print()
+    tips = [
+        "1. Touch Typing: Learn to type without looking at the keyboard.",
+        "2. Proper Posture: Maintain good posture while typing.",
+        "3. Finger Placement: Keep your fingers on the home row keys.",
+        "4. Use All Fingers: Utilize all your fingers for typing.",
+        "5. Practice Regularly: Practice typing regularly to build muscle memory.",
+        "6. Start Slow: Begin by typing slowly and focus on accuracy.",
+        "7. Take Breaks: Take short breaks during typing sessions.",
+        "8. Use Typing Games: Engage in typing games and exercises for fun practice.",
+        "9. Focus on Weak Areas: Identify and improve specific weak areas.",
+        "10. Monitor Progress: Track your typing speed and accuracy over time.",
+        "11. Learn Shortcuts: Familiarize yourself with keyboard shortcuts.",
+        "12. Stay Relaxed: Keep your hands and fingers relaxed while typing."
+    ]
+
+    for tip in tips:
+        print(tip)
+        input()
 
     return_to_menu()
 
-
-
-    def pract_acc():
-        paragraph = create_paragraph()
+def pract_acc():
+    paragraph = create_paragraph()
     print(Fore.LIGHTBLUE_EX + "Type the following paragraph: \n")
     print(paragraph)
     input_text = input(
