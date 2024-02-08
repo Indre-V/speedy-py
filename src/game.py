@@ -1,9 +1,10 @@
-
+from colorama import Fore, Style, init
 from wonderwords import RandomSentence
 import time
 import constants
 from utils.validation import validate_response
 from utils.utils import clear_terminal, wrap_text
+import menu as commands
 
 
 def create_paragraph():
@@ -58,23 +59,23 @@ def show_results(input_text, paragraph, time_start):
         "\n" + f"Time: {round(total_time)} secs"
         f"Accuracy: {accuracy}%   WPM: {wpm}"
     )
-    print(color_blue + results)
+    print(Fore.LIGHTBLUE_EX + results)
 
     if wpm < 10:
         print(
-            color_magenta
+            Fore.LIGHTMAGENTA_EX
             + "\nYour typing speed is quite slow."
               "You may want to focus on accuracy and practice more."
         )
     elif wpm < 30:
         print(
-            color_blue
+            Fore.LIGHTYELLOW_EX
             + "\nYour typing speed is average."
               "Keep practicing to improve your speed and accuracy."
         )
     else:
         print(
-            color_green
+            Fore.LIGHTGREEN_EX
             + "\nCongratulations! You have a good typing speed."
               "Keep practicing to maintain and improve it."
         )
@@ -88,7 +89,7 @@ def prompt_save_test():
     """
     while True:
         confirm = input(
-            color_yellow
+            Fore.LIGHTYELLOW_EX
             + "\nWould you like to save the test results? Y/N: \n"
             + Style.RESET_ALL
         )
@@ -96,8 +97,8 @@ def prompt_save_test():
             if confirm.lower() == "y":
                 clear_terminal()
                 save_data()
-                display_menu()
+                commands.display_menu()
             else:
                 clear_terminal()
-                display_menu()
+                commands.display_menu()
                 break

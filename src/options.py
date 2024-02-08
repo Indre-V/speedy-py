@@ -1,7 +1,8 @@
 from colorama import Fore, Style
 from utils.utils import return_to_menu, typing_Print
 import time
-from src.game import create_paragraph
+from src.game import create_paragraph, show_results
+import textwrap
 
 def view_instructions():
     """
@@ -85,13 +86,13 @@ def start_test():
     Run the typing speed test game.
     """
     paragraph = create_paragraph()
-    print(color_blue + "Type the following paragraph: \n")
+    print(Fore.LIGHTBLUE_EX + "Type the following paragraph: \n")
     print(paragraph)
 
     time_start = time.time()
 
     input_text = input(
-        color_green + "Start Typing Now >>> \n"
+        Fore.LIGHTGREEN_EX + "Start Typing Now >>> \n"
         + Style.RESET_ALL)
 
     input_text = textwrap.fill(input_text, width=70)
