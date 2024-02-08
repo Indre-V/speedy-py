@@ -1,3 +1,8 @@
+from utils import return_to_menu, typingPrint, clear_terminal
+from game import create_paragraph, calculate_accuracy
+import textwrap
+from validation import validate_response
+from colorama import Fore, Style
 
 def view_instructions():
     """
@@ -13,14 +18,14 @@ def view_instructions():
     5. Enjoy typing!
     6. Select whether to save the result or return to the main menu.
     """
-    print(color_blue + instructions)
+    print(Fore.LIGHTBLUE_EX + instructions)
     return_to_menu()
 
 def typing_skills_advice():
     """
     Provides tips and tricks to improve typing speed.
     """
-    print(color_blue + "Tips and Tricks to Improve Typing Speed:\n")
+    print(Fore.LIGHTBLUE_EX + "Tips and Tricks to Improve Typing Speed:\n")
 
     tips = """
     1. Touch Typing: Learn to type without looking at the keyboard.
@@ -42,23 +47,23 @@ def typing_skills_advice():
     return_to_menu()
 
     def pract_acc():
-    paragraph = create_paragraph()
-    print(color_blue + "Type the following paragraph: \n")
+        paragraph = create_paragraph()
+    print(Fore.LIGHTBLUE_EX + "Type the following paragraph: \n")
     print(paragraph)
     input_text = input(
-        color_green + "Start Typing Now >>> \n"
+        Fore.LIGHTGREEN_EX + "Start Typing Now >>> \n"
         + Style.RESET_ALL)
     input_text = textwrap.fill(input_text, width=70)
 
     accuracy = calculate_accuracy(input_text, paragraph)
     if accuracy == 100:
-        print(color_green + "\nCongratulations! Your accuracy is 100%.")
+        print(Fore.LIGHTGREEN_EX + "\nCongratulations! Your accuracy is 100%.")
     else:
-        print(color_red + "\n" + f"Your accuracy is {accuracy}%.")
+        print(Fore.LIGHTRED_EX + "\n" + f"Your accuracy is {accuracy}%.")
 
     while True:
         confirm = input(
-            color_yellow + "\nWould you like to try again? Y/N: \n"
+            Fore.LIGHTYELLOW_EX + "\nWould you like to try again? Y/N: \n"
             + Style.RESET_ALL
         )
         if validate_response(confirm):
@@ -68,5 +73,5 @@ def typing_skills_advice():
                 pract_acc()
             else:
                 clear_terminal()
-                display_menu()
+                return_to_menu()
                 break

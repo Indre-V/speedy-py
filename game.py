@@ -2,8 +2,7 @@
 from wonderwords import RandomSentence
 import time
 import constants
-from src.validation import validate_response
-from src.menu import display_menu
+from validation import validate_response
 from utils import clear_terminal, wrap_text
 
 def start_test():
@@ -75,7 +74,7 @@ def show_results(input_text, paragraph, time_start):
     wpm = calculate_wpm(input_text, total_time, accuracy)
     results = (
         "\n" + f"Time: {round(total_time)} secs"
-        "Accuracy: {accuracy}%   WPM: {wpm}"
+        f"Accuracy: {accuracy}%   WPM: {wpm}"
     )
     print(color_blue + results)
 

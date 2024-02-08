@@ -1,9 +1,10 @@
-from src.menu import display_menu
-import src.constants
+import constants
 import textwrap
 import sys
 import time
 from os import system, name
+from colorama import Fore, Style
+
 
 
 
@@ -32,11 +33,11 @@ def return_to_menu():
     """
     Return the user to the beginning of the program
     """
-    print(color_green + "\nHit enter to return to the main menu.\n")
+    print(Fore.LIGHTGREEN_EX + "\nHit enter to return to the main menu.\n")
     if input() == "":
         clear_terminal()
 
-    display_menu()
+    display_menu
 
 
 def typingPrint(text):
@@ -51,7 +52,7 @@ def exit_app():
     """
     while True:
         confirm = input(
-            color_yellow + "\nAre you sure you want to quit? Y/N: \n"
+            Fore.LIGHTYELLOW_EX + "\nAre you sure you want to quit? Y/N: \n"
             + Style.RESET_ALL
         )
         if validate_response(confirm):
@@ -59,11 +60,11 @@ def exit_app():
             if confirm.lower() == "y":
                 clear_terminal()
                 print(
-                    color_yellow
+                    Fore.LIGHTGREEN_EX
                     + f"Thank you for using Speedy_Py app!"
                     + Style.RESET_ALL
                 )
-                print(color_red + "\nTerminating..." + Style.RESET_ALL)
+                print(Fore.LIGHTRED_EX + "\nTerminating..." + Style.RESET_ALL)
                 exit()
             else:
                 clear_terminal()
