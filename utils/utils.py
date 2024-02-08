@@ -4,8 +4,7 @@ import sys
 import time
 from os import system, name
 from colorama import Fore, Style
-
-
+import menu as commands
 
 
 def clear_terminal():
@@ -36,8 +35,7 @@ def return_to_menu():
     print(Fore.LIGHTGREEN_EX + "\nHit enter to return to the main menu.\n")
     if input() == "":
         clear_terminal()
-
-    display_menu
+        commands.display_menu()
 
 
 def typingPrint(text):

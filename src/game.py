@@ -3,25 +3,7 @@ from wonderwords import RandomSentence
 import time
 import constants
 from validation import validate_response
-from utils import clear_terminal, wrap_text
-
-def start_test():
-    """
-    Run the typing speed test game.
-    """
-    paragraph = create_paragraph()
-    print(color_blue + "Type the following paragraph: \n")
-    print(paragraph)
-
-    time_start = time.time()
-
-    input_text = input(
-        color_green + "Start Typing Now >>> \n"
-        + Style.RESET_ALL)
-
-    input_text = textwrap.fill(input_text, width=70)
-
-    show_results(input_text, paragraph, time_start)
+from utils.utils import clear_terminal, wrap_text
 
 
 def create_paragraph():

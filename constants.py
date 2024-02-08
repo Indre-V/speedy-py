@@ -6,7 +6,7 @@ init(autoreset=True)
 
 
 GAME_LOGO = (
-    print(
+  
     Fore.LIGHTYELLOW_EX
     + """
     ███████ ██████  ███████ ███████ ██████  ██    ██       ██████  ██    ██
@@ -16,5 +16,5 @@ GAME_LOGO = (
     ███████ ██      ███████ ███████ ██████     ██          ██         ██
     """
     + "\nWelcome! Here you can learn to type faster and test your skills!"
-    )
+
 )

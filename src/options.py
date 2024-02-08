@@ -1,13 +1,28 @@
-from utils import return_to_menu, typingPrint, clear_terminal
-from game import create_paragraph, calculate_accuracy
-import textwrap
-from validation import validate_response
 from colorama import Fore, Style
+from utils.utils import return_to_menu
 
 def view_instructions():
     """
     Displays instructions for the typing test.
     """
+    instructions = """
+    Instructions:
+
+    1. You will be presented with a paragraph to type.
+    2. Type the paragrah exactly as it appears.
+    3. Time, accuracy and speed will be measured.
+    4. After typing, press Enter to see your results.
+    5. Enjoy typing!
+    6. Select whether to save the result or return to the main menu.
+    """
+    print(Fore.LIGHTBLUE_EX + instructions)
+    return_to_menu()
+
+    def view_instructions():
+        """
+         Displays instructions for the typing test.
+        """
+
     instructions = """
     Instructions:
 
@@ -46,6 +61,8 @@ def typing_skills_advice():
 
     return_to_menu()
 
+
+
     def pract_acc():
         paragraph = create_paragraph()
     print(Fore.LIGHTBLUE_EX + "Type the following paragraph: \n")
@@ -75,3 +92,22 @@ def typing_skills_advice():
                 clear_terminal()
                 return_to_menu()
                 break
+
+def start_test():
+    """
+    Run the typing speed test game.
+    """
+    paragraph = create_paragraph()
+    print(color_blue + "Type the following paragraph: \n")
+    print(paragraph)
+
+    time_start = time.time()
+
+    input_text = input(
+        color_green + "Start Typing Now >>> \n"
+        + Style.RESET_ALL)
+
+    input_text = textwrap.fill(input_text, width=70)
+
+    show_results(input_text, paragraph, time_start)
+
