@@ -1,8 +1,10 @@
 from colorama import Fore, Style
 from utils.utils import return_to_menu, typing_Print
 import time
-from src.game import create_paragraph, show_results
+from src.game import create_paragraph, show_results, clear_terminal
+from utils.validation import validate_response
 import textwrap
+import menu as commands
 
 def view_instructions():
     """
@@ -99,3 +101,27 @@ def start_test():
 
     show_results(input_text, paragraph, time_start)
 
+def exit_app():
+    """
+    Confirms with user whether they want to exit
+    """
+    while True:
+        confirm = input(
+            Fore.LIGHTYELLOW_EX + "\nAre you sure you want to quit? Y/N: \n"
+            + Style.RESET_ALL
+        )
+        if validate_response(confirm):
+
+            if confirm.lower() == "y":
+                clear_terminal()
+                print(
+                    Fore.LIGHTGREEN_EX
+                    + f"Thank you for using Speedy_Py app!"
+                    + Style.RESET_ALL
+                )
+                print(Fore.LIGHTRED_EX + "\nTerminating..." + Style.RESET_ALL)
+                exit()
+            else:
+                clear_terminal()
+                commands.display_menu()
+                break

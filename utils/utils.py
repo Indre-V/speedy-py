@@ -48,27 +48,4 @@ def typing_Print(text):
         time.sleep(0.05)
 
 
-def exit_app():
-    """
-    Confirms with user whether they want to exit
-    """
-    while True:
-        confirm = input(
-            Fore.LIGHTYELLOW_EX + "\nAre you sure you want to quit? Y/N: \n"
-            + Style.RESET_ALL
-        )
-        if validate_response(confirm):
 
-            if confirm.lower() == "y":
-                clear_terminal()
-                print(
-                    Fore.LIGHTGREEN_EX
-                    + f"Thank you for using Speedy_Py app!"
-                    + Style.RESET_ALL
-                )
-                print(Fore.LIGHTRED_EX + "\nTerminating..." + Style.RESET_ALL)
-                exit()
-            else:
-                clear_terminal()
-                display_menu()
-                break
