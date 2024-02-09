@@ -140,35 +140,87 @@ Google Sheets service is used to store project's database in the spreadsheet.
 
 ### Introduction Section
 
-The program is run, terminal window displays Game Logo and options menu.
+The program is run, terminal window displays the main menu of the typing speed test application. It prints the game logo followed by a numbered list of options using [Colorama]("https://pypi.org/project/colorama/").
+
+![Terminal Intro](docs/terminal-intro.png)
+
 
 ### Options menu
 
-The menu contains 7 options and asks user to select 1-7. If any other key is pressed, error appears.
+The menu continously displays options list using the loop. To continue using the application, the user is prompted to choose one of the options from 1 to 7. Following the user's selection, the function verifies the input to make sure it is within the permitted range of possibilities. An error message asking the user to select the correct option is presented if the input is invalid. The related action linked to the selected choice is carried out if the input is valid. This functionality ensures seamless navigation through the application's features and facilitates user interaction.
+
+<details><summary><b>Options Menu Functionality</b></summary>
+
+![Options Menu Functionality](docs/options-menu.png)
+
+</details><br
+
 
 ### View Instructions
 
-Fisrt option on the menu, are the instructions of the test. Instructions are simple and clear to encourage the user to read them. When finished, user has to press enter to return to the main menu.
+ It presents users with a set of guidelines to follow while taking the typing test. The instructions are printed in the terminal with colorized text to enhance readability and user experience. After displaying the instructions, the function prompts users to return to the main menu, facilitating seamless navigation within the application.
 
-### Start Test
+<details><summary><b>View Instructions Display</b></summary>
+
+![View Instructions Display](docs/view-instructions-display.png)
+
+</details><br/>
+
+### Test
 
  It begins by generating a random paragraph for the user to type, which is displayed in the terminal with colorized text. The user is then prompted to begin typing, and their input is recorded. Once the user has finished typing, the function calculates and displays the results of the typing test, including accuracy, speed, and the time taken to complete the test. This function serves as the core component of the typing speed test game, allowing users to assess and improve their typing skills within the terminal environment.Users are also given an option to either save test results, start again or to return to the main menu.
+
+ <details><summary><b>Test Functionalities</b></summary>
+ Start Test:
+
+![Start Test](docs/start-test.png)
+
+Show Results:
+
+![Show Results](docs/show-results.png)
+
+Save test:
+
+![Save Test](docs/save-test.png)
+
+
+</details><br/>
 
 ### Typing Advice 
 
  It displays a list of 12 tips and tricks in the terminal, each designed to improve typing proficiency. It starts by presenting a list of 12 quick fixes in the terminal, all aimed at enhancing typing speed. To make the experience more interactive, users are required to press Enter in order to reveal each advice. Important methods including touch typing, good posture, finger positioning, and consistent practice are covered in the suggestions. The functionality also suggests that users take pauses, practice typing using games, and track their advancement over time. Users can improve their accuracy and speed while strengthening their typing skills by implementing these tips. At the end of the the function takes users back to the main menu so they can continue using the typing speed test application after applying these instructions.
 
+<details><summary><b>Tips and Tricks Display</b></summary>
+
+![Tips and Tricks Display](docs/tips-tricks-Display.png)
+
+</details><br/>
+
 ### Practice Accuracy
 
 The user is prompted to practice accurately typing a paragraph that is created at random by the Practice Accuracy function as accuracy is imperative for speed typing skills. The function determines the accuracy of the user's input in relation to the original text once they have completed typing. The user sees a green text message congratulating them on reaching 100% accuracy. If not, the user is shown with a red letter that indicates their accuracy percentage. After that, the function asks the user if they want to attempt inputting the paragraph again. The user can start the practice again or return to main menu.
 
-### Leaderboard
+<details><summary><b>Practice Accuracy Display</b></summary>
+
+![Practice Accuracy display](docs/practice-accuracy-display.png)
+
+</details><br/>
+
+
+### View Leaderboard
 
 The Leaderboard feature was created using Google Sheets.
+
+### Edit Leaderboard
 
 ## Future Enhancements
 
 * Continuously update and improve the application based on user feedback and technological advancements.
+* Database to save test results for multiple users
+* Share results on Social Media
+* Allow users to choose the content theme for the test i.e. legal, fiction, medical etc. 
+* Allow users to select time and paragraph lenght for the test.
+
 
 
 [Back to top](#contents)
@@ -191,18 +243,43 @@ The Leaderboard feature was created using Google Sheets.
 
 [Back to top](#contents)
 
-## Responsiveness Tests
-
-
-[Back to top](#contents)
-
 
 ## Code Validation
 
 ### PEP8 Testing
 The python files have all been passed through [PEP8 Online](http://pep8online.com/)
 
-![PEP8](docs/pep8-test-result.png)
+<details><summary><b>PEP8 Test Results</b></summary>
+
+run.py:
+
+![run.py](docs/pep8-run-py-result.png)
+
+utils.py:
+
+![utils.py](docs/pep8-utils-py-result.png)
+
+game.py:
+
+![game.py](docs/pep8-game-py-result.png)
+
+validation.py:
+
+![validation.py](docs/pep8-validation-py-result.png)
+
+constants.py:
+
+![constants.py](docs/pep8-constants-py-result.png)
+
+options.py:
+
+![options.py](docs/pep8-options-py-result.png)
+
+menu.py
+
+![menu.py](docs/pep8-menu-py-result.png)
+</details><br/>
+
 
 
 ### Error Handling
@@ -213,8 +290,6 @@ The python files have all been passed through [PEP8 Online](http://pep8online.co
 
 
 [Back to top](#contents)
-
-
 
 ## Manual testing
 
