@@ -47,5 +47,11 @@ def typing_Print(text):
         sys.stdout.flush()
         time.sleep(0.05)
 
-
+def ask_name():
+    '''
+    The function gets the name of the player.
+    '''
+    player_name = input('Please enter your name.\n')
+    print(f'***Welcome to the typing test {player_name}!***')
+    return player_name
 

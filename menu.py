@@ -1,31 +1,18 @@
 from src.options import *
+from constants import GAME_LOGO
 import time
 from colorama import Fore, Style
 from utils.utils import clear_terminal
 
 
 
-GAME_LOGO = (
- 
-    Fore.LIGHTYELLOW_EX
-    + """
-    ███████ ██████  ███████ ███████ ██████  ██    ██       ██████  ██    ██
-    ██      ██   ██ ██      ██      ██   ██  ██  ██        ██   ██  ██  ██
-    ███████ ██████  █████   █████   ██   ██   ████   █████ ██████    ████
-         ██ ██      ██      ██      ██   ██    ██          ██         ██
-    ███████ ██      ███████ ███████ ██████     ██          ██         ██
-    """
-    + "\nWelcome! Here you can learn to type faster and test your skills!"
- 
-)
-
 def main_menu():
 
     print(GAME_LOGO)
-
+    
     print(
-        Fore.LIGHTMAGENTA_EX
-        + 
+    Fore.LIGHTMAGENTA_EX
+    + 
     """
     1. View Instructions
     2. Start Test
