@@ -211,7 +211,39 @@ The user is prompted to practice accurately typing a paragraph that is created a
 
 The Leaderboard feature was created using Google Sheets.
 
+<details><summary><b>View Leaderboard</b></summary>
+
+![View Leaderboard](docs/view-leaderboard.png)
+
+</details><br/>
+
 ### Edit Leaderboard
+
+
+<details><summary><b>Edit Leaderboard Display</b></summary>
+
+![Edit Leaderboard](docs/leaderboard-display.png)
+
+</details><br/>
+
+### Exit Application
+
+Provides users with a confirmation prompt to confirm whether they want to exit the application. It operates within a loop to continuously prompt the user until a valid response is received. The prompt asks users to confirm whether they are sure they want to quit the application, giving them the option to respond with "Y" for yes or "N" for no.
+Once a valid response is received, the function checks if the user confirmed they want to quit by entering "Y". If the confirmation is affirmative, the function clears the terminal screen, prints a thank-you message to acknowledge the user's usage of the application, and terminates the program.
+If the user chooses not to exit the application by entering "N" or an invalid response, the function clears the terminal screen and returns the user to the main menu.
+
+
+<details><summary><b>Exit Application</b></summary>
+
+Confirm exit:
+
+![Confirm Exit](docs/confirm-exit.png)
+
+Exit View:
+
+![Exit View](docs/confirm-exit.png)
+
+</details><br/>
 
 ## Future Enhancements
 
@@ -230,7 +262,9 @@ The Leaderboard feature was created using Google Sheets.
 
 ## Accessibility
 
-[WebAIM](https://webaim.org/resources/contrastchecker/) online tool was used to check terminal colour contrast. 
+[WAVE](https://wave.webaim.org/) online tool was used to check terminal colour contrast. 
+
+While building the application, the general principles of accessibility where adhered to: 
 
 - Using clear instructions
 - Asking for user input before continuing
@@ -240,9 +274,9 @@ The Leaderboard feature was created using Google Sheets.
 
 ## Bugs 
 
+![Bugs Summary](docs/bugs-summary.png)
 
 [Back to top](#contents)
-
 
 ## Code Validation
 
@@ -301,7 +335,7 @@ Details of manual testing can be found in [TESTING.md file()]
 
 ## Lighthouse Testing
 
-....   tested in the [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) and [Microsoft Edge Dev Tools](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/open/?tabs=cmd-Windows) using Lighthouse Testing tool which inspects and scores the website for the following criteria:
+Speedy-Py was tested in the [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) and [Microsoft Edge Dev Tools](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/open/?tabs=cmd-Windows) using Lighthouse Testing tool which inspects and scores the website for the following criteria:
 
 * Performance - how quickly a website loads and how quickly users can access it.
 * Accessibility - test analyses how well people who use assistive technologies can use your website.
@@ -378,7 +412,7 @@ Forking the GitHub repository allows you to create a duplicate of a local reposi
 ##  Languages used
 
 -   [Python](https://www.python.org/) - high-level, general-purpose programming language.
--   [Markdown](https://en.wikipedia.org/wiki/Markdown) - markup language used to write README and TESTING documents.
+-   [Markdown](https://en.wikipedia.org/wiki/Markdown) - markdown language used to write README and TESTING documents.
 
 
 ## Python Libraries:
@@ -404,9 +438,7 @@ Forking the GitHub repository allows you to create a duplicate of a local reposi
 * [PEP8 Validation](http://pep8online.com/ "PEP8 Validation")
 * [TOC Generator](https://ecotrust-canada.github.io/markdown-toc/ "TOC Generator")
 * [Am I Responsive](https://ui.dev/amiresponsive "Am I responsive")
-* [Responsive Design Checker](https://responsivedesignchecker.com/ "Responsive Design Checker")
-* [WebAIM](https://webaim.org/resources/contrastchecker/ "Web Aim")
-* [Image Resize](https://www.iloveimg.com/ "iLoveIMG")
+* [WAVE](https://webaim.org/resources/contrastchecker/ "Web Aim")
 * [Google Sheets API](https://developers.google.com/sheets/api "Google Sheets API")
 
 [Back to top](#contents)
@@ -436,14 +468,6 @@ Forking the GitHub repository allows you to create a duplicate of a local reposi
   * [Web Dev Simplified](https://www.youtube.com/watch?v=R-7eQIHRszQ "YouTube")
   * [Coding Lifestyle 4u](https://www.youtube.com/watch?v=1R8KCdRcoUw "YouTube")
  
-
-* Visual content:
-
-  - [Coolors](https://coolors.co/ "Coolors")
- 
-* Images:
-  
-  - [Gencraft](https://gencraft.com/ "Gencraft")
 
 ## Disclaimer
 -   SpeedyPy app was created for educational purpose only. 
