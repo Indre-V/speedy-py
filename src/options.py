@@ -1,6 +1,7 @@
 from colorama import Fore, Style
 from utils.utils import return_to_menu, typing_Print
 import time
+from constants import TIPS, INSTRUCTIONS, EXIT_MESSAGE
 from src.game import create_paragraph, show_results, clear_terminal
 from utils.validation import validate_response
 import textwrap
@@ -10,17 +11,7 @@ def view_instructions():
     """
     Displays instructions for the typing test.
     """
-    instructions = """
-    Instructions:
-
-    1. You will be presented with a paragraph to type.
-    2. Type the paragrah exactly as it appears.
-    3. Time, accuracy and speed will be measured.
-    4. After typing, press Enter to see your results.
-    5. Enjoy typing!
-    6. Select whether to save the result or return to the main menu.
-    """
-    print(Fore.LIGHTBLUE_EX + instructions)
+    print(Fore.LIGHTBLUE_EX + INSTRUCTIONS)
     return_to_menu()
 
 
@@ -32,22 +23,7 @@ def typing_skills_advice():
           + Fore.LIGHTMAGENTA_EX + "\nPress Enter to reveal each T&T\n" 
           + Style.RESET_ALL)
 
-    tips = [
-        "1. Touch Typing: Learn to type without looking at the keyboard.",
-        "2. Proper Posture: Maintain good posture while typing.",
-        "3. Finger Placement: Keep your fingers on the home row keys.",
-        "4. Use All Fingers: Utilize all your fingers for typing.",
-        "5. Practice Regularly: Practice typing regularly to build muscle memory.",
-        "6. Start Slow: Begin by typing slowly and focus on accuracy.",
-        "7. Take Breaks: Take short breaks during typing sessions.",
-        "8. Use Typing Games: Engage in typing games and exercises for fun practice.",
-        "9. Focus on Weak Areas: Identify and improve specific weak areas.",
-        "10. Monitor Progress: Track your typing speed and accuracy over time.",
-        "11. Learn Shortcuts: Familiarize yourself with keyboard shortcuts.",
-        "12. Stay Relaxed: Keep your hands and fingers relaxed while typing."
-    ]
-
-    for tip in tips:
+    for tip in TIPS:
         print(tip)
         input()
 
@@ -120,6 +96,7 @@ def exit_app():
                     + Style.RESET_ALL
                 )
                 print(Fore.LIGHTRED_EX + "\nTerminating..." + Style.RESET_ALL)
+                typing_Print(EXIT_MESSAGE)
                 exit()
             else:
                 clear_terminal()

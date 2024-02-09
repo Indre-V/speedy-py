@@ -35,17 +35,19 @@ def return_to_menu():
     if input() == "":
         clear_terminal()
         commands.display_menu()
+    else:
+        clear_terminal()
+        commands.display_menu()
 
-
-def typing_Print(text):
     """
     Prints text gradually as if it were being typed out.
     Pressing Enter displays the full text immediately.
     """
-    for character in text:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
+def typing_Print(text):
+  for character in text:
+    sys.stdout.write(character)
+    sys.stdout.flush()
+    time.sleep(0.05)
 
 def ask_name():
     '''
