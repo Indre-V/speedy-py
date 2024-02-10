@@ -1,6 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from prettytable import PrettyTable
 from utils.utils import typing_Print
 import uuid
 import time
