@@ -1,8 +1,8 @@
 from colorama import Fore, Style
-from utils.utils import return_to_menu, typing_Print
+from utils.utils import return_to_menu, typing_Print, ask_name, clear_terminal, space
 import time
 from constants import TIPS, INSTRUCTIONS, EXIT_MESSAGE
-from src.game import create_paragraph, show_results, clear_terminal
+from src.game import create_paragraph, show_results
 from utils.validation import validate_response
 import textwrap
 import menu as commands
@@ -63,6 +63,7 @@ def start_test():
     """
     Run the typing speed test game.
     """
+    ask_name()
     paragraph = create_paragraph()
     print(Fore.LIGHTBLUE_EX + "Type the following paragraph: \n")
     print(paragraph)

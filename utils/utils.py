@@ -54,6 +54,14 @@ def ask_name():
     The function gets the name of the player.
     '''
     player_name = input('Please enter your name.\n')
-    print(f'***Welcome to the typing test {player_name}!***')
+    clear_terminal()
+    typing_Print(f'***Welcome to the typing test {player_name}!***\n')
+    space()
+    time.sleep(2)
     return player_name
+
+def space():
+
+    print()
+    print()
 

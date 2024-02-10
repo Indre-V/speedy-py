@@ -17,7 +17,7 @@ def validate_response(user_input):
     except ValueError:
         clear_terminal()
         print(
-            color_red
+            Fore.LIGHTRED_EX
             + '\nIncorrect input, please enter "Y" or "N".\n'
             + Style.RESET_ALL
         )

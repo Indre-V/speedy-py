@@ -9,7 +9,6 @@ from utils.utils import clear_terminal
 def main_menu():
 
     print(GAME_LOGO)
-    
     print(
     Fore.LIGHTMAGENTA_EX
     + 
