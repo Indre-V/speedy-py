@@ -1,5 +1,5 @@
 from colorama import Fore, Style
-from utils.utils import return_to_menu, typing_Print, ask_name, clear_terminal, space
+from utils.utils import return_to_menu, typing_print, ask_name, clear_terminal, space
 import time
 from constants import TIPS, INSTRUCTIONS, EXIT_MESSAGE
 from src.game import create_paragraph, show_results
@@ -97,7 +97,7 @@ def exit_app():
                     + Style.RESET_ALL
                 )
                 print(Fore.LIGHTRED_EX + "\nTerminating..." + Style.RESET_ALL)
-                typing_Print(EXIT_MESSAGE)
+                typing_print(EXIT_MESSAGE)
                 exit()
             else:
                 clear_terminal()

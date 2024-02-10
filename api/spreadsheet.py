@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from utils.utils import typing_Print
+from utils.utils import typing_print, clear_terminal
 import uuid
 import time
 
@@ -28,9 +28,9 @@ def save_data(data, display_board):
     data_with_id = [unique_id] + data  
     worksheet= SHEET.worksheet(display_board)
     worksheet.append_row(data_with_id)
-    typing_Print(f'Update of {display_board} worksheet in progress' + "\n")
-    typing_Print('... \n')
-    typing_Print('... \n')
-    typing_Print(f'{display_board} worksheet updated!')
+    typing_print(f'Update of {display_board} worksheet in progress' + "\n")
+    typing_print('... \n')
+    typing_print('... \n')
+    typing_print(f'{display_board} worksheet updated!')
     time.sleep(3)
     clear_terminal()

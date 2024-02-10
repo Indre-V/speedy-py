@@ -6,6 +6,7 @@ from colorama import Fore, Style
 import menu as commands
 
 
+
 def clear_terminal():
     """
     Clears all data from terminal when called
@@ -39,7 +40,6 @@ def return_to_menu():
         clear_terminal()
         commands.display_menu()
 
-   
 def typing_Print(text):
     """
     Prints text gradually as if it were being typed out.
@@ -54,10 +54,10 @@ def ask_name():
     """
     The function gets the name of the player.
     """
-    player_name = input('Please enter your name.\n')
+    player_name = input('\nPlease enter your name.\n')
     space()
     clear_terminal()
-    typing_Print(f'***Welcome to the typing test {player_name}!***\n')
+    typing_print(f'***Welcome to the typing test {player_name}!***\n')
     space()
     time.sleep(1)
     return player_name
