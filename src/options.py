@@ -63,7 +63,7 @@ def start_test():
     """
     Run the typing speed test game.
     """
-    ask_name()
+    username = ask_name()
     paragraph = create_paragraph()
     print(Fore.LIGHTBLUE_EX + "Type the following paragraph: \n")
     print(paragraph)
@@ -76,7 +76,7 @@ def start_test():
 
     input_text = textwrap.fill(input_text, width=70)
 
-    show_results(input_text, paragraph, time_start)
+    show_results(username, input_text, paragraph, time_start)
 
 def exit_app():
     """

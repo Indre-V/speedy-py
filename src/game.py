@@ -1,9 +1,11 @@
 from colorama import Fore, Style, init
 from wonderwords import RandomSentence
 import time
+from datetime import datetime
 import constants
 from utils.validation import validate_response
-from utils.utils import clear_terminal, wrap_text
+from utils.utils import clear_terminal, wrap_text, ask_name
+from api.spreadsheet import save_data
 import menu as commands
 
 
@@ -48,7 +50,7 @@ def calculate_accuracy(input_text, paragraph):
     return round(accuracy_percentage, 1)
 
 
-def show_results(input_text, paragraph, time_start):
+def show_results(username, input_text, paragraph, time_start):
     """
     Display the results of time taken, accuracy, and WPM.
     """
@@ -56,8 +58,7 @@ def show_results(input_text, paragraph, time_start):
     accuracy = calculate_accuracy(input_text, paragraph)
     wpm = calculate_wpm(input_text, total_time, accuracy)
     results = (
-        "\n" + f"Time: {round(total_time)} secs"
-        f"Accuracy: {accuracy}%   WPM: {wpm}"
+        "\n" + f"Accuracy: {accuracy}%   WPM: {wpm}"
     )
     print(Fore.LIGHTBLUE_EX + results)
 
@@ -80,14 +81,17 @@ def show_results(input_text, paragraph, time_start):
               "Keep practicing to maintain and improve it."
         )
 
-    prompt_save_test()
+    prompt_save_test(username, accuracy, wpm)
 
 
-def prompt_save_test():
+def prompt_save_test(username, accuracy, wpm):
     """
     Prompt the user to save the test results or return to the main menu.
     """
     while True:
+        completion_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        data = [username, completion_date, accuracy, wpm]
+
         confirm = input(
             Fore.LIGHTYELLOW_EX
             + "\nWould you like to save the test results? Y/N: \n"
@@ -96,7 +100,7 @@ def prompt_save_test():
         if validate_response(confirm):
             if confirm.lower() == "y":
                 clear_terminal()
-                save_data()
+                save_data(data, 'Leaderboard')
                 commands.display_menu()
             else:
                 clear_terminal()

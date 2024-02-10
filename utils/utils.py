@@ -39,25 +39,27 @@ def return_to_menu():
         clear_terminal()
         commands.display_menu()
 
+   
+def typing_Print(text):
     """
     Prints text gradually as if it were being typed out.
     Pressing Enter displays the full text immediately.
     """
-def typing_Print(text):
-  for character in text:
-    sys.stdout.write(character)
-    sys.stdout.flush()
-    time.sleep(0.05)
+    for character in text:
+         sys.stdout.write(character)
+         sys.stdout.flush()
+         time.sleep(0.05)
 
 def ask_name():
-    '''
+    """
     The function gets the name of the player.
-    '''
+    """
     player_name = input('Please enter your name.\n')
+    space()
     clear_terminal()
     typing_Print(f'***Welcome to the typing test {player_name}!***\n')
     space()
-    time.sleep(2)
+    time.sleep(1)
     return player_name
 
 def space():
