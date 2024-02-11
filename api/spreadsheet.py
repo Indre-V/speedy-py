@@ -34,15 +34,13 @@ def save_data(data, display_board):
     typing_print('... \n')
     typing_print('... \n')
     typing_print(f'{display_board} worksheet updated!')
-    time.sleep(3)
-    clear_terminal()
-
+    return_to_menu()
+ 
 def view_leaderboard():
     """
     Displays top 10 results in the spreadsheet
     Prompts user to delete result
     """
-   
 
     data_sorted = sorted(data[1:], key=lambda x: int(x[4]), reverse=True)[:10]
 

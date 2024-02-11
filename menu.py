@@ -29,16 +29,16 @@ def display_menu():
     while True:
         main_menu()
         option = input(
-            Fore.LIGHTGREEN_EX + "Please select an option from 1 to 7 "
+            Fore.LIGHTGREEN_EX + "Please select an option from 1 to 6"
             "to continue: \n" + Style.RESET_ALL
         )
         clear_terminal()
 
-        validate_range = ["1", "2", "3", "4", "5", "6", "7"]
+        validate_range = ["1", "2", "3", "4", "5", "6"]
 
         if option not in validate_range:
             print(Fore.LIGHTRED_EX+ "Invalid choice.")
-            print(Fore.LIGHTGREEN_EX + "Please choose options 1 to 7 only.")
+            print(Fore.LIGHTGREEN_EX + "Please choose options 1 to 6 only.")
             time.sleep(3)
             display_menu()
 

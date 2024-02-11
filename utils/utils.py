@@ -54,16 +54,24 @@ def ask_name():
     """
     The function gets the name of the player.
     """
-    player_name = input('Please enter your name.\n')
-    space()
-    clear_terminal()
-    typing_print(f'***Welcome to the typing test {player_name}!***\n')
-    space()
-    time.sleep(1)
-    return player_name
+    while True:
+        player_name = input('Please enter your name.\n')
+        if len(player_name) >= 2:
+            space()
+            clear_terminal()
+            typing_print(f'***Welcome to the typing test {player_name}!***\n')
+            space()
+            time.sleep(1)
+            return player_name
+        else:
+            clear_terminal()
+            print("Name should have a minimum of two characters. Please try again.\n")
+
 
 def space():
-
+    """
+    Adds two blank lines
+    """
     print()
     print()
 
