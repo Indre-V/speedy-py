@@ -42,20 +42,23 @@ def view_leaderboard():
     Displays top 10 results in the spreadsheet
     Prompts user to delete result
     """
+   
 
-    lead = SHEET.worksheet('Leaderboard')
-    leaderboard = lead.get_all_values()
+    data_sorted = sorted(data[1:], key=lambda x: int(x[4]), reverse=True)[:10]
 
-    leaderboard_sorted = sorted(leaderboard[1:], key=lambda x: int(x[4]), reverse=True)[:10]
-
-    headers = leaderboard[0] 
+    headers = data[0] 
 
     table = PrettyTable(headers)
 
-    for row in leaderboard_sorted:
+    for row in data_sorted:
         table.add_row(row)
 
-    print(table)
+    if len(data) <= 1:  
+       print("No records found in the Leaderboard.")
+       return_to_menu()
+       return
+    else:
+        print(table)
     
     prompt = input("Would you like to delete a result? Y/N: ")
     if validate_response(prompt):
@@ -89,5 +92,6 @@ def delete_results():
             return
 
     print(f"No entry found with ID '{entry_id}'.")
+    clear_terminal()
     view_leaderboard()
     

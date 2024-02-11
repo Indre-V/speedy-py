@@ -3,7 +3,7 @@ from constants import GAME_LOGO
 import time
 from colorama import Fore, Style
 from utils.utils import clear_terminal
-from api.spreadsheet import view_leaderboard, delete_results
+from api.spreadsheet import view_leaderboard
 
 
 
@@ -14,13 +14,12 @@ def main_menu():
     Fore.LIGHTMAGENTA_EX
     + 
     """
-    1. View Instructions
+    1. Instructions
     2. Start Test
     3. Tips and Tricks
     4. Practice Accuracy
-    5. View Leaderboard
-    6. Delete Test Results
-    7. Quit
+    5. Leaderboard
+    6. Quit
     """
         + Style.RESET_ALL
     )
@@ -54,6 +53,4 @@ def display_menu():
         elif option == "5":
             view_leaderboard()
         elif option == "6":
-            delete_results()
-        elif option == "7":
             exit_app()
