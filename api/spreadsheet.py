@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from utils.utils import typing_print, clear_terminal, return_to_menu
+from utils.utils import typing_print, clear_terminal, return_to_menu, space
 import uuid
 import time
 from prettytable import PrettyTable
@@ -54,7 +54,28 @@ def view_leaderboard():
         table.add_row(row)
 
     print(table)
-    return_to_menu()
+    
 
 
+def delete_results():
+    view_leaderboard()
+
+
+    entry_id = input("Enter the ID of the entry you want to delete: ")
+
+    for row in data:
+        if row[0] == entry_id:
+  
+            row_index = data.index(row) + 1 
+            display_board.delete_rows(row_index)
+            print(f"Entry with ID '{entry_id}' deleted successfully.")
+            space()
+            print("Loading updated Leaderboard ....")
+            time.sleep(3)
+            clear_terminal()
+            view_leaderboard()
+            return_to_menu()
+            return
+
+    print(f"No entry found with ID '{entry_id}'.")
     
