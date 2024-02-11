@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from utils.utils import typing_print, clear_terminal, return_to_menu, space
+from utils.validation import validate_response
 import uuid
 import time
 from prettytable import PrettyTable
@@ -23,7 +24,7 @@ data = display_board.get_all_values()
 
 def save_data(data, display_board):
     """
-    This function appends a new row to a worksheet in a Google Sheets document.
+    Appends a new row to a worksheet in a Google Sheets document.
     """
     unique_id = str(uuid.uuid4())[:4] 
     data_with_id = [unique_id] + data  
@@ -38,7 +39,8 @@ def save_data(data, display_board):
 
 def view_leaderboard():
     """
-    This function displays top 10 results in the spreadsheet
+    Displays top 10 results in the spreadsheet
+    Prompts user to delete result
     """
 
     lead = SHEET.worksheet('Leaderboard')
@@ -55,12 +57,22 @@ def view_leaderboard():
 
     print(table)
     
+    prompt = input("Would you like to delete a result? Y/N: ")
+    if validate_response(prompt):
+        if prompt.lower() == 'y':
+            space()
+            delete_results()
+        elif prompt.lower() == 'n':
+            return_to_menu()
+    else:
+        return_to_menu()
+    
 
 
 def delete_results():
-    view_leaderboard()
-
-
+    """
+    Searches for ID and deletes results
+    """
     entry_id = input("Enter the ID of the entry you want to delete: ")
 
     for row in data:
@@ -74,8 +86,8 @@ def delete_results():
             time.sleep(3)
             clear_terminal()
             view_leaderboard()
-            return_to_menu()
             return
 
     print(f"No entry found with ID '{entry_id}'.")
+    view_leaderboard()
     
