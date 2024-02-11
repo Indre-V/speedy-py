@@ -1,8 +1,9 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from utils.utils import typing_print, clear_terminal
+from utils.utils import typing_print, clear_terminal, return_to_menu
 import uuid
 import time
+from prettytable import PrettyTable
 
 
 SCOPE = [
@@ -34,3 +35,26 @@ def save_data(data, display_board):
     typing_print(f'{display_board} worksheet updated!')
     time.sleep(3)
     clear_terminal()
+
+def view_leaderboard():
+    """
+    This function displays top 10 results in the spreadsheet
+    """
+
+    lead = SHEET.worksheet('Leaderboard')
+    leaderboard = lead.get_all_values()
+
+    leaderboard_sorted = sorted(leaderboard[1:], key=lambda x: int(x[4]), reverse=True)[:10]
+
+    headers = leaderboard[0] 
+
+    table = PrettyTable(headers)
+
+    for row in leaderboard_sorted:
+        table.add_row(row)
+
+    print(table)
+    return_to_menu()
+
+
+    

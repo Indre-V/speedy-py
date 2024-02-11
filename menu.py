@@ -3,6 +3,7 @@ from constants import GAME_LOGO
 import time
 from colorama import Fore, Style
 from utils.utils import clear_terminal
+from api.spreadsheet import view_leaderboard, delete_results
 
 
 

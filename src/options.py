@@ -2,7 +2,7 @@ from colorama import Fore, Style
 from utils.utils import return_to_menu, typing_print, ask_name, clear_terminal, space
 import time
 from constants import TIPS, INSTRUCTIONS, EXIT_MESSAGE
-from src.game import create_paragraph, show_results
+from src.game import create_paragraph, show_results, calculate_accuracy
 from utils.validation import validate_response
 import textwrap
 import menu as commands
@@ -103,3 +103,4 @@ def exit_app():
                 clear_terminal()
                 commands.display_menu()
                 break
+

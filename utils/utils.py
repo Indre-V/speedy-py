@@ -40,7 +40,7 @@ def return_to_menu():
         clear_terminal()
         commands.display_menu()
 
-def typing_Print(text):
+def typing_print(text):
     """
     Prints text gradually as if it were being typed out.
     Pressing Enter displays the full text immediately.
