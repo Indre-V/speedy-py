@@ -23,21 +23,21 @@ def start_screen(stdscr):
 	stdscr.getkey()
 
 def display_text(stdscr, target, current, wpm=0):
-    stdscr.erase() 
+    stdscr.erase()  # Clear the screen before displaying the text
 
-    
-    stdscr.addstr(target)
+    # Display the target text
+    stdscr.addstr(0, 0, target)
 
-   
+    # Display the WPM below the target text
     stdscr.addstr(1, 0, f"WPM: {wpm}")
 
-   
+    # Display the current input with appropriate colors
     for i, char in enumerate(current):
         correct_char = target[i]
-        color = curses.color_pair(1)  
+        color = curses.color_pair(1)  # Default color for correct characters
 
         if char != correct_char:
-            color = curses.color_pair(2)  
+            color = curses.color_pair(2)  # Color for incorrect characters
 
         stdscr.addstr(0, i, char, color)
 
