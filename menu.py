@@ -1,9 +1,11 @@
 from src.options import *
+from src.test import *
 from constants import GAME_LOGO
 import time
 from colorama import Fore, Style
 from utils.utils import clear_terminal
 from api.spreadsheet import view_leaderboard
+from src.test import run_typing_test
 
 
 
@@ -26,6 +28,7 @@ def main_menu():
 
 
 def display_menu():
+
     while True:
         main_menu()
         option = input(
@@ -45,7 +48,7 @@ def display_menu():
         elif option == "1":
             view_instructions()
         elif option == "2":
-            start_test()
+             run_typing_test()
         elif option == "3":
             typing_skills_advice()
         elif option == "4":
@@ -54,3 +57,6 @@ def display_menu():
             view_leaderboard()
         elif option == "6":
             exit_app()
+
+def view_menu ():
+    display_menu()

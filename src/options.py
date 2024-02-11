@@ -59,24 +59,7 @@ def pract_acc():
                 return_to_menu()
                 break
 
-def start_test():
-    """
-    Run the typing speed test game.
-    """
-    username = ask_name()
-    paragraph = create_paragraph()
-    print(Fore.LIGHTBLUE_EX + "Type the following paragraph: \n")
-    print(paragraph)
 
-    time_start = time.time()
-
-    input_text = input(
-        Fore.LIGHTGREEN_EX + "Start Typing Now >>> \n"
-        + Style.RESET_ALL)
-
-    input_text = textwrap.fill(input_text, width=70)
-
-    show_results(username, input_text, paragraph, time_start)
 
 def exit_app():
     """

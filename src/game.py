@@ -9,6 +9,7 @@ from api.spreadsheet import save_data
 import menu as commands
 
 
+
 def create_paragraph():
     """
     Generate a random paragraph of three random sentences.
@@ -84,7 +85,7 @@ def show_results(username, input_text, paragraph, time_start):
     prompt_save_test(username, accuracy, wpm)
 
 
-def prompt_save_test(username, accuracy, wpm):
+def prompt_save_test(stdscr, username, accuracy, wpm):
     """
     Prompt the user to save the test results or return to the main menu.
     """
@@ -92,17 +93,20 @@ def prompt_save_test(username, accuracy, wpm):
         completion_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         data = [username, completion_date, accuracy, wpm]
 
-        confirm = input(
-            Fore.LIGHTYELLOW_EX
-            + "\nWould you like to save the test results? Y/N: \n"
-            + Style.RESET_ALL
+        stdscr.addstr(
+            "\nWould you like to save the test results? Y/N: "
         )
-        if validate_response(confirm):
-            if confirm.lower() == "y":
-                clear_terminal()
-                save_data(data, 'Leaderboard')
-                commands.display_menu()
-            else:
-                clear_terminal()
-                commands.display_menu()
-                break
+        stdscr.refresh()
+        
+        key = stdscr.getch()
+        if key == ord('y') or key == ord('Y'):
+            clear_terminal()
+            save_data(data, 'Leaderboard')
+            curses.endwin()
+            commands.view_menu()  # Assuming view_menu handles displaying the menu
+            break
+        elif key == ord('n') or key == ord('N'):
+            clear_terminal()
+            curses.endwin()
+            commands.view_menu()  # Assuming view_menu handles displaying the menu
+            break
