@@ -161,26 +161,45 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
 
     prompt_save_test(stdscr, username, accuracy, wpm)
 
+
 def prompt_save_test(stdscr, username, accuracy, wpm):
     """
     Prompt the user to save the test results or return to the main menu.
     """
-    stdscr.addstr(
-        "\nWould you like to save the test results? Y/N: "
-    )
-    stdscr.refresh()
-
     while True:
-        key = stdscr.getkey()
-        if key.lower() == "y":
+        stdscr.addstr(
+            9, 0,
+            "\nWould you like to save the test results? Y/N: ",
+            curses.color_pair(4)
+        )
+        stdscr.refresh()
+
+        key = stdscr.getch() 
+        key = chr(key).lower() 
+
+        if key == "y":
             save_data([username, datetime.now(), accuracy, wpm], 'Leaderboard')
             curses.endwin()
             commands.display_menu()
-        elif key.lower() == "n":
+        elif key == "n":
+            stdscr.clear()
+            stdscr.addstr(
+                3, 0,
+                "\nReturning to Main Menu ....",
+                curses.color_pair(1)
+            )
+            stdscr.refresh()
+            time.sleep(3)
             curses.endwin()
             commands.display_menu()
-        elif ord(key) == 27:  # ESC key to exit
-            return
+        else:
+            stdscr.addstr(
+                7, 0,
+                "\nInvalid input. Please enter 'Y' or 'N'.",
+                curses.color_pair(2)
+            )
+            stdscr.refresh()
+            time.sleep(2)
 
 
 def run_typing_test():
