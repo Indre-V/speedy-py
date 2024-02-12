@@ -1,4 +1,3 @@
-from colorama import Fore, Style, init
 from wonderwords import RandomSentence
 import time
 from datetime import datetime
@@ -8,24 +7,20 @@ from utils.validation import validate_response
 from api.spreadsheet import save_data
 import menu as commands
 
-# Initialize Colorama
-init(autoreset=True)
-
 def start_test(stdscr):
     """
     Run the typing speed test game.
     """
-    init()
     curses.start_color()
     curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
     curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
-
+    curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK)
+    curses.init_pair(5, curses.COLOR_BLUE, curses.COLOR_BLACK)
+    
     username = ask_name(stdscr)
     paragraph = create_paragraph()
-    stdscr.clear()
-    stdscr.addstr(Fore.LIGHTBLUE_EX + "Type the following paragraph: \n\n")
-    stdscr.addstr(paragraph)
+    display_text(stdscr, paragraph,"")
     stdscr.refresh()
 
     time_start = time.time()
@@ -42,29 +37,25 @@ def start_test(stdscr):
                 input_text = input_text[:-1]
         else:
             input_text += key
+        
 
         stdscr.clear()
-        stdscr.addstr(Fore.LIGHTGREEN_EX + "Start Typing Now >>>\n")
         display_text(stdscr, paragraph, input_text)
         stdscr.refresh()
 
     show_results(stdscr, username, input_text, paragraph, time_start)
 
 
-
 def display_text(stdscr, target, current):
-    stdscr.addstr(0, 0, target)  # Display target text in default color
-    stdscr.addstr(1, 0, "Your input: ")
+    stdscr.addstr(0, 0, "Type the following paragraph:", curses.color_pair(5))
+    stdscr.addstr(3, 0, target)  
 
     for i, char in enumerate(current):
         correct_char = target[i]
         if char == correct_char:
-            stdscr.addch(char, curses.color_pair(1))  # Display correct character in green
+            stdscr.addch(3, i, char, curses.color_pair(1))  
         else:
-            stdscr.addch(char, curses.color_pair(2))  # Display incorrect character in red
-
-    stdscr.refresh()
-
+            stdscr.addch(3, i, char, curses.color_pair(2)) 
 
 def ask_name(stdscr):
     curses.echo()
@@ -121,25 +112,22 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
         "\n" + f"Accuracy: {accuracy}%   WPM: {wpm}"
     )
     stdscr.clear()
-    stdscr.addstr(Fore.LIGHTBLUE_EX + results + "\n\n")
+    stdscr.addstr(results + "\n\n")
 
     if wpm < 10:
         stdscr.addstr(
-            Fore.LIGHTMAGENTA_EX
-            + "\nYour typing speed is quite slow. "
-              "You may want to focus on accuracy and practice more."
+        "\nYour typing speed is quite slow. "
+        "You may want to focus on accuracy and practice more."
         )
     elif wpm < 30:
         stdscr.addstr(
-            Fore.LIGHTYELLOW_EX
-            + "\nYour typing speed is average. "
-              "Keep practicing to improve your speed and accuracy."
+           "\nYour typing speed is average. "
+            "Keep practicing to improve your speed and accuracy."
         )
     else:
         stdscr.addstr(
-            Fore.LIGHTGREEN_EX
-            + "\nCongratulations! You have a good typing speed. "
-              "Keep practicing to maintain and improve it."
+            "\nCongratulations! You have a good typing speed. "
+            "Keep practicing to maintain and improve it."
         )
 
     stdscr.addstr("\n\nPress any key to continue...")
@@ -154,9 +142,7 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
     """
     stdscr.clear()
     stdscr.addstr(
-        Fore.LIGHTYELLOW_EX
-        + "\nWould you like to save the test results? Y/N: "
-        + Style.RESET_ALL
+        "\nWould you like to save the test results? Y/N: "
     )
     stdscr.refresh()
 
@@ -172,7 +158,15 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
         elif ord(key) == 27:  # ESC key to exit
             return
 
+def add_blank_lines(stdscr):
+    """
+    Adds two blank lines to the screen.
+    """
+    stdscr.addstr("\n")
+    stdscr.addstr("\n")
+    stdscr.refresh()
 
 
 def run_typing_test():
     wrapper(start_test)
+

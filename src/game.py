@@ -110,3 +110,4 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
             curses.endwin()
             commands.view_menu()  # Assuming view_menu handles displaying the menu
             break
+        
