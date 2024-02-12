@@ -17,6 +17,7 @@ def start_test(stdscr):
     curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
     curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK)
     curses.init_pair(5, curses.COLOR_BLUE, curses.COLOR_BLACK)
+    curses.init_pair(6, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
     
     username = ask_name(stdscr)
     paragraph = create_paragraph()
@@ -107,26 +108,33 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
     total_time = time.time() - time_start
     accuracy = calculate_accuracy(input_text, paragraph)
     wpm = calculate_wpm(input_text, total_time, accuracy)
-    results = (
-        "\n" + f"Accuracy: {accuracy}%   WPM: {wpm}"
-    )
+
+    # Define the text and color pair separately
+    result_line1 = "The test is now complete. Your results are as follows:\n"
+    result_line2 = f"Accuracy: {accuracy}%   WPM: {wpm}"
+   
     stdscr.clear()
-    stdscr.addstr(results + "\n\n")
+    stdscr.addstr(result_line1, curses.color_pair(1))
+    stdscr.addstr(2, 0, result_line2 + "\n\n")
+
 
     if wpm < 10:
         stdscr.addstr(
         "\nYour typing speed is quite slow. "
-        "You may want to focus on accuracy and practice more."
+        "You may want to focus on accuracy and practice more.",
+        curses.color_pair(6)
         )
     elif wpm < 30:
         stdscr.addstr(
            "\nYour typing speed is average. "
-            "Keep practicing to improve your speed and accuracy."
+            "Keep practicing to improve your speed and accuracy.",
+            curses.color_pair(4)
         )
     else:
         stdscr.addstr(
             "\nCongratulations! You have a good typing speed. "
-            "Keep practicing to maintain and improve it."
+            "Keep practicing to maintain and improve it.",
+            curses.color_pair(1)
         )
 
     stdscr.addstr("\n\nPress any key to continue...")
