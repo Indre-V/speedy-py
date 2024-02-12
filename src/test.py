@@ -29,14 +29,13 @@ def start_test(stdscr):
     while True:
         key = stdscr.getkey()
         if key == "\n":
-            break
-        elif ord(key) == 27:  # ESC key to exit
-            return
+           break
         elif key == "KEY_BACKSPACE" or ord(key) == 127:
             if input_text:
                 input_text = input_text[:-1]
         else:
             input_text += key
+
         
 
         stdscr.clear()
