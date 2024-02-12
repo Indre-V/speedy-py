@@ -1,11 +1,13 @@
 from wonderwords import RandomSentence
 import time
-from datetime import datetime
+import datetime
 import curses
+import uuid
 from curses import wrapper
 from utils.validation import validate_response
-from api.spreadsheet import save_data
+from api.spreadsheet import *
 import menu as commands
+
 
 def initialize_colors():
 
@@ -167,6 +169,7 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
     Prompt the user to save the test results or return to the main menu.
     """
     while True:
+        
         stdscr.addstr(
             9, 0,
             "\nWould you like to save the test results? Y/N: ",
@@ -174,24 +177,22 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
         )
         stdscr.refresh()
 
-        key = stdscr.getch() 
-        key = chr(key).lower() 
+        key = stdscr.getch()
+        stdscr.addstr(chr(key))
+        stdscr.refresh()
+
+        key = chr(key).lower() if isinstance(key, int) else key.lower()
 
         if key == "y":
-            save_data([username, datetime.now(), accuracy, wpm], 'Leaderboard')
-            curses.endwin()
-            commands.display_menu()
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            save_data(stdscr, [username, current_time, accuracy, wpm], 'Leaderboard')
+            break
+
         elif key == "n":
-            stdscr.clear()
-            stdscr.addstr(
-                3, 0,
-                "\nReturning to Main Menu ....",
-                curses.color_pair(1)
-            )
-            stdscr.refresh()
-            time.sleep(3)
             curses.endwin()
             commands.display_menu()
+            break
+
         else:
             stdscr.addstr(
                 7, 0,
@@ -199,9 +200,31 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
                 curses.color_pair(2)
             )
             stdscr.refresh()
-            time.sleep(2)
+            
 
+
+
+def save_data(stdscr, data, display_board):
+    """
+    Appends a new row to a worksheet in a Google Sheets document.
+    """
+    unique_id = str(uuid.uuid4())[:4] 
+    data_with_id = [unique_id] + data  
+
+    worksheet = SHEET.worksheet(display_board)
+    worksheet.append_row(data_with_id)
+
+    stdscr.clear()
+    stdscr.addstr(2, 0,"{} worksheet updated!\n".format(display_board))
+    stdscr.addstr(4, 0,"Returning to Main Menu...", curses.color_pair(1))
+    stdscr.refresh()
+    time.sleep(2)
+    curses.endwin()
+    commands.display_menu()
+    return
 
 def run_typing_test():
     wrapper(start_test)
+
+   
 
