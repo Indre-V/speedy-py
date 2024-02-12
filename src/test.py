@@ -7,10 +7,8 @@ from utils.validation import validate_response
 from api.spreadsheet import save_data
 import menu as commands
 
-def start_test(stdscr):
-    """
-    Run the typing speed test game.
-    """
+def initialize_colors():
+
     curses.start_color()
     curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
@@ -18,53 +16,78 @@ def start_test(stdscr):
     curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK)
     curses.init_pair(5, curses.COLOR_BLUE, curses.COLOR_BLACK)
     curses.init_pair(6, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
-    
+
+
+def start_test(stdscr):
+    """
+    Run the typing speed test game.
+    """    
+    initialize_colors()
     username = ask_name(stdscr)
     paragraph = create_paragraph()
-    display_text(stdscr, paragraph,"")
+    display_text(stdscr, paragraph, "", username)
     stdscr.refresh()
 
     time_start = time.time()
-
     input_text = ""
+
     while True:
         key = stdscr.getkey()
         if key == "\n":
-           break
+            break
         elif key == "KEY_BACKSPACE" or ord(key) == 127:
             if input_text:
                 input_text = input_text[:-1]
         else:
             input_text += key
 
-        
-
         stdscr.clear()
-        display_text(stdscr, paragraph, input_text)
+        display_text(stdscr, paragraph, input_text, username)
         stdscr.refresh()
 
     show_results(stdscr, username, input_text, paragraph, time_start)
 
 
-def display_text(stdscr, target, current):
-    stdscr.addstr(0, 0, "Type the following paragraph:", curses.color_pair(5))
-    stdscr.addstr(3, 0, target)  
+def display_text(stdscr, target, current, username):
+    stdscr.addstr(0, 0, f"Welcome to the typing test, {username}!\n", 
+                  curses.color_pair(1))
+    stdscr.addstr(2, 0, "Start typing the following paragraph now:", 
+                  curses.color_pair(5))
+    stdscr.addstr(4, 0, target)  
 
     for i, char in enumerate(current):
         correct_char = target[i]
         if char == correct_char:
-            stdscr.addch(3, i, char, curses.color_pair(1))  
+            stdscr.addch(4, i, char, curses.color_pair(1))  
         else:
-            stdscr.addch(3, i, char, curses.color_pair(2)) 
+            stdscr.addch(4, i, char, curses.color_pair(2)) 
+
 
 def ask_name(stdscr):
-    curses.echo()
+    """
+    The function gets the name of the player using curses.
+    """
+    curses.echo()  
     stdscr.clear()
-    stdscr.addstr("Enter your username: ")
+    stdscr.addstr("Please enter your name (minimum 2 characters):\n",
+                curses.color_pair(4))
     stdscr.refresh()
-    username = stdscr.getstr().decode("utf-8")
-    curses.noecho()
-    return username
+    
+    while True:
+        player_name = stdscr.getstr().decode("utf-8")
+        if len(player_name) >= 2:
+            stdscr.clear()
+            curses.noecho() 
+            return player_name
+        else:
+            stdscr.clear()
+            stdscr.addstr(0, 0,"Name should have a minimum of two characters.\n",
+                         curses.color_pair(2))
+            stdscr.addstr(2, 0,"Please try again. Enter your name:\n",
+                         curses.color_pair(4) )
+            stdscr.refresh()
+
+
 
 def create_paragraph():
     """
@@ -109,7 +132,6 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
     accuracy = calculate_accuracy(input_text, paragraph)
     wpm = calculate_wpm(input_text, total_time, accuracy)
 
-    # Define the text and color pair separately
     result_line1 = "The test is now complete. Your results are as follows:\n"
     result_line2 = f"Accuracy: {accuracy}%   WPM: {wpm}"
    
@@ -137,17 +159,12 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
             curses.color_pair(1)
         )
 
-    stdscr.addstr("\n\nPress any key to continue...")
-    stdscr.refresh()
-    stdscr.getch()
-
     prompt_save_test(stdscr, username, accuracy, wpm)
 
 def prompt_save_test(stdscr, username, accuracy, wpm):
     """
     Prompt the user to save the test results or return to the main menu.
     """
-    stdscr.clear()
     stdscr.addstr(
         "\nWould you like to save the test results? Y/N: "
     )
@@ -164,14 +181,6 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
             commands.display_menu()
         elif ord(key) == 27:  # ESC key to exit
             return
-
-def add_blank_lines(stdscr):
-    """
-    Adds two blank lines to the screen.
-    """
-    stdscr.addstr("\n")
-    stdscr.addstr("\n")
-    stdscr.refresh()
 
 
 def run_typing_test():
