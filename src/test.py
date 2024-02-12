@@ -52,17 +52,17 @@ def start_test(stdscr):
 
 def display_text(stdscr, target, current, username):
     stdscr.addstr(0, 0, f"Welcome to the typing test, {username}!\n", 
-                  curses.color_pair(1)| curses.A_BOLD)
+                  curses.color_pair(1) | curses.A_BOLD)
     stdscr.addstr(2, 0, "Start typing the following paragraph now:", 
-                  curses.color_pair(5)| curses.A_BOLD)
+                  curses.color_pair(5) | curses.A_BOLD)
     stdscr.addstr(4, 0, target)  
 
     for i, char in enumerate(current):
         correct_char = target[i]
         if char == correct_char:
-            stdscr.addch(4, i, char, curses.color_pair(1))  
+            stdscr.addch(4, i, char, curses.color_pair(1) | curses.A_BOLD)  
         else:
-            stdscr.addch(4, i, char, curses.color_pair(2)) 
+            stdscr.addch(4, i, char, curses.color_pair(2) | curses.A_BOLD) 
 
 
 def ask_name(stdscr):

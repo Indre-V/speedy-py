@@ -5,7 +5,7 @@ from utils.validation import validate_response
 import uuid
 import time
 from prettytable import PrettyTable
-import sys
+
 
 
 SCOPE = [
@@ -23,26 +23,20 @@ display_board = SHEET.worksheet('Leaderboard')
 
 data = display_board.get_all_values()
 
-def save_data(data, display_board):
+def fetch_data_from_spreadsheet():
     """
-    Appends a new row to a worksheet in a Google Sheets document.
+    Fetches data from the 'Leaderboard' worksheet in the spreadsheet.
+    Returns a list of lists representing the rows and columns of the worksheet.
     """
-    unique_id = str(uuid.uuid4())[:4] 
-    data_with_id = [unique_id] + data  
-    worksheet= SHEET.worksheet(display_board)
-    worksheet.append_row(data_with_id)
-    typing_print(f'Update of {display_board} worksheet in progress' + "\n")
-    typing_print('... \n')
-    typing_print('... \n')
-    typing_print(f'{display_board} worksheet updated!')
-    return_to_menu()
+    worksheet = SHEET.worksheet('Leaderboard')
+    return worksheet.get_all_values()
  
 def view_leaderboard():
     """
     Displays top 10 results in the spreadsheet
     Prompts user to delete result
     """
-    sys.stdout.flush()
+    data = fetch_data_from_spreadsheet()  
     data_sorted = sorted(data[1:], key=lambda x: int(x[4]), reverse=True)[:10]
 
     headers = data[0] 

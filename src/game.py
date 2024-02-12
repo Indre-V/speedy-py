@@ -5,7 +5,6 @@ from datetime import datetime
 import constants
 from utils.validation import validate_response
 from utils.utils import clear_terminal, wrap_text, ask_name
-from api.spreadsheet import save_data
 import menu as commands
 
 
