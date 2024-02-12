@@ -5,6 +5,7 @@ from utils.validation import validate_response
 import uuid
 import time
 from prettytable import PrettyTable
+import sys
 
 
 SCOPE = [
@@ -41,7 +42,7 @@ def view_leaderboard():
     Displays top 10 results in the spreadsheet
     Prompts user to delete result
     """
-
+    sys.stdout.flush()
     data_sorted = sorted(data[1:], key=lambda x: int(x[4]), reverse=True)[:10]
 
     headers = data[0] 

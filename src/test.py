@@ -14,7 +14,7 @@ def initialize_colors():
     curses.start_color()
     curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
-    curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
+    curses.init_pair(3, curses.COLOR_CYAN, curses.COLOR_BLACK)
     curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK)
     curses.init_pair(5, curses.COLOR_BLUE, curses.COLOR_BLACK)
     curses.init_pair(6, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
@@ -43,7 +43,7 @@ def start_test(stdscr):
         else:
             input_text += key
 
-        stdscr.clear()
+        stdscr.erase()
         display_text(stdscr, paragraph, input_text, username)
         stdscr.refresh()
 
@@ -52,9 +52,9 @@ def start_test(stdscr):
 
 def display_text(stdscr, target, current, username):
     stdscr.addstr(0, 0, f"Welcome to the typing test, {username}!\n", 
-                  curses.color_pair(1))
+                  curses.color_pair(1)| curses.A_BOLD)
     stdscr.addstr(2, 0, "Start typing the following paragraph now:", 
-                  curses.color_pair(5))
+                  curses.color_pair(5)| curses.A_BOLD)
     stdscr.addstr(4, 0, target)  
 
     for i, char in enumerate(current):
@@ -70,7 +70,7 @@ def ask_name(stdscr):
     The function gets the name of the player using curses.
     """
     curses.echo()  
-    stdscr.clear()
+    stdscr.erase()
     stdscr.addstr("Please enter your name (minimum 2 characters):\n",
                 curses.color_pair(4))
     stdscr.refresh()
@@ -78,22 +78,22 @@ def ask_name(stdscr):
     while True:
         player_name = stdscr.getstr().decode("utf-8")
         if len(player_name) >= 2:
-            stdscr.clear()
+            stdscr.erase()
             curses.noecho() 
             return player_name
         else:
-            stdscr.clear()
+            stdscr.erase()
             stdscr.addstr(0, 0,"Name should have a minimum of two characters.\n",
-                         curses.color_pair(2))
+                         curses.color_pair(2) | curses.A_BOLD)
             stdscr.addstr(2, 0,"Please try again. Enter your name:\n",
-                         curses.color_pair(4) )
+                         curses.color_pair(4) | curses.A_BOLD )
             stdscr.refresh()
 
 
 
 def create_paragraph():
     """
-    Generate a random paragraph of three random sentences.
+    Generate a random paragraph of 2 random sentences.
     """
     random_sentences = [RandomSentence().sentence() for _ in range(2)]
     paragraph = " ".join(random_sentences)
@@ -137,7 +137,7 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
     result_line1 = "The test is now complete. Your results are as follows:\n"
     result_line2 = f"Accuracy: {accuracy}%   WPM: {wpm}"
    
-    stdscr.clear()
+    stdscr.erase()
     stdscr.addstr(result_line1, curses.color_pair(1))
     stdscr.addstr(2, 0, result_line2 + "\n\n")
 
@@ -214,7 +214,7 @@ def save_data(stdscr, data, display_board):
     worksheet = SHEET.worksheet(display_board)
     worksheet.append_row(data_with_id)
 
-    stdscr.clear()
+    stdscr.erase()
     stdscr.addstr(2, 0,"{} worksheet updated!\n".format(display_board))
     stdscr.addstr(4, 0,"Returning to Main Menu...", curses.color_pair(1))
     stdscr.refresh()
