@@ -203,8 +203,6 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
             stdscr.refresh()
             
 
-
-
 def save_data(stdscr, data, display_board):
     """
     Appends a new row to a worksheet in a Google Sheets document.
@@ -224,6 +222,54 @@ def save_data(stdscr, data, display_board):
     curses.endwin()
     commands.display_menu()
     return
+
+def pract_acc():
+    stdscr = curses.initscr()
+    curses.start_color()
+    curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
+    curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
+
+    paragraph = create_paragraph()
+
+    stdscr.addstr(2, 0, "Start typing the following paragraph now:", curses.color_pair(5) | curses.A_BOLD)
+    stdscr.addstr(4, 0, paragraph)
+
+    input_text = ""
+    for i, char in enumerate(paragraph):
+        stdscr.addch(4, i, char)
+
+    for i, char in enumerate(paragraph):
+        key = stdscr.getch()
+        if key == ord(char):
+            input_text += chr(key)
+            stdscr.addch(4, i, char, curses.color_pair(1) | curses.A_BOLD)
+        else:
+            input_text += "_"
+            stdscr.addch(4, i, char, curses.color_pair(2) | curses.A_BOLD)
+
+    accuracy = calculate_accuracy(input_text, paragraph)
+    if accuracy == 100:
+        stdscr.addstr("\nCongratulations! Your accuracy is 100%.", curses.color_pair(1) | curses.A_BOLD)
+    else:
+        stdscr.addstr("\nYour accuracy is {}%.".format(accuracy), curses.color_pair(2) | curses.A_BOLD)
+
+    while True:
+        stdscr.addstr("\nWould you like to try again? Y/N: ", curses.color_pair(4) | curses.A_BOLD)
+        stdscr.refresh()
+
+        confirm = stdscr.getch()
+        confirm = chr(confirm).lower() if isinstance(confirm, int) else confirm.lower()
+
+        if validate_response(confirm):
+            if confirm == "y":
+                stdscr.clear()
+                pract_acc()
+            else:
+                stdscr.clear()
+                curses.endwin()
+                commands.display_menu()
+                break
+    curses.endwin()
 
 def run_typing_test():
     wrapper(start_test)

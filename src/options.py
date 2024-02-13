@@ -1,7 +1,6 @@
 from utils.utils import return_to_menu, typing_print, clear_terminal, space
 import time
 from constants import *
-from src.game import create_paragraph
 from utils.validation import validate_response
 import textwrap
 import menu as commands
@@ -27,37 +26,6 @@ def typing_skills_advice():
         input()
 
     return_to_menu()
-
-def pract_acc():
-    paragraph = create_paragraph()
-    print(BLUE + "Type the following paragraph: \n")
-    print(paragraph)
-    input_text = input(
-        GREEN + "Start Typing Now >>> \n"
-        + RESET_COLOR)
-    input_text = textwrap.fill(input_text, width=70)
-
-    accuracy = calculate_accuracy(input_text, paragraph)
-    if accuracy == 100:
-        print(GREEN + "\nCongratulations! Your accuracy is 100%.")
-    else:
-        print(RED + "\n" + f"Your accuracy is {accuracy}%.")
-
-    while True:
-        confirm = input(
-            YELLOW + "\nWould you like to try again? Y/N:"
-            + RESET_COLOR
-        )
-        if validate_response(confirm):
-
-            if confirm.lower() == "y":
-                clear_terminal()
-                pract_acc()
-            else:
-                clear_terminal()
-                return_to_menu()
-                break
-
 
 
 def exit_app():
