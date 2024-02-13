@@ -1,22 +1,103 @@
-from colorama import Fore, Style, init
 from wonderwords import RandomSentence
 import time
-from datetime import datetime
-import constants
+import datetime
+import curses
+import uuid
+from curses import wrapper
 from utils.validation import validate_response
-from utils.utils import clear_terminal, wrap_text, ask_name
+from api.spreadsheet import *
 import menu as commands
+
+
+def initialize_colors():
+
+    curses.start_color()
+    curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
+    curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
+    curses.init_pair(3, curses.COLOR_CYAN, curses.COLOR_BLACK)
+    curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK)
+    curses.init_pair(5, curses.COLOR_BLUE, curses.COLOR_BLACK)
+    curses.init_pair(6, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
+
+
+def start_test(stdscr):
+    """
+    Run the typing speed test game.
+    """    
+    initialize_colors()
+    username = ask_name(stdscr)
+    paragraph = create_paragraph()
+    display_text(stdscr, paragraph, "", username)
+    stdscr.refresh()
+
+    time_start = time.time()
+    input_text = ""
+
+    while True:
+        key = stdscr.getkey()
+        if key == "\n":
+            break
+        elif key == "KEY_BACKSPACE" or ord(key) == 127:
+            if input_text:
+                input_text = input_text[:-1]
+        else:
+            input_text += key
+
+        stdscr.erase()
+        display_text(stdscr, paragraph, input_text, username)
+        stdscr.refresh()
+
+    show_results(stdscr, username, input_text, paragraph, time_start)
+
+
+def display_text(stdscr, target, current, username):
+    stdscr.addstr(0, 0, f"Welcome to the typing test, {username}!\n", 
+                  curses.color_pair(1) | curses.A_BOLD)
+    stdscr.addstr(2, 0, "Start typing the following paragraph now:", 
+                  curses.color_pair(5) | curses.A_BOLD)
+    stdscr.addstr(4, 0, target)  
+
+    for i, char in enumerate(current):
+        correct_char = target[i]
+        if char == correct_char:
+            stdscr.addch(4, i, char, curses.color_pair(1) | curses.A_BOLD)  
+        else:
+            stdscr.addch(4, i, char, curses.color_pair(2) | curses.A_BOLD) 
+
+
+def ask_name(stdscr):
+    """
+    The function gets the name of the player using curses.
+    """
+    curses.echo()  
+    stdscr.erase()
+    stdscr.addstr("Please enter your name (minimum 2 characters):\n",
+                curses.color_pair(4) | curses.A_BOLD)
+    stdscr.refresh()
+    
+    while True:
+        player_name = stdscr.getstr().decode("utf-8")
+        if len(player_name) >= 2:
+            stdscr.erase()
+            curses.noecho() 
+            return player_name
+        else:
+            stdscr.erase()
+            stdscr.addstr(0, 0,"Name should have a minimum of two characters.\n",
+                         curses.color_pair(2) | curses.A_BOLD)
+            stdscr.addstr(2, 0,"Please try again. Enter your name:\n",
+                         curses.color_pair(4) | curses.A_BOLD )
+            stdscr.refresh()
 
 
 
 def create_paragraph():
     """
-    Generate a random paragraph of three random sentences.
+    Generate a random paragraph of 2 random sentences.
     """
-    random_sentences = [RandomSentence().sentence() for _ in range(4)]
+    random_sentences = [RandomSentence().sentence() for _ in range(2)]
     paragraph = " ".join(random_sentences)
-    return paragraph + "\n"
-
+    return paragraph
 
 def calculate_wpm(input_text, total_time, accuracy):
     """
@@ -33,55 +114,55 @@ def calculate_wpm(input_text, total_time, accuracy):
 
     return round(adjusted_wpm)
 
-
 def calculate_accuracy(input_text, paragraph):
     """
     Calculate the accuracy of the user's input compared to the given paragraph.
     """
-
     input_words = input_text.split()
     paragraph_words = paragraph.split()
 
-    num_correct_words = sum(
-       a == b for a, b in zip(input_words, paragraph_words)
-    )
+    num_correct_words = sum(a == b for a, b in zip(input_words, paragraph_words))
     accuracy_percentage = (num_correct_words / len(paragraph_words)) * 100
 
     return round(accuracy_percentage, 1)
 
-
-def show_results(username, input_text, paragraph, time_start):
+def show_results(stdscr, username, input_text, paragraph, time_start):
     """
     Display the results of time taken, accuracy, and WPM.
     """
     total_time = time.time() - time_start
     accuracy = calculate_accuracy(input_text, paragraph)
     wpm = calculate_wpm(input_text, total_time, accuracy)
-    results = (
-        "\n" + f"Accuracy: {accuracy}%   WPM: {wpm}"
-    )
-    print(Fore.LIGHTBLUE_EX + results)
+
+    result_line1 = "The test is now complete. Your results are as follows:\n"
+    result_line2 = f"Accuracy: {accuracy}%   WPM: {wpm}"
+   
+    stdscr.erase()
+    stdscr.addstr(result_line1, curses.color_pair(1) | curses.A_BOLD)
+    stdscr.addstr(2, 0, result_line2 + "\n\n", 
+                  curses.color_pair(3) | curses.A_BOLD)
+
 
     if wpm < 10:
-        print(
-            Fore.LIGHTMAGENTA_EX
-            + "\nYour typing speed is quite slow."
-              "You may want to focus on accuracy and practice more."
+        stdscr.addstr(
+        "\nYour typing speed is quite slow. "
+        "You may want to focus on accuracy and practice more.",
+        curses.color_pair(6)| curses.A_BOLD
         )
     elif wpm < 30:
-        print(
-            Fore.LIGHTYELLOW_EX
-            + "\nYour typing speed is average."
-              "Keep practicing to improve your speed and accuracy."
+        stdscr.addstr(
+           "\nYour typing speed is average. "
+            "Keep practicing to improve your speed and accuracy.",
+            curses.color_pair(4)| curses.A_BOLD
         )
     else:
-        print(
-            Fore.LIGHTGREEN_EX
-            + "\nCongratulations! You have a good typing speed."
-              "Keep practicing to maintain and improve it."
+        stdscr.addstr(
+            "\nCongratulations! You have a good typing speed. "
+            "Keep practicing to maintain and improve it.",
+            curses.color_pair(1) | curses.A_BOLD
         )
 
-    prompt_save_test(username, accuracy, wpm)
+    prompt_save_test(stdscr, username, accuracy, wpm)
 
 
 def prompt_save_test(stdscr, username, accuracy, wpm):
@@ -89,24 +170,63 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
     Prompt the user to save the test results or return to the main menu.
     """
     while True:
-        completion_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        data = [username, completion_date, accuracy, wpm]
-
+        
         stdscr.addstr(
-            "\nWould you like to save the test results? Y/N: "
+            9, 0,
+            "\nWould you like to save the test results? Y/N: ",
+            curses.color_pair(4)| curses.A_BOLD
         )
         stdscr.refresh()
-        
+
         key = stdscr.getch()
-        if key == ord('y') or key == ord('Y'):
-            clear_terminal()
-            save_data(data, 'Leaderboard')
-            curses.endwin()
-            commands.view_menu()  # Assuming view_menu handles displaying the menu
+        stdscr.addstr(chr(key))
+        stdscr.refresh()
+
+        key = chr(key).lower() if isinstance(key, int) else key.lower()
+
+        if key == "y":
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            save_data(stdscr, [username, current_time, accuracy, wpm], 'Leaderboard')
             break
-        elif key == ord('n') or key == ord('N'):
-            clear_terminal()
+
+        elif key == "n":
             curses.endwin()
-            commands.view_menu()  # Assuming view_menu handles displaying the menu
+            commands.display_menu()
             break
-        
+
+        else:
+            stdscr.addstr(
+                7, 0,
+                "\nInvalid input. Please enter 'Y' or 'N'.",
+                curses.color_pair(2) | curses.A_BOLD
+            )
+            stdscr.refresh()
+            
+
+
+
+def save_data(stdscr, data, display_board):
+    """
+    Appends a new row to a worksheet in a Google Sheets document.
+    """
+    unique_id = str(uuid.uuid4())[:3] 
+    data_with_id = [unique_id] + data  
+
+    worksheet = SHEET.worksheet(display_board)
+    worksheet.append_row(data_with_id)
+
+    stdscr.erase()
+    stdscr.addstr(2, 0,"{} worksheet updated!\n".format(display_board))
+    stdscr.addstr(4, 0,"Returning to Main Menu...", curses.color_pair(1)
+                 | curses.A_BOLD)
+    stdscr.refresh()
+    time.sleep(2)
+    curses.endwin()
+    commands.display_menu()
+    return
+
+def run_typing_test():
+    wrapper(start_test)
+
+   
+

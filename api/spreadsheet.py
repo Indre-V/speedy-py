@@ -1,10 +1,10 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from utils.utils import typing_print, clear_terminal, return_to_menu, space
+from utils.utils import clear_terminal, return_to_menu, space
 from utils.validation import validate_response
-import uuid
 import time
 from prettytable import PrettyTable
+from constants import *
 
 
 
@@ -28,13 +28,13 @@ def fetch_data_from_spreadsheet():
     Fetches data from the 'Leaderboard' worksheet in the spreadsheet.
     Returns a list of lists representing the rows and columns of the worksheet.
     """
-    worksheet = SHEET.worksheet('Leaderboard')
-    return worksheet.get_all_values()
+    refresh = SHEET.worksheet('Leaderboard')
+    return refresh.get_all_values()
  
 def view_leaderboard():
     """
     Displays top 10 results in the spreadsheet
-    Prompts user to delete result
+    Prompts user to delete result 
     """
     data = fetch_data_from_spreadsheet()  
     data_sorted = sorted(data[1:], key=lambda x: int(x[4]), reverse=True)[:10]
@@ -47,19 +47,20 @@ def view_leaderboard():
         table.add_row(row)
 
     if len(data) <= 1:  
-       print("No records found in the Leaderboard.")
+       print(RED + "No records found in the Leaderboard.")
        return_to_menu()
        return
     else:
         print(table)
     
-    prompt = input("Would you like to delete a result? Y/N: ")
+    prompt = input(RED + "Would you like to delete a result? Y/N: "
+             + RESET_COLOR)
     if validate_response(prompt):
         if prompt.lower() == 'y':
             space()
             delete_results()
         elif prompt.lower() == 'n':
-            return_to_menu()
+             return_to_menu()
     else:
         return_to_menu()
     
@@ -68,15 +69,17 @@ def view_leaderboard():
 def delete_results():
     """
     Searches for ID and deletes results
+    Displays updated leaderboa
     """
-    entry_id = input("Enter the ID of the entry you want to delete: ")
+    entry_id = input(YELLOW + "Enter the ID of the entry you want to delete: "
+                + RESET_COLOR)
 
     for row in data:
         if row[0] == entry_id:
   
             row_index = data.index(row) + 1 
             display_board.delete_rows(row_index)
-            print(f"Entry with ID '{entry_id}' deleted successfully.")
+            print(GREEN + f"Entry with ID '{entry_id}' deleted successfully.")
             space()
             print("Loading updated Leaderboard ....")
             time.sleep(3)
@@ -84,7 +87,7 @@ def delete_results():
             view_leaderboard()
             return
 
-    print(f"No entry found with ID '{entry_id}'.")
+    print(RED + f"No entry found with ID '{entry_id}'.")
     clear_terminal()
     view_leaderboard()
     

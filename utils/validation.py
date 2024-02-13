@@ -1,6 +1,6 @@
 
 from utils.utils import clear_terminal
-from colorama import Fore, Style
+from constants import *
 
 
 def validate_response(user_input):
@@ -17,8 +17,7 @@ def validate_response(user_input):
     except ValueError:
         clear_terminal()
         print(
-            Fore.LIGHTRED_EX
-            + '\nIncorrect input, please enter "Y" or "N".\n'
-            + Style.RESET_ALL
+            RED + '\nIncorrect input, please enter "Y" or "N".\n'
+            + RESET_COLOR
         )
 

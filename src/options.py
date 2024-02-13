@@ -1,8 +1,7 @@
-from colorama import Fore, Style
-from utils.utils import return_to_menu, typing_print, ask_name, clear_terminal, space
+from utils.utils import return_to_menu, typing_print, clear_terminal, space
 import time
-from constants import TIPS, INSTRUCTIONS, EXIT_MESSAGE
-from src.game import create_paragraph, show_results, calculate_accuracy
+from constants import *
+from src.game import create_paragraph
 from utils.validation import validate_response
 import textwrap
 import menu as commands
@@ -11,17 +10,17 @@ def view_instructions():
     """
     Displays instructions for the typing test.
     """
-    print(Fore.LIGHTBLUE_EX + INSTRUCTIONS)
+    print(BLUE + INSTRUCTIONS)
     return_to_menu()
-
+3
 
 def typing_skills_advice():
     """
     Provides tips and tricks to improve typing speed.
     """
-    print(Fore.LIGHTBLUE_EX + "12 Tips and Tricks to Improve Typing Speed:\n"
-          + Fore.LIGHTMAGENTA_EX + "\nPress Enter to reveal each T&T\n" 
-          + Style.RESET_ALL)
+    print(BLUE + "12 Tips and Tricks to Improve Typing Speed:\n"
+          + MAGENTA + "\nPress Enter to reveal each T&T\n" 
+          + RESET_COLOR)
 
     for tip in TIPS:
         print(tip)
@@ -31,23 +30,23 @@ def typing_skills_advice():
 
 def pract_acc():
     paragraph = create_paragraph()
-    print(Fore.LIGHTBLUE_EX + "Type the following paragraph: \n")
+    print(BLUE + "Type the following paragraph: \n")
     print(paragraph)
     input_text = input(
-        Fore.LIGHTGREEN_EX + "Start Typing Now >>> \n"
-        + Style.RESET_ALL)
+        GREEN + "Start Typing Now >>> \n"
+        + RESET_COLOR)
     input_text = textwrap.fill(input_text, width=70)
 
     accuracy = calculate_accuracy(input_text, paragraph)
     if accuracy == 100:
-        print(Fore.LIGHTGREEN_EX + "\nCongratulations! Your accuracy is 100%.")
+        print(GREEN + "\nCongratulations! Your accuracy is 100%.")
     else:
-        print(Fore.LIGHTRED_EX + "\n" + f"Your accuracy is {accuracy}%.")
+        print(RED + "\n" + f"Your accuracy is {accuracy}%.")
 
     while True:
         confirm = input(
-            Fore.LIGHTYELLOW_EX + "\nWould you like to try again? Y/N:"
-            + Style.RESET_ALL
+            YELLOW + "\nWould you like to try again? Y/N:"
+            + RESET_COLOR
         )
         if validate_response(confirm):
 
@@ -67,19 +66,19 @@ def exit_app():
     """
     while True:
         confirm = input(
-            Fore.LIGHTYELLOW_EX + "\nAre you sure you want to quit? Y/N: \n"
-            + Style.RESET_ALL
+            YELLOW + "\nAre you sure you want to quit? Y/N: \n"
+            + RESET_COLOR
         )
         if validate_response(confirm):
 
             if confirm.lower() == "y":
                 clear_terminal()
                 print(
-                    Fore.LIGHTGREEN_EX
+                    GREEN
                     + f"Thank you for using Speedy_Py app!"
-                    + Style.RESET_ALL
+                    + RESET_COLOR
                 )
-                print(Fore.LIGHTRED_EX + "\nTerminating..." + Style.RESET_ALL)
+                print(RED + "\nTerminating..." + RESET_COLOR)
                 typing_print(EXIT_MESSAGE)
                 exit()
             else:

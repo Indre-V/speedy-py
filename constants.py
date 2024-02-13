@@ -1,14 +1,21 @@
 from colorama import Fore, Style, init
 
+
 # Initialize Colorama
 init(autoreset=True)
-
+init()
+MAGENTA = Fore.LIGHTMAGENTA_EX
+RED = Fore.LIGHTRED_EX
+GREEN = Fore.LIGHTGREEN_EX 
+YELLOW = Fore.LIGHTYELLOW_EX 
+BLUE = Fore.LIGHTBLUE_EX 
+CYAN = Fore.LIGHTCYAN_EX
+RESET_COLOR = Style.RESET_ALL
 
 
 GAME_LOGO = (
   
-    Fore.LIGHTYELLOW_EX
-    + """
+   """
     ███████ ██████  ███████ ███████ ██████  ██    ██       ██████  ██    ██
     ██      ██   ██ ██      ██      ██   ██  ██  ██        ██   ██  ██  ██
     ███████ ██████  █████   █████   ██   ██   ████   █████ ██████    ████
@@ -17,6 +24,18 @@ GAME_LOGO = (
     """
     + "\nWelcome! Here you can learn to type faster and test your skills!"
 )
+
+MENU = (
+    """
+    1. Instructions
+    2. Start Test
+    3. Tips and Tricks
+    4. Practice Accuracy
+    5. Leaderboard
+    6. Quit
+    """
+)
+
 
 INSTRUCTIONS = (
     """
