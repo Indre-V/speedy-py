@@ -46,7 +46,7 @@ def pract_acc():
 
     while True:
         confirm = input(
-            Fore.LIGHTYELLOW_EX + "\nWould you like to try again? Y/N: \n"
+            Fore.LIGHTYELLOW_EX + "\nWould you like to try again? Y/N:"
             + Style.RESET_ALL
         )
         if validate_response(confirm):

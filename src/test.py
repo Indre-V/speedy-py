@@ -72,7 +72,7 @@ def ask_name(stdscr):
     curses.echo()  
     stdscr.erase()
     stdscr.addstr("Please enter your name (minimum 2 characters):\n",
-                curses.color_pair(4))
+                curses.color_pair(4) | curses.A_BOLD)
     stdscr.refresh()
     
     while True:
@@ -138,27 +138,28 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
     result_line2 = f"Accuracy: {accuracy}%   WPM: {wpm}"
    
     stdscr.erase()
-    stdscr.addstr(result_line1, curses.color_pair(1))
-    stdscr.addstr(2, 0, result_line2 + "\n\n")
+    stdscr.addstr(result_line1, curses.color_pair(1) | curses.A_BOLD)
+    stdscr.addstr(2, 0, result_line2 + "\n\n", 
+                  curses.color_pair(3) | curses.A_BOLD)
 
 
     if wpm < 10:
         stdscr.addstr(
         "\nYour typing speed is quite slow. "
         "You may want to focus on accuracy and practice more.",
-        curses.color_pair(6)
+        curses.color_pair(6)| curses.A_BOLD
         )
     elif wpm < 30:
         stdscr.addstr(
            "\nYour typing speed is average. "
             "Keep practicing to improve your speed and accuracy.",
-            curses.color_pair(4)
+            curses.color_pair(4)| curses.A_BOLD
         )
     else:
         stdscr.addstr(
             "\nCongratulations! You have a good typing speed. "
             "Keep practicing to maintain and improve it.",
-            curses.color_pair(1)
+            curses.color_pair(1) | curses.A_BOLD
         )
 
     prompt_save_test(stdscr, username, accuracy, wpm)
@@ -173,7 +174,7 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
         stdscr.addstr(
             9, 0,
             "\nWould you like to save the test results? Y/N: ",
-            curses.color_pair(4)
+            curses.color_pair(4)| curses.A_BOLD
         )
         stdscr.refresh()
 
@@ -197,7 +198,7 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
             stdscr.addstr(
                 7, 0,
                 "\nInvalid input. Please enter 'Y' or 'N'.",
-                curses.color_pair(2)
+                curses.color_pair(2) | curses.A_BOLD
             )
             stdscr.refresh()
             
