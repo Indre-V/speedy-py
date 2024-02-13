@@ -90,7 +90,6 @@ def ask_name(stdscr):
             stdscr.refresh()
 
 
-
 def create_paragraph():
     """
     Generate a random paragraph of 2 random sentences.
@@ -187,10 +186,10 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
         if key == "y":
             current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             save_data(stdscr, [username, current_time, accuracy, wpm], 'Leaderboard')
-            break
 
         elif key == "n":
             curses.endwin()
+            time.sleep(1)
             commands.display_menu()
             break
 
@@ -201,7 +200,7 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
                 curses.color_pair(2) | curses.A_BOLD
             )
             stdscr.refresh()
-            
+
 
 def save_data(stdscr, data, display_board):
     """
@@ -223,56 +222,70 @@ def save_data(stdscr, data, display_board):
     commands.display_menu()
     return
 
-def pract_acc():
-    stdscr = curses.initscr()
-    curses.start_color()
-    curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
-    curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
-
+def pract_accuracy(stdscr):
     paragraph = create_paragraph()
+    initialize_colors()
 
-    stdscr.addstr(2, 0, "Start typing the following paragraph now:", curses.color_pair(5) | curses.A_BOLD)
+    stdscr.addstr(2, 0, "Start typing the following paragraph now:", 
+                  curses.color_pair(5) | curses.A_BOLD)
     stdscr.addstr(4, 0, paragraph)
 
     input_text = ""
     for i, char in enumerate(paragraph):
         stdscr.addch(4, i, char)
 
-    for i, char in enumerate(paragraph):
-        key = stdscr.getch()
-        if key == ord(char):
-            input_text += chr(key)
-            stdscr.addch(4, i, char, curses.color_pair(1) | curses.A_BOLD)
-        else:
-            input_text += "_"
-            stdscr.addch(4, i, char, curses.color_pair(2) | curses.A_BOLD)
-
-    accuracy = calculate_accuracy(input_text, paragraph)
-    if accuracy == 100:
-        stdscr.addstr("\nCongratulations! Your accuracy is 100%.", curses.color_pair(1) | curses.A_BOLD)
-    else:
-        stdscr.addstr("\nYour accuracy is {}%.".format(accuracy), curses.color_pair(2) | curses.A_BOLD)
-
     while True:
-        stdscr.addstr("\nWould you like to try again? Y/N: ", curses.color_pair(4) | curses.A_BOLD)
+        key = stdscr.getch()
+
+        if key == ord('\n'):
+            break
+        elif key == curses.KEY_BACKSPACE or key == 127:
+            if input_text:
+                input_text = input_text[:-1]
+        else:
+            input_text += chr(key)
+
+        for i, (typed_char, correct_char) in enumerate(zip(input_text, paragraph)):
+            if typed_char == correct_char:
+                stdscr.addch(4, i, typed_char, curses.color_pair(1) | curses.A_BOLD)
+            else:
+                stdscr.addch(4, i, typed_char, curses.color_pair(2) | curses.A_BOLD)
         stdscr.refresh()
 
-        confirm = stdscr.getch()
-        confirm = chr(confirm).lower() if isinstance(confirm, int) else confirm.lower()
+    accuracy = calculate_accuracy(input_text, paragraph)
+    result_message = "\nCongratulations! Your accuracy is 100%." if accuracy == 100 else "\nYour accuracy is {}%.".format(accuracy)
+    stdscr.addstr(7, 0, result_message, curses.color_pair(1) | curses.A_BOLD)
 
-        if validate_response(confirm):
-            if confirm == "y":
-                stdscr.clear()
-                pract_acc()
-            else:
-                stdscr.clear()
-                curses.endwin()
-                commands.display_menu()
-                break
-    curses.endwin()
+    while True:
+        stdscr.addstr(9, 0, "\nWould you like to try again? Y/N:", 
+                      curses.color_pair(4) | curses.A_BOLD)
+        stdscr.refresh()
+
+        key = stdscr.getch()
+        key = chr(key).lower() if isinstance(key, int) else key.lower() 
+
+        if key == "y":
+            stdscr.erase()
+            pract_accuracy(stdscr) 
+        elif key == "n":
+            stdscr.erase()
+            curses.endwin()
+            time.sleep(1)
+            commands.display_menu()
+            break
+        else:
+            stdscr.addstr(
+                7, 0,
+                "\nInvalid input. Please enter 'Y' or 'N'.",
+                curses.color_pair(2) | curses.A_BOLD
+            )
+            stdscr.refresh()
 
 def run_typing_test():
     wrapper(start_test)
+
+def pract_acc():
+    wrapper(pract_accuracy)
 
    
 

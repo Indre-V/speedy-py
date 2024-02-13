@@ -27,7 +27,7 @@ def display_menu():
         if option not in validate_range:
             print(RED + "Invalid choice.")
             print(GREEN + "Please choose options 1 to 6 only.")
-            time.sleep(1)
+            time.sleep(2)
             clear_terminal()
             display_menu()
         elif option == "1":
