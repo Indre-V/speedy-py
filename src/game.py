@@ -26,13 +26,15 @@ def start_test(stdscr):
     """    
     initialize_colors()
     username = ask_name(stdscr)
+    
     paragraph = create_paragraph()
-    display_text(stdscr, paragraph, "", username)
+    display_text(stdscr, paragraph, "")
     stdscr.refresh()
-
+    welcome_message = f"Welcome to the typing test, {username}!\n"
     time_start = time.time()
     input_text = ""
-
+    stdscr.addstr(0, 0, welcome_message, 
+                  curses.color_pair(1) | curses.A_BOLD)
     while True:
         key = stdscr.getkey()
         if key == "\n":
@@ -44,15 +46,15 @@ def start_test(stdscr):
             input_text += key
 
         stdscr.erase()
-        display_text(stdscr, paragraph, input_text, username)
+        stdscr.addstr(0, 0, welcome_message, 
+                  curses.color_pair(1) | curses.A_BOLD)
+        display_text(stdscr, paragraph, input_text)
         stdscr.refresh()
 
     show_results(stdscr, username, input_text, paragraph, time_start)
 
 
-def display_text(stdscr, target, current, username):
-    stdscr.addstr(0, 0, f"Welcome to the typing test, {username}!\n", 
-                  curses.color_pair(1) | curses.A_BOLD)
+def display_text(stdscr, target, current):
     stdscr.addstr(2, 0, "Start typing the following paragraph now:", 
                   curses.color_pair(5) | curses.A_BOLD)
     stdscr.addstr(4, 0, target)  
@@ -98,6 +100,7 @@ def create_paragraph():
     paragraph = " ".join(random_sentences)
     return paragraph
 
+
 def calculate_wpm(input_text, total_time, accuracy):
     """
     Calculate adjusted words per minute (WPM) based on the user's input,
@@ -113,6 +116,7 @@ def calculate_wpm(input_text, total_time, accuracy):
 
     return round(adjusted_wpm)
 
+
 def calculate_accuracy(input_text, paragraph):
     """
     Calculate the accuracy of the user's input compared to the given paragraph.
@@ -124,6 +128,7 @@ def calculate_accuracy(input_text, paragraph):
     accuracy_percentage = (num_correct_words / len(paragraph_words)) * 100
 
     return round(accuracy_percentage, 1)
+
 
 def show_results(stdscr, username, input_text, paragraph, time_start):
     """
@@ -214,10 +219,9 @@ def save_data(stdscr, data, display_board):
 
     stdscr.erase()
     stdscr.addstr(2, 0,"{} worksheet updated!\n".format(display_board))
-    stdscr.addstr(4, 0,"Returning to Main Menu...", curses.color_pair(1)
+    stdscr.addstr(4, 0,"Press any key to return to Main Menu...", curses.color_pair(1)
                  | curses.A_BOLD)
-    stdscr.refresh()
-    time.sleep(2)
+    stdscr.getch()
     curses.endwin()
     commands.display_menu()
     return
