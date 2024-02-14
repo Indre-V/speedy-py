@@ -39,14 +39,13 @@ MENU = (
 
 INSTRUCTIONS = (
     """
-    Instructions:
+    Test Instructions:
 
     1. You will be presented with a paragraph to type.
     2. Type the paragrah exactly as it appears.
     3. Time, accuracy and speed will be measured.
     4. After typing, press Enter to see your results.
-    5. Enjoy typing!
-    6. Select whether to save the result or return to the main menu.
+    5. Select whether to save the result or return to the main menu.
     """
     )
 

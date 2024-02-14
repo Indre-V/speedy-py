@@ -9,7 +9,7 @@ from src.game import run_typing_test, pract_acc
 def main_menu():
 
     print(YELLOW + GAME_LOGO)
-    print(MAGENTA + MENU)
+    print (MENU)
 
 
 def display_menu():
@@ -27,7 +27,7 @@ def display_menu():
         if option not in validate_range:
             print(RED + "Invalid choice.")
             print(GREEN + "Please choose options 1 to 6 only.")
-            time.sleep(2)
+            time.sleep(1)
             clear_terminal()
             display_menu()
         elif option == "1":

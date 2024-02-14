@@ -1,8 +1,6 @@
-from utils.utils import return_to_menu, typing_print, clear_terminal, space
+from utils.utils import *
 import time
 from constants import *
-from utils.validation import validate_response
-import textwrap
 import menu as commands
 
 def view_instructions():
@@ -11,7 +9,7 @@ def view_instructions():
     """
     print(BLUE + INSTRUCTIONS)
     return_to_menu()
-3
+
 
 def typing_skills_advice():
     """
@@ -34,7 +32,7 @@ def exit_app():
     """
     while True:
         confirm = input(
-            YELLOW + "\nAre you sure you want to quit? Y/N: \n"
+            YELLOW + "\nAre you sure you want to quit? Y/N:"
             + RESET_COLOR
         )
         if validate_response(confirm):
