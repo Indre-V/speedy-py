@@ -6,15 +6,15 @@ init(autoreset=True)
 init()
 MAGENTA = Fore.LIGHTMAGENTA_EX
 RED = Fore.LIGHTRED_EX
-GREEN = Fore.LIGHTGREEN_EX 
-YELLOW = Fore.LIGHTYELLOW_EX 
-BLUE = Fore.LIGHTBLUE_EX 
+GREEN = Fore.LIGHTGREEN_EX
+YELLOW = Fore.LIGHTYELLOW_EX
+BLUE = Fore.LIGHTBLUE_EX
 CYAN = Fore.LIGHTCYAN_EX
 RESET_COLOR = Style.RESET_ALL
 
 
 GAME_LOGO = (
-  
+
    """
     ███████ ██████  ███████ ███████ ██████  ██    ██       ██████  ██    ██
     ██      ██   ██ ██      ██      ██   ██  ██  ██        ██   ██  ██  ██
@@ -22,8 +22,8 @@ GAME_LOGO = (
          ██ ██      ██      ██      ██   ██    ██          ██         ██
     ███████ ██      ███████ ███████ ██████     ██          ██         ██
     """
-    + "\nWelcome! Here you can learn to type faster and test your skills!"
-)
+   + "\nWelcome! Here you can learn to type faster and test your skills!"
+   )
 
 MENU = (
     """
@@ -34,7 +34,7 @@ MENU = (
     5. Leaderboard
     6. Quit
     """
-)
+    )
 
 
 INSTRUCTIONS = (
@@ -57,7 +57,8 @@ TIPS = (
     "5. Practice Regularly: Practice typing regularly to build muscle memory.",
     "6. Start Slow: Begin by typing slowly and focus on accuracy.",
     "7. Take Breaks: Take short breaks during typing sessions.",
-    "8. Use Typing Games: Engage in typing games and exercises for fun practice.",
+    "8. Use Typing Games: Engage in typing games and exercises for"
+    "fun practice.",
     "9. Focus on Weak Areas: Identify and improve specific weak areas.",
     "10. Monitor Progress: Track your typing speed and accuracy over time.",
     "11. Learn Shortcuts: Familiarize yourself with keyboard shortcuts.",
@@ -73,5 +74,5 @@ EXIT_MESSAGE = (
     For more information...
     https://github.com/Indre-V
     https://www.linkedin.com/in/indre-vilickaite/
-    """     
+    """
     )

@@ -1,4 +1,4 @@
-from src.options import *
+from src.functions import *
 from constants import *
 import time
 from utils.utils import clear_terminal
@@ -9,7 +9,7 @@ from src.game import run_typing_test, pract_acc
 def main_menu():
 
     print(YELLOW + GAME_LOGO)
-    print (MENU)
+    print(MENU)
 
 
 def display_menu():
@@ -33,7 +33,7 @@ def display_menu():
         elif option == "1":
             view_instructions()
         elif option == "2":
-             run_typing_test()
+            run_typing_test()
         elif option == "3":
             typing_skills_advice()
         elif option == "4":
@@ -42,4 +42,3 @@ def display_menu():
             view_leaderboard()
         elif option == "6":
             exit_app()
-

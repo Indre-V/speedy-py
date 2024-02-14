@@ -16,7 +16,6 @@ def initialize_colors():
     curses.init_pair(3, curses.COLOR_CYAN, curses.COLOR_BLACK)
     curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK)
     curses.init_pair(5, curses.COLOR_BLUE, curses.COLOR_BLACK)
-    curses.init_pair(6, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
 
 
 def start_test(stdscr):
@@ -46,7 +45,9 @@ def start_test(stdscr):
             input_text += chr(key)
 
         stdscr.erase()
-        stdscr.addstr(0, 0, welcome_message, curses.color_pair(1) | curses.A_BOLD)
+        stdscr.addstr(0, 0, welcome_message,
+                      curses.color_pair(1) | curses.A_BOLD)
+
         display_text(stdscr, paragraph, input_text)
         stdscr.refresh()
 
@@ -54,10 +55,12 @@ def start_test(stdscr):
 
 
 def display_text(stdscr, target, current):
+    """
+    Display the target paragraph and the current user input with formatting.
+    """
+
     stdscr.addstr(
-        2,
-        0,
-        "Start typing the following paragraph now:",
+        2, 0, "Start typing the following paragraph now:",
         curses.color_pair(5) | curses.A_BOLD,
     )
     stdscr.addstr(4, 0, target)
@@ -117,8 +120,7 @@ def create_paragraph():
 def calculate_wpm(input_text, total_time, accuracy):
     """
     Calculate adjusted words per minute (WPM) based on the user's input,
-    total time taken,
-    and accuracy percentage.
+    total time taken and accuracy percentage.
     """
     if total_time != 0:
         gross_wpm = len(input_text) * 12 / total_time
@@ -137,7 +139,8 @@ def calculate_accuracy(input_text, paragraph):
     input_words = input_text.split()
     paragraph_words = paragraph.split()
 
-    num_correct_words = sum(a == b for a, b in zip(input_words, paragraph_words))
+    num_correct_words = sum(a == b for a, b in zip(
+        input_words, paragraph_words))
     accuracy_percentage = (num_correct_words / len(paragraph_words)) * 100
 
     return round(accuracy_percentage, 1)
@@ -156,13 +159,14 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
 
     stdscr.erase()
     stdscr.addstr(result_line1, curses.color_pair(1) | curses.A_BOLD)
-    stdscr.addstr(2, 0, result_line2 + "\n\n", curses.color_pair(3) | curses.A_BOLD)
+    stdscr.addstr(2, 0, result_line2 + "\n\n",
+                  curses.color_pair(3) | curses.A_BOLD)
 
     if wpm < 10:
         stdscr.addstr(
             "\nYour typing speed is quite slow. "
             "You may want to focus on accuracy and practice more.",
-            curses.color_pair(6) | curses.A_BOLD,
+            curses.color_pair(2) | curses.A_BOLD,
         )
     elif wpm < 30:
         stdscr.addstr(
@@ -201,8 +205,10 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
         key = chr(key).lower() if isinstance(key, int) else key.lower()
 
         if key == "y":
-            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            save_data(stdscr, [username, current_time, accuracy, wpm], "Leaderboard")
+            current_time = datetime.datetime.now().strftime(
+                "%Y-%m-%d %H:%M:%S")
+            save_data(stdscr, [username, current_time, accuracy, wpm],
+                      "Leaderboard")
 
         elif key == "n":
             curses.endwin()
@@ -245,6 +251,10 @@ def save_data(stdscr, data, display_board):
 
 
 def pract_accuracy(stdscr):
+    """
+    Displays paragraph for accuracy measurement
+    Loads a result of accuracy test
+    """
     initialize_colors()
     paragraph = create_paragraph()
     display_text(stdscr, paragraph, "")
@@ -267,11 +277,11 @@ def pract_accuracy(stdscr):
 
     accuracy = calculate_accuracy(input_text, paragraph)
     if accuracy == 100:
-        stdscr.addstr(7, 0, "\nCongratulations! Your accuracy is 100%.", 
-        curses.color_pair(1) | curses.A_BOLD)
+        stdscr.addstr(7, 0, "\nCongratulations! Your accuracy is 100%.",
+                      curses.color_pair(1) | curses.A_BOLD)
     else:
-        stdscr.addstr(7, 0, "\nYour accuracy is {}%.".format(accuracy), 
-        curses.color_pair(2) | curses.A_BOLD)
+        stdscr.addstr(7, 0, "\nYour accuracy is {}%.".format(accuracy),
+                      curses.color_pair(2) | curses.A_BOLD)
 
     while True:
         stdscr.addstr(

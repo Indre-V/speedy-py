@@ -3,6 +3,7 @@ import time
 from constants import *
 import menu as commands
 
+
 def view_instructions():
     """
     Displays instructions for the typing test.
@@ -16,7 +17,7 @@ def typing_skills_advice():
     Provides tips and tricks to improve typing speed.
     """
     print(BLUE + "12 Tips and Tricks to Improve Typing Speed:\n"
-          + MAGENTA + "\nPress Enter to reveal each T&T\n" 
+          + MAGENTA + "\nPress Enter to reveal each T&T\n"
           + RESET_COLOR)
 
     for tip in TIPS:
@@ -51,4 +52,3 @@ def exit_app():
                 clear_terminal()
                 commands.display_menu()
                 break
-

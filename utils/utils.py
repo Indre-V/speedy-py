@@ -20,7 +20,7 @@ def return_to_menu():
     """
     Return the user to the beginning of the program
     """
-    print(YELLOW + "\nHit enter to return to the main menu.\n")
+    print(YELLOW + "\nHit enter to return to the main menu.")
     if input() == "":
         clear_terminal()
         commands.display_menu()
@@ -32,12 +32,12 @@ def return_to_menu():
 def typing_print(text):
     """
     Prints text gradually as if it were being typed out.
-    Pressing Enter displays the full text immediately.
     """
     for character in text:
-         sys.stdout.write(character)
-         sys.stdout.flush()
-         time.sleep(0.05)
+        sys.stdout.write(character)
+        sys.stdout.flush()
+    time.sleep(0.05)
+
 
 def space():
     """
@@ -45,6 +45,7 @@ def space():
     """
     print()
     print()
+
 
 def validate_response(user_input):
     """
@@ -63,4 +64,3 @@ def validate_response(user_input):
             RED + '\nIncorrect input, please enter "Y" or "N".\n'
             + RESET_COLOR
         )
-
