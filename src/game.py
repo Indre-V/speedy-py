@@ -36,14 +36,15 @@ def start_test(stdscr):
     stdscr.addstr(0, 0, welcome_message, 
                   curses.color_pair(1) | curses.A_BOLD)
     while True:
-        key = stdscr.getkey()
-        if key == "\n":
+        key = stdscr.getch()
+
+        if key == ord('\n'):
             break
-        elif key == "KEY_BACKSPACE" or ord(key) == 127:
+        elif key == curses.KEY_BACKSPACE or key == 127:
             if input_text:
                 input_text = input_text[:-1]
         else:
-            input_text += key
+            input_text += chr(key)
 
         stdscr.erase()
         stdscr.addstr(0, 0, welcome_message, 
@@ -226,17 +227,13 @@ def save_data(stdscr, data, display_board):
     commands.display_menu()
     return
 
+
 def pract_accuracy(stdscr):
-    paragraph = create_paragraph()
     initialize_colors()
-
-    stdscr.addstr(2, 0, "Start typing the following paragraph now:", 
-                  curses.color_pair(5) | curses.A_BOLD)
-    stdscr.addstr(4, 0, paragraph)
-
+    paragraph = create_paragraph()
+    display_text(stdscr, paragraph, "")
+  
     input_text = ""
-    for i, char in enumerate(paragraph):
-        stdscr.addch(4, i, char)
 
     while True:
         key = stdscr.getch()
@@ -249,11 +246,7 @@ def pract_accuracy(stdscr):
         else:
             input_text += chr(key)
 
-        for i, (typed_char, correct_char) in enumerate(zip(input_text, paragraph)):
-            if typed_char == correct_char:
-                stdscr.addch(4, i, typed_char, curses.color_pair(1) | curses.A_BOLD)
-            else:
-                stdscr.addch(4, i, typed_char, curses.color_pair(2) | curses.A_BOLD)
+        display_text(stdscr, paragraph, input_text)
         stdscr.refresh()
 
     accuracy = calculate_accuracy(input_text, paragraph)
@@ -285,8 +278,10 @@ def pract_accuracy(stdscr):
             )
             stdscr.refresh()
 
+
 def run_typing_test():
     wrapper(start_test)
+
 
 def pract_acc():
     wrapper(pract_accuracy)
