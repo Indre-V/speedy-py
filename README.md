@@ -10,6 +10,7 @@ By practicing regularly with Speedy-Py, users can enhance their typing skills an
 
 ![Speedy-Py](docs/typing-test-display.png)
 
+
 # Contents 
 - [Speedy-Py](#speedy-py)
 - [Contents](#contents)
@@ -133,6 +134,8 @@ For PDF version [click here](docs/flowchart-pdf.pdf)
 
 Google Sheets service is used to store project's database in the spreadsheet.
 
+![Speadsheet sample](docs/spreadsheet.png)
+
 [Back to top](#contents)
 
 # Features
@@ -169,10 +172,20 @@ The menu continously displays options list using the loop. To continue using the
 
 ### Test
 
- It begins by generating a random paragraph for the user to type, which is displayed in the terminal with colorized text. The user is then prompted to begin typing, and their input is recorded. Once the user has finished typing, the function calculates and displays the results of the typing test, including accuracy, speed, and the time taken to complete the test. This function serves as the core component of the typing speed test game, allowing users to assess and improve their typing skills within the terminal environment.Users are also given an option to either save test results, start again or to return to the main menu.
+
+ It begins by requesting user for their name. Name must be at least two characters. Then it generates a random paragraph for the user to type, which is displayed in the terminal with colorized text. The user is then prompted to begin typing, and their input is recorded. Once the user has finished typing, the function calculates and displays the results of the typing test, including accuracy and speed. It measures time taken in the background for calculations. This function serves as the core component of the typing speed test game, allowing users to assess and improve their typing skills within the terminal environment.Users are also given an option to either save test results or to return to the main menu.
 
  <details><summary><b>Test Functionalities</b></summary>
- Start Test:
+
+ Name Validation:
+
+ ![Name Validation](docs/name-validation.png)
+
+ Name Entry:
+
+ ![Name Entry](docs/name-entry.png)
+
+  Start Test:
 
 ![Start Test](docs/start-test.png)
 
@@ -193,7 +206,7 @@ Save test:
 
 <details><summary><b>Tips and Tricks Display</b></summary>
 
-![Tips and Tricks Display](docs/tips-tricks-Display.png)
+![Tips and Tricks Display](docs/tips-tricks-display.png)
 
 </details><br/>
 
@@ -216,12 +229,6 @@ The Leaderboard feature was created using Google Sheets.
 
 ![View Leaderboard](docs/view-leaderboard.png)
 
-</details><br/>
-
-### Edit Leaderboard
-
-
-<details><summary><b>Edit Leaderboard Display</b></summary>
 
 ![Edit Leaderboard](docs/leaderboard-display.png)
 
