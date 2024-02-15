@@ -282,13 +282,20 @@ While building the application, the general principles of accessibility where ad
 
 ## Bugs 
 
-![Bugs Summary](docs/bugs-summary.png)
+| Bug                                 | Status   | Description                                                                                       | Steps To Resolve                                                            |
+| ----------------------------------- | -------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Leaderboard refresh                 | Resolved | When results saved, they are no displayed in the leaderboard although recorded in the spreadsheet | Refresh added to view_leaderboard function so it refreshes prior to display |
+| Menu loop                           | Resolved | If enter pressed when option selected, error showed                                               | Removed time.sleep functionality                                            |
+| Screen flickering                   | Resolved | While typing deployed screen kept flickering.                                                     | Changed function from screen clear to erase                                 |
+| Test stopped when backspace pressed | Resolved | During the test, when backspace pressed test terminated                                           | Updated key types in the function                                           |
+| Live results                        | Resolved | When live test results functionality enabled, the deployed terminal kept freezing                 | Functionality removed due to performance limitations                        |
 
 [Back to top](#contents)
 
 ## Code Validation
 
 ### PEP8 Testing
+
 The python files have all been passed through [PEP8 Online](http://pep8online.com/)
 
 <details><summary><b>PEP8 Test Results</b></summary>
@@ -311,13 +318,17 @@ constants.py:
 
 functions.py:
 
-![options.py](docs/pep8-options-py-result.png)
+![functions.py](docs/pep8-functions-py-result.png)
 
-menu.py
+menu.py:
 
 ![menu.py](docs/pep8-menu-py-result.png)
-</details><br/>
 
+spreadsheet.py: 
+
+![spreadsheet.py](docs/pep8-spreadsheet-py-result.png)
+
+</details><br/>
 
 
 ### Error Handling
