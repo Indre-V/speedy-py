@@ -237,9 +237,7 @@ def save_data(stdscr, data, display_board):
     stdscr.erase()
     stdscr.addstr(2, 0, "{} worksheet updated!\n".format(display_board))
     stdscr.addstr(
-        4,
-        0,
-        "Press any key to return to Main Menu...",
+        4, 0, "Press any key to return to Main Menu...",
         curses.color_pair(1) | curses.A_BOLD,
     )
     stdscr.getch()
@@ -301,7 +299,7 @@ def pract_accuracy(stdscr):
         key = stdscr.getch()
         stdscr.addstr(chr(key))
         stdscr.refresh()
-        
+
         key = chr(key).lower() if isinstance(key, int) else key.lower()
 
         if key == "y":
