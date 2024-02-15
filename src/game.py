@@ -205,12 +205,14 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
         key = chr(key).lower() if isinstance(key, int) else key.lower()
 
         if key == "y":
+            stdscr.getch()
             current_time = datetime.datetime.now().strftime(
                 "%Y-%m-%d %H:%M:%S")
             save_data(stdscr, [username, current_time, accuracy, wpm],
                       "Leaderboard")
 
         elif key == "n":
+            stdscr.getch()
             curses.endwin()
             time.sleep(1)
             commands.display_menu()

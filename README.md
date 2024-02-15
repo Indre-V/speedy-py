@@ -223,14 +223,13 @@ The user is prompted to practice accurately typing a paragraph that is created a
 
 ### View Leaderboard
 
-The Leaderboard feature was created using Google Sheets.
-
+This functionality retrieves data from a spreadsheet and organizes it to display the top 10 results in a clear table format. Users are then given the option to remove an entry from the leaderboard. If they choose to do so, users are prompted to input the ID of the entry they wish to delete. The function searches for the corresponding entry, removes it if found, updates the leaderboard, and displays the revised version. If the entry ID is not found, the function alerts the user and allows them to try again. This process ensures accurate leaderboard data and user control over its contents. If they decline, they are returned to the main menu.
 <details><summary><b>View Leaderboard</b></summary>
 
 ![View Leaderboard](docs/view-leaderboard.png)
 
 
-![Edit Leaderboard](docs/leaderboard-display.png)
+![Edit Leaderboard](docs/leaderboard-edit.png)
 
 </details><br/>
 
@@ -247,9 +246,9 @@ Confirm exit:
 
 ![Confirm Exit](docs/confirm-exit.png)
 
-Exit View:
+Exit Message:
 
-![Exit View](docs/confirm-exit.png)
+![Exit View](docs/exit-message.png)
 
 </details><br/>
 
@@ -259,8 +258,7 @@ Exit View:
 * Database to save test results for multiple users
 * Share results on Social Media
 * Allow users to choose the content theme for the test i.e. legal, fiction, medical etc. 
-* Allow users to select time and paragraph lenght for the test.
-
+* Allow users to select time and paragraph length for the test.
 
 
 [Back to top](#contents)
@@ -270,7 +268,7 @@ Exit View:
 
 ## Accessibility
 
-[WAVE](https://wave.webaim.org/) online tool was used to check terminal colour contrast. 
+[WAVE](https://wave.webaim.org/) online tool was used to check terminal colour contrast. ! alert was returned relating to the CI template layout. 
 
 While building the application, the general principles of accessibility where adhered to: 
 
@@ -279,6 +277,8 @@ While building the application, the general principles of accessibility where ad
 - Validating inputs before moving on to the next step
 - Testing the game to make sure it does not crash from user input
 - Using ARIA labels in the README
+
+![WAVE](docs/summary.png)
 
 ## Bugs 
 
@@ -305,15 +305,11 @@ game.py:
 
 ![game.py](docs/pep8-game-py-result.png)
 
-validation.py:
-
-![validation.py](docs/pep8-validation-py-result.png)
-
 constants.py:
 
 ![constants.py](docs/pep8-constants-py-result.png)
 
-options.py:
+functions.py:
 
 ![options.py](docs/pep8-options-py-result.png)
 
@@ -350,29 +346,24 @@ Speedy-Py was tested in the [Chrome Dev Tools](https://developer.chrome.com/docs
 * Best Practices - checks whether the page is built on the modern standards of web development.
 * SEO - checks if the website is optimised for search engine result rankings.
 
+<details><summary><b>Lighthouse Test Results</b></summary>
+
 Tests for Desktop on Lighthouse Chrome:
-![Lighthouse-Desktop-Chrome-Index](docs/lighthouse-desktop-chrome-index.png "Lighthouse-Desktop-Chrome-Index")
+![Lighthouse-Desktop-Chrome](docs/lighthouse-desktop-chrome-index.png "Lighthouse-Desktop-Chrome")
 
 Tests for Mobile on Lighthouse Chrome:
-![Lighthouse-Mobile-Chrome-Index](docs/lighthouse-mobile-chrome-index.png "Lighthouse-Mobile-Chrome-Index")
+![Lighthouse-Mobile-Chrome](docs/lighthouse-mobile-chrome-index.png "Lighthouse-Mobile-Chrome")
 
 Tests for Desktop Lighthouse Edge:
-![Lighthouse-Desktop-Edge-Index](docs/lighthouse-desktop-edge-index.png "Lighthouse-Desktop-Edge-Index")
+![Lighthouse-Desktop-Edge](docs/lighthouse-desktop-edge-index.png "Lighthouse-Desktop-Edge")
 
 Tests for Mobile on Lighthouse Edge:
-![Lighthouse-Mobile-Edge-Index](docs/lighthouse-mobile-edge-index.png "Lighthouse-Mobile-Edge-Index")
+![Lighthouse-Mobile-Edge](docs/lighthouse-mobile-edge-index.png "Lighthouse-Mobile-Edge")
 
-
-[Back to top](#contents)
-
-
-## Browser Testing
-
-
-[Browser Compatibility Manual Test](docs/browser-compatibility-test-results.pdf "Browser Compatibility Manual Test")
-
+</details><br/>
 
 [Back to top](#contents)
+
 
 # Deployment
 
@@ -466,8 +457,9 @@ Forking the GitHub repository allows you to create a duplicate of a local reposi
   - [StackOverflow](https://stackoverflow.com/ "StackOverflow")
   - [CodePen](https://codepen.io/pen/ "CodePen")
   * [Date and time in Python](https://www.programiz.com/python-programming/datetime/current-datetime "Programiz")
-  * [Pandas Sort: Your Guide to Sorting Data in Python](https://realpython.com/pandas-sort-python/ ("Padas Sort"))
   * [Google Sheets API documentation](https://developers.google.com/sheets/api/quickstart/python "Google Sheets")
+  * [IIIT Kalyani](https://github.com/GDSC-IIIT-Kalyani/Typing-Speed-Test/blob/main/Speed%20typing.py "GitHub")
+
 
 * YouTube Channels for Speedy-Py functionality: 
 
@@ -475,6 +467,7 @@ Forking the GitHub repository allows you to create a duplicate of a local reposi
   * [Make Everyday EZ Day](https://www.youtube.com/watch?v=ykOlbRaNBYU "YouTube")
   * [Web Dev Simplified](https://www.youtube.com/watch?v=R-7eQIHRszQ "YouTube")
   * [Coding Lifestyle 4u](https://www.youtube.com/watch?v=1R8KCdRcoUw "YouTube")
+  * [Tech with Tim](https://www.youtube.com/watch?v=NQ5i1kJAA6Y "YouTube")
  
 
 ## Disclaimer
