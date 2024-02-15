@@ -45,8 +45,7 @@ def start_test(stdscr):
             input_text += chr(key)
 
         stdscr.erase()
-        stdscr.addstr(0, 0, welcome_message,
-                      curses.color_pair(1) | curses.A_BOLD)
+        stdscr.addstr(0, 0, welcome_message, curses.color_pair(1) | curses.A_BOLD)
 
         display_text(stdscr, paragraph, input_text)
         stdscr.refresh()
@@ -60,7 +59,9 @@ def display_text(stdscr, target, current):
     """
 
     stdscr.addstr(
-        2, 0, "Start typing the following paragraph now:",
+        2,
+        0,
+        "Start typing the following paragraph now:",
         curses.color_pair(5) | curses.A_BOLD,
     )
     stdscr.addstr(4, 0, target)
@@ -139,8 +140,7 @@ def calculate_accuracy(input_text, paragraph):
     input_words = input_text.split()
     paragraph_words = paragraph.split()
 
-    num_correct_words = sum(a == b for a, b in zip(
-        input_words, paragraph_words))
+    num_correct_words = sum(a == b for a, b in zip(input_words, paragraph_words))
     accuracy_percentage = (num_correct_words / len(paragraph_words)) * 100
 
     return round(accuracy_percentage, 1)
@@ -159,8 +159,7 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
 
     stdscr.erase()
     stdscr.addstr(result_line1, curses.color_pair(1) | curses.A_BOLD)
-    stdscr.addstr(2, 0, result_line2 + "\n\n",
-                  curses.color_pair(3) | curses.A_BOLD)
+    stdscr.addstr(2, 0, result_line2 + "\n\n", curses.color_pair(3) | curses.A_BOLD)
 
     if wpm < 10:
         stdscr.addstr(
@@ -206,15 +205,12 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
 
         if key == "y":
             stdscr.getch()
-            current_time = datetime.datetime.now().strftime(
-                "%Y-%m-%d %H:%M:%S")
-            save_data(stdscr, [username, current_time, accuracy, wpm],
-                      "Leaderboard")
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            save_data(stdscr, [username, current_time, accuracy, wpm], "Leaderboard")
 
         elif key == "n":
             stdscr.getch()
             curses.endwin()
-            time.sleep(1)
             commands.display_menu()
             break
 
@@ -279,30 +275,42 @@ def pract_accuracy(stdscr):
 
     accuracy = calculate_accuracy(input_text, paragraph)
     if accuracy == 100:
-        stdscr.addstr(7, 0, "\nCongratulations! Your accuracy is 100%.",
-                      curses.color_pair(1) | curses.A_BOLD)
+        stdscr.addstr(
+            7,
+            0,
+            "\nCongratulations! Your accuracy is 100%.",
+            curses.color_pair(1) | curses.A_BOLD,
+        )
     else:
-        stdscr.addstr(7, 0, "\nYour accuracy is {}%.".format(accuracy),
-                      curses.color_pair(2) | curses.A_BOLD)
+        stdscr.addstr(
+            7,
+            0,
+            "\nYour accuracy is {}%.".format(accuracy),
+            curses.color_pair(2) | curses.A_BOLD,
+        )
 
     while True:
         stdscr.addstr(
             9,
             0,
-            "\nWould you like to try again? Y/N:",
+            "\nWould you like to try again? Y/N: ",
             curses.color_pair(4) | curses.A_BOLD,
         )
         stdscr.refresh()
 
         key = stdscr.getch()
+        stdscr.addstr(chr(key))
+        stdscr.refresh()
+        
         key = chr(key).lower() if isinstance(key, int) else key.lower()
 
         if key == "y":
+            stdscr.getch()
             stdscr.erase()
             pract_accuracy(stdscr)
         elif key == "n":
+            stdscr.getch()
             stdscr.erase()
-            time.sleep(1)
             curses.endwin()
             commands.display_menu()
             break
