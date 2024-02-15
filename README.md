@@ -8,7 +8,7 @@ By practicing regularly with Speedy-Py, users can enhance their typing skills an
 [Speedy-Py Live](https://speedy-py-5327a914ba84.herokuapp.com/)
 
 
-![Speedy-Py](docs/typing-test-responsive-display.png)
+![Speedy-Py](docs/typing-test-display.png)
 
 # Contents 
 - [Speedy-Py](#speedy-py)
@@ -103,13 +103,16 @@ As a user, I would like to:
 
 ##  Colour Scheme
 
-High contrast colors are used to show terminal outputs on a black background to improve readability and accessibility. Warnings are red, standard prompts are yellow, and inputs for are blue. 
-Summary of color useed in the terminal:
-* LIGHTBLUE_EX: Used for displaying instructions, paragraphs to type, the game logo, and highlighting the "Press Enter to reveal each T&T" message in the typing skills advice section.
-* LIGHTMAGENTA_EX: Used for displaying the menu options and highlighting the "Press Enter to reveal each T&T" message in the typing skills advice section.
-* LIGHTGREEN_EX: Used for the prompt asking the user to select an option from 1 to 7, the "Start Typing Now >>>" message, congratulatory messages for 100% accuracy, and prompts to select options.
-* LIGHTYELLOW_EX: Used for confirmation prompts like "Would you like to try again? Y/N" and "Are you sure you want to quit? Y/N", as well as displaying an informational message indicating the range of valid options.
-* LIGHTRED_EX: Used for displaying messages related to accuracy percentages, termination messages, and error messages for invalid input.
+High contrast colors are used to show terminal outputs on a black background to improve readability and accessibility. Warnings are red, standard prompts are yellow, and general information is blue. 
+Summary of color scheme used in the terminal:
+Here's a brief summary of the color scheme used in the program:
+
+* MAGENTA: Used for some headings.
+* RED: Indicates errors or prompts for confirmation before quitting or deleting.
+* GREEN: Indicates success messages or prompts for confirmation before quitting.
+* YELLOW: Indicates warnings or prompts for user input.
+* BLUE: Used for displaying instructions and tips.
+* RESET_COLOR: Used to reset the text color to default.
 
 [Back to top](#contents)
 
@@ -124,8 +127,6 @@ As the flow chart was created at the outset of the project, it does not fully re
 ![Flow Chart](docs/flowchart.jpeg)
 
 For PDF version [click here](docs/flowchart-pdf.pdf)
-
-## Data Model
 
 
 ## Database structure
@@ -147,7 +148,7 @@ The program is run, terminal window displays the main menu of the typing speed t
 
 ### Options menu
 
-The menu continously displays options list using the loop. To continue using the application, the user is prompted to choose one of the options from 1 to 7. Following the user's selection, the function verifies the input to make sure it is within the permitted range of possibilities. An error message asking the user to select the correct option is presented if the input is invalid. The related action linked to the selected choice is carried out if the input is valid. This functionality ensures seamless navigation through the application's features and facilitates user interaction.
+The menu continously displays options list using the loop. To continue using the application, the user is prompted to choose one of the options from 1 to 6. Following the user's selection, the function verifies the input to make sure it is within the permitted range of possibilities. An error message asking the user to select the correct option is presented if the input is invalid. The related action linked to the selected choice is carried out if the input is valid. This functionality ensures seamless navigation through the application's features and facilitates user interaction.
 
 <details><summary><b>Options Menu Functionality</b></summary>
 
