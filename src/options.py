@@ -1,8 +1,7 @@
-from utils.utils import *
+from src.utils import *
+from src.constants import *
+import src.menu as commands
 import time
-from constants import *
-import menu as commands
-
 
 def view_instructions():
     """

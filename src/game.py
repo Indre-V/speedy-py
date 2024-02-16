@@ -4,8 +4,8 @@ import datetime
 import curses
 import uuid
 from curses import wrapper
-from api.spreadsheet import *
-import menu as commands
+from src.spreadsheet import *
+import src.menu as commands
 
 
 def initialize_colors():
@@ -183,6 +183,7 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
     prompt_save_test(stdscr, username, accuracy, wpm)
 
 
+
 def prompt_save_test(stdscr, username, accuracy, wpm):
     """
     Prompt the user to save the test results or return to the main menu.
@@ -252,10 +253,11 @@ def pract_accuracy(stdscr):
     Loads a result of accuracy test
     """
     initialize_colors()
-    paragraph = create_paragraph()
-    display_text(stdscr, paragraph, "")
-
-    input_text = ""
+    stdscr.erase() 
+    text = create_paragraph()
+    display_text(stdscr, text, "")
+    stdscr.refresh()
+    input_paragraph = ""
 
     while True:
         key = stdscr.getch()
@@ -263,16 +265,16 @@ def pract_accuracy(stdscr):
         if key == ord("\n"):
             break
         elif key == curses.KEY_BACKSPACE or key == 127:
-            if input_text:
-                input_text = input_text[:-1]
+            if input_paragraph:
+                input_paragraph = input_text[:-1]
         else:
-            input_text += chr(key)
+            input_paragraph += chr(key)
 
-        display_text(stdscr, paragraph, input_text)
+        display_text(stdscr, text, input_paragraph)
         stdscr.refresh()
 
-    accuracy = calculate_accuracy(input_text, paragraph)
-    if accuracy == 100:
+    acc = calculate_accuracy(input_paragraph, text)
+    if acc == 100:
         stdscr.addstr(
             7,
             0,
@@ -283,7 +285,7 @@ def pract_accuracy(stdscr):
         stdscr.addstr(
             7,
             0,
-            "\nYour accuracy is {}%.".format(accuracy),
+            "\nYour accuracy is {}%.".format(acc),
             curses.color_pair(2) | curses.A_BOLD,
         )
 

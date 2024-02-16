@@ -1,8 +1,8 @@
 import sys
 import time
 from os import system, name
-import menu as commands
-from constants import *
+import src.menu as commands
+from src.constants import *
 
 
 def clear_terminal():

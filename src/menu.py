@@ -1,8 +1,8 @@
-from src.functions import *
-from constants import *
+from src.options import *
+from src.constants import *
 import time
-from utils.utils import clear_terminal
-from api.spreadsheet import view_leaderboard
+from src.utils import clear_terminal
+from src.spreadsheet import view_leaderboard
 from src.game import run_typing_test, pract_acc
 
 

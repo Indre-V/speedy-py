@@ -1,10 +1,9 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from utils.utils import *
 import time
 from prettytable import PrettyTable
-from constants import *
-
+from src.constants import *
+from src.utils import *
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
