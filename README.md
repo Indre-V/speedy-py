@@ -296,7 +296,7 @@ While building the application, the general principles of accessibility where ad
 
 ### PEP8 Testing
 
-The python files have all been passed through [PEP8 Online](http://pep8online.com/)
+The python files have all been passed through [PEP8 CI Online](https://pep8ci.herokuapp.com/)
 
 <details><summary><b>PEP8 Test Results</b></summary>
 
@@ -339,16 +339,16 @@ spreadsheet.py:
 
 | User Story                                                                    | Result                                      | Pass | Screenshot                              |
 | ----------------------------------------------------------------------------- | ------------------------------------------- | ---- | --------------------------------------- |
-| Clearly understand the purpose of the application from the first interaction. | Name, intro and options reflect the purpose | Pass |  [ View](docs/user-story1.png " View")  |
-| Use the program in real-life scenarios to enhance my typing skills.           | Practice accuracy option                    | Pass |  [ View](docs/user-story2.png " View")  |
-| Receive clear feedback for the actions I take within the application.         | Feedback based on wpm result                | Pass |  [ View](docs/user-story3.png " View")  |
-| Be challenged by having to input actual words rather than random letters.     | Sentences displayed from library            | Pass |  [ View](docs/user-story4.png " View")  |
-| Compare my score to others on the leaderboard.                                | View leaderboard option                     | Pass |  [ View](docs/user-story5.png " View")  |
-| Easily and intuitively navigate through the typing test.                      | Test displays step by step                  | Pass |  [ View](docs/user-story6.png " View")  |
-| Learn how I can improve my typing speed and accuracy based on my score.       | Tips and tricks option                      | Pass |  [ View](docs/user-story7.png " View")  |
-| Have the option to save my results for future reference.                      | Option to save top 10 results               | Pass |  [ View](docs/user-story8.png " View")  |
-| Access my previous test results to track my progress.                         | View Leaderboard option                     | Pass |  [ View](docs/user-story9.png " View")  |
-| Have the ability to delete specific data entries if needed.                   | Option to delete a score                    | Pass |  [ View](docs/user-story10.png " View") |
+| Clearly understand the purpose of the application from the first interaction. | Name, intro and options reflect the purpose | Pass |  [ View](docs/users-story1.png " View")  |
+| Use the program in real-life scenarios to enhance my typing skills.           | Practice accuracy option                    | Pass |  [ View](docs/users-story2.png " View")  |
+| Receive clear feedback for the actions I take within the application.         | Feedback based on wpm result                | Pass |  [ View](docs/users-story3.png " View")  |
+| Be challenged by having to input actual words rather than random letters.     | Sentences displayed from library            | Pass |  [ View](docs/users-story4.png " View")  |
+| Compare my score to others on the leaderboard.                                | View leaderboard option                     | Pass |  [ View](docs/users-story5.png " View")  |
+| Easily and intuitively navigate through the typing test.                      | Test displays step by step                  | Pass |  [ View](docs/users-story6.png " View")  |
+| Learn how I can improve my typing speed and accuracy based on my score.       | Tips and tricks option                      | Pass |  [ View](docs/users-story7.png " View")  |
+| Have the option to save my results for future reference.                      | Option to save top 10 results               | Pass |  [ View](docs/users-story8.png " View")  |
+| Access my previous test results to track my progress.                         | View Leaderboard option                     | Pass |  [ View](docs/users-story9.png " View")  |
+| Have the ability to delete specific data entries if needed.                   | Option to delete a score                    | Pass |  [ View](docs/users-story10.png " View") |
 
 [Back to top](#contents)
 
