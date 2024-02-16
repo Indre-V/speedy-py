@@ -129,12 +129,26 @@ As the flow chart was created at the outset of the project, it does not fully re
 
 For PDF version [click here](docs/flowchart-pdf.pdf)
 
+## Aplication Code Structure
+
+Python code is organized following the best modularization practices. This increases efficiency and readability of the code. It also assists in refactoring of the code for future improvements. However, [curses](https://docs.python.org/3/library/curses.html) module was used for the typing game so all the test related curses functions are contained in one file to avoid the application performance issues. Curses library facilitates the creation of text-based user interfaces within the terminal, handling keyboard input, displaying text with color and formatting. Curses functions are contained in a wrapper. It simplifies the initialization and cleanup of the curses application by handling the initialization and termination of curses mode automatically.
 
 ## Database structure
 
 Google Sheets service is used to store project's database in the spreadsheet.
 
 ![Speadsheet sample](docs/spreadsheet.png)
+
+Summary of the data structure in the google spreadsheet:
+
+| Name            | Type       | Other Details            |
+|-----------------|------------|--------------------------|
+| ID              | String     | Unique identifier        |
+| Username        | String     | Name of the user         |
+| Completion Date | DateTime   | Date and time of completion |
+| Accuracy        | Integer    | Accuracy percentage      |
+| WPM             | Integer    | Words per minute         |
+
 
 [Back to top](#contents)
 
@@ -392,40 +406,64 @@ Tests for Mobile on Lighthouse Edge:
 
 ## To deploy the project
 
-This site was developed using [Gitpod](https://www.gitpod.io/), stored on [Github](https://github.com/) and deployed with [Heroku](https://dashboard.heroku.com/apps).
+This site was developed using [**GitPod**](https://www.gitpod.io/), stored on [**GitHub**](https://github.com/) and deployed with [**Heroku**](https://dashboard.heroku.com/apps).
 
 Deploying on Heroku:
-  * From the homescreen, click "New" and select "Create new app"
-  * Choose app name, select region and click "Create"
-  * Go to "Settings" and add PORT : 8000 to the Config Vars (CREDS : {contents of creds.json file} also added but excluded from Github for security reasons)
-  * Add heroku/python and heroku/nodejs buildpacks (in that order)
-  * Go to "Deploy" and connect Github repository
-  * Select "Enable Automatic Deploys" and click "Deploy Branch"
-  * The link to deloyed application: https://speedy-py.herokuapp.com/
 
-_Any changes required to the website, they can be made, committed and pushed to GitHub._
+* From the homescreen, click **New** and select **Create new app**
+
+* Choose app name, select region and click **Create**
+
+* Go to "****Settings**" and add `PORT : 8000` to the Config Vars (``CREDS ``: {*contents of creds.json file*} also added but excluded from GitHub for security reasons)
+
+* Add ``heroku/python`` and ``heroku/nodejs buildpacks`` (in that order)
+
+* Go to **Deploy** and connect **Github** repository
+
+* Select ``Enable Automatic Deploy`` and click **Deploy Branch**
+
+* The link to deployed application: https://speedy-py.herokuapp.com/
+
 
 [Back to top](#contents)
 
 ## To fork the project
 
-Forking the GitHub repository allows you to create a duplicate of a local repository. This is done so that modifications to the copy can be performed without compromising the original repository.
+  
 
-- Log in to GitHub.
+Forking the **GitHub** repository allows you to create a duplicate of a local repository. This is done so that modifications to the copy can be performed without compromising the original repository.
+
+
+- Log in to **GitHub**.
+
 - Locate the repository.
-- Click to open it.
-- The fork button is located on the right side of the repository menu.
-- To copy the repository to your GitHub account, click the button.
 
+- Click to open it.
+
+- The fork button is located on the right side of the repository menu.
+
+- To copy the repository to your **GitHub** account, click the button.
+
+  
 ## To clone the project
 
-- Log in to GitHub.
-- Navigate to the main page of the repository and click Code.
-- Copy the URL for the repository.
-- Open your local IDE.
+  
+- Log in to **GitHub**.
+
+- Navigate to the main page of the repository and click **Code**.
+
+- Copy the **URL** for the repository.
+
+- Open your local **IDE**.
+
 - Change the current working directory to the location where you want the cloned directory.
-- Type git clone, and then paste the URL you copied earlier.
-- Press Enter to create your local clone.
+
+- Type git clone, and then paste the **URL** you copied earlier.
+
+- Press **Enter** to create your local clone.
+  
+
+_Any changes required to the website, they can be made, committed and pushed to GitHub._
 
 [Back to top](#contents)
 
@@ -444,12 +482,11 @@ Forking the GitHub repository allows you to create a duplicate of a local reposi
 - [gspread](https://pypi.org/project/gspread/): to allow communication with Google Sheets. 
 - [requests](https://pypi.org/project/requests): enables data retrieval from APIs.
 - [google.oauth2.service_account](https://google-auth.readthedocs.io/en/stable/index.html):  used to validate credentials and grant access to google service accounts.
-- [pandas](https://pypi.org/project/pandas/) - used for sorting and displaying leaderboard data in user-friendly format. 
-- [textwrap](https://docs.python.org/3/library/textwrap.html) - built-in python module - used to wrap lines over 79 char to next line e.g. long book description. 
-- [PrettyTable](https://pypi.org/project/prettytable/) - python library for easily displaying tabular data in a visually appealing ASCII table format.
-- [os](https://docs.python.org/3/library/os.html?highlight=os#module-os) 
-  - `os.system` is used in order to clear the terminal when beginning a new game.
-  - `os.environ` is used to get Oxford API credentials from environment variables (defined in env.py).
+- [PrettyTable](https://pypi.org/project/prettytable/) - Python library for easily displaying tabular data in a visually appealing ASCII table format.
+- [Curses](https://docs.python.org/3/library/curses.html#module-curses) - terminal handling for character-cell displays.
+- [UUID](https://docs.python.org/3/library/uuid.html) - generates a unique ID
+- [Wonderwords](https://libraries.io/pypi/wonderwords) - A python package for random words and sentences in English language.
+
 
 ## Tools
 
@@ -495,4 +532,5 @@ Forking the GitHub repository allows you to create a duplicate of a local reposi
 
 ## Disclaimer
 -   SpeedyPy app was created for educational purpose only. 
+
 [Back to top](#contents)
