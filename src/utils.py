@@ -3,6 +3,7 @@ import time
 from os import system, name
 import src.menu as commands
 from src.constants import *
+import getpass
 
 
 def clear_terminal():
@@ -21,12 +22,9 @@ def return_to_menu():
     Return the user to the beginning of the program
     """
     print(YELLOW + "\nHit enter to return to the main menu.")
-    if input() == "":
-        clear_terminal()
-        commands.display_menu()
-    else:
-        clear_terminal()
-        commands.display_menu()
+    getpass.getpass(prompt="")
+    clear_terminal()
+    commands.display_menu()
 
 
 def typing_print(text):

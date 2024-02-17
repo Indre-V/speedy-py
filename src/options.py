@@ -2,6 +2,7 @@ from src.utils import *
 from src.constants import *
 import src.menu as commands
 import time
+import getpass
 
 def view_instructions():
     """
@@ -21,7 +22,7 @@ def typing_skills_advice():
 
     for tip in TIPS:
         print(tip)
-        input()
+        getpass.getpass(prompt="")
 
     return_to_menu()
 

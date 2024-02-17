@@ -486,6 +486,7 @@ _Any changes required to the website, they can be made, committed and pushed to 
 - [Curses](https://docs.python.org/3/library/curses.html#module-curses) - terminal handling for character-cell displays.
 - [UUID](https://docs.python.org/3/library/uuid.html) - generates a unique ID
 - [Wonderwords](https://libraries.io/pypi/wonderwords) - A python package for random words and sentences in English language.
+* [getpass](https://docs.python.org/3/library/getpass.html) - prevent input echo in the terminal
 
 
 ## Tools
