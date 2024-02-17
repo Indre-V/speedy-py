@@ -475,7 +475,7 @@ _Any changes required to the website, they can be made, committed and pushed to 
 -   [Markdown](https://en.wikipedia.org/wiki/Markdown) - markdown language used to write README and TESTING documents.
 
 
-## Python Libraries:
+## Python Libraries
 
 - [colorama](https://pypi.org/project/colorama/) - for adding colour to terminal text.
 - [datetime](https://pypi.org/project/DateTime/): used to get today's date for the leaderboard entry.
