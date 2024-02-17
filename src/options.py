@@ -46,7 +46,7 @@ def exit_app():
                     + RESET_COLOR
                 )
                 print(RED + "\nTerminating..." + RESET_COLOR)
-                typing_print(EXIT_MESSAGE)
+                print(EXIT_MESSAGE)
                 exit()
             else:
                 clear_terminal()

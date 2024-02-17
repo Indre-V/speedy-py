@@ -27,16 +27,6 @@ def return_to_menu():
     commands.display_menu()
 
 
-def typing_print(text):
-    """
-    Prints text gradually as if it were being typed out.
-    """
-    for character in text:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-    time.sleep(0.05)
-
-
 def space():
     """
     Adds two blank lines
