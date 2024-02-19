@@ -176,7 +176,7 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
     elif wpm < 30:
         stdscr.addstr(
             "\nYour typing speed is average. "
-            "Keep practicing to improve your speed and accuracy.",
+            "Keep practicing to improve speed and accuracy.",
             curses.color_pair(4) | curses.A_BOLD,
         )
     else:

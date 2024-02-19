@@ -169,7 +169,8 @@ The menu continuously displays options list using the loop. To continue using th
 
 ![Options Menu Functionality](docs/options-menu.png)
 
-</details><br
+</details><br/>
+
 
 ### View Instructions
 
