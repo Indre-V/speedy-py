@@ -8,7 +8,7 @@ import getpass
 
 def clear_terminal():
     """
-    Clears all data from terminal when called
+    Clears all data from terminal.
     """
     if name == "nt":
         _ = system("cls")
@@ -19,7 +19,7 @@ def clear_terminal():
 
 def return_to_menu():
     """
-    Return the user to the beginning of the program
+    Returns the user to main menu
     """
     print(YELLOW + "\nHit enter to return to the main menu.")
     getpass.getpass(prompt="")
@@ -38,7 +38,7 @@ def space():
 def validate_response(user_input):
     """
     Validates Y/N inputs provided by the user.
-    If the input is invalid, it prints feedback to the user
+    If the input is invalid, it prints feedback to the user.
     """
     try:
         permitted_values = ["y", "Y", "n", "N"]

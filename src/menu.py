@@ -7,12 +7,19 @@ from src.game import run_typing_test, pract_acc
 
 
 def main_menu():
+    """
+    Main Menu options and logo
+    """
 
     print(YELLOW + GAME_LOGO)
     print(MENU)
 
 
 def display_menu():
+    """
+    Menu functions.
+    Validates user input
+    """
 
     while True:
         main_menu()

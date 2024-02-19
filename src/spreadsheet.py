@@ -33,8 +33,8 @@ def fetch_data_from_spreadsheet():
 
 def view_leaderboard():
     """
-    Displays top 10 results in the spreadsheet
-    Prompts user to delete result
+    Top 10 results in the spreadsheet.
+    Prompts user to delete result.
     """
     while True:
         data = fetch_data_from_spreadsheet()
@@ -75,8 +75,8 @@ def view_leaderboard():
 
 def delete_results():
     """
-    Searches for ID and deletes results
-    Displays updated leaderboa
+    Searches for ID and deletes result.
+    Displays updated leaderboard.
     """
     entry_id = input(YELLOW + "Enter the ID of the entry you want to delete: "
                      + RESET_COLOR)

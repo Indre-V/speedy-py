@@ -6,7 +6,7 @@ import getpass
 
 def view_instructions():
     """
-    Displays instructions for the typing test.
+    Instructions for the typing test.
     """
     print(BLUE + INSTRUCTIONS)
     return_to_menu()
@@ -14,7 +14,7 @@ def view_instructions():
 
 def typing_skills_advice():
     """
-    Provides tips and tricks to improve typing speed.
+    Tips and tricks to improve typing speed.
     """
     print(BLUE + "12 Tips and Tricks to Improve Typing Speed:\n"
           + MAGENTA + "\nPress Enter to reveal each T&T\n"
@@ -29,7 +29,8 @@ def typing_skills_advice():
 
 def exit_app():
     """
-    Confirms with user whether they want to exit
+    Confirms with user whether they want to exit.
+    Exit Message displayed.
     """
     while True:
         confirm = input(

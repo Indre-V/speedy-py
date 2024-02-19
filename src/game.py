@@ -76,7 +76,8 @@ def display_text(stdscr, target, current):
 
 def ask_name(stdscr):
     """
-    The function gets the name of the player using curses.
+    The function gets the name of the player.
+    Validates input.
     """
     curses.echo()
     stdscr.erase()
@@ -249,8 +250,9 @@ def save_data(stdscr, data, display_board):
 
 def pract_accuracy(stdscr):
     """
-    Displays paragraph for accuracy measurement
-    Loads a result of accuracy test
+    Displays paragraph for accuracy measurement.
+    Loads a result of accuracy test.
+    Prompts to retest.
     """
     initialize_colors()
     stdscr.erase() 
@@ -325,8 +327,14 @@ def pract_accuracy(stdscr):
 
 
 def run_typing_test():
+    """
+    Typing test in curses wrapper
+    """
     wrapper(start_test)
 
 
 def pract_acc():
+    """
+    Practice accuracy in curses wrapper
+    """
     wrapper(pract_accuracy)

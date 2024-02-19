@@ -84,7 +84,7 @@ As a user, I would like to:
 
 * Provide a user-friendly interface for typing exercises.
 * Offer a range of typing tests and exercises tailored to different skill levels.
-* Implement features such as timers, accuracy meters and progress tracking.
+* Implement features such as words per minute counters, accuracy and progress tracking.
 * Allow users to customize their typing practice sessions based on preferences.
 * Foster a sense of community through leaderboards and achievements.
 * Provide tips how to improve the skills.
@@ -128,15 +128,13 @@ For PDF version [click here](docs/flowchart-pdf.pdf)
 
 ## Aplication Code Structure
 
-Python code is organized following the best modularization practices. This increases efficiency and readability of the code. It also assists in refactoring of the code for future improvements. However, [curses](https://docs.python.org/3/library/curses.html) module was used for the typing game so all the test related curses functions are contained in one file to avoid the application performance issues. Curses library facilitates the creation of text-based user interfaces within the terminal, handling keyboard input, displaying text with color and formatting. Curses functions are contained in a wrapper. It simplifies the initialization and cleanup of the curses application by handling the initialization and termination of curses mode automatically.
+Python code is organized following modularization practices. This increases efficiency and readability of the code. It also assists in refactoring of the code for future improvements. However, [curses](https://docs.python.org/3/library/curses.html) module was used for the typing game. Curses library facilitates the creation of text-based user interfaces within the terminal, handling keyboard input, displaying text with color and formatting. Curses functions are contained in a wrapper. It simplifies the initialization and cleanup of the curses application by handling the initialization and termination of curses mode automatically. All the test related curses functions are contained in one file to avoid the application performance issues.
 
 ## Database structure
 
 Google Sheets service is used to store project's database in the spreadsheet.
 
-![Speadsheet sample](docs/spreadsheet.png)
-
-Summary of the data structure in the google spreadsheet:
+Summary of the data structure:
 
 | Name            | Type       | Other Details            |
 |-----------------|------------|--------------------------|
@@ -145,6 +143,10 @@ Summary of the data structure in the google spreadsheet:
 | Completion Date | DateTime   | Date and time of completion |
 | Accuracy        | Integer    | Accuracy percentage      |
 | WPM             | Integer    | Words per minute         |
+
+Spreadsheet Sample:
+
+![Speadsheet sample](docs/spreadsheet.png)
 
 
 [Back to top](#contents)
@@ -365,7 +367,7 @@ spreadsheet.py:
 ## Manual testing
 
 The application was extensively tested. Failed tests have been recorded in Bugs section. 
-<details><summary><b>Manual testing results></b></summary>
+<details><summary><b>Manual testing results</b></summary>
 
 | Functionality     | Test Case                                                | Test Procedure                                                                                                                                                                                                       | Test Data           | Expected Outcome                                                                                                | Status | Comments                                                                                                         |
 | ----------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------- |
@@ -556,7 +558,6 @@ _Any changes required to the website, they can be made, committed and pushed to 
 * [Lucidchart](https://lucid.app/documents#/dashboard "Lucidchart")
 * [PEP8 Validation](http://pep8online.com/ "PEP8 Validation")
 * [TOC Generator](https://ecotrust-canada.github.io/markdown-toc/ "TOC Generator")
-* [Am I Responsive](https://ui.dev/amiresponsive "Am I responsive")
 * [WAVE](https://webaim.org/resources/contrastchecker/ "Web Aim")
 * [Google Sheets API](https://developers.google.com/sheets/api "Google Sheets API")
 
