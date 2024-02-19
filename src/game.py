@@ -266,7 +266,7 @@ def pract_accuracy(stdscr):
             break
         elif key == curses.KEY_BACKSPACE or key == 127:
             if input_paragraph:
-                input_paragraph = input_text[:-1]
+                input_paragraph = text[:-1]
         else:
             input_paragraph += chr(key)
 
