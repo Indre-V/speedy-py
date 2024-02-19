@@ -145,9 +145,8 @@ def calculate_accuracy(input_text, paragraph):
     num_correct_words = sum(
         a == b for a, b in zip(input_words, paragraph_words)
     )
-    num_correct_words = sum(
-        a == b for a, b in zip(input_words, paragraph_words)
-    )
+    accuracy_percentage = (
+            num_correct_words / len(paragraph_words)) * 100
 
     return round(accuracy_percentage, 1)
 
@@ -277,7 +276,7 @@ def pract_accuracy(stdscr):
             break
         elif key == curses.KEY_BACKSPACE or key == 127:
             if input_paragraph:
-                input_paragraph = text[:-1]
+                input_paragraph = input_paragraph[:-1]
         else:
             input_paragraph += chr(key)
 

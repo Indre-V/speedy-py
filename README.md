@@ -1,6 +1,6 @@
 # Speedy-Py
 
-Speedy-Py typing test is a tool designed to evaluate typing speed and accuracy. It provides users with a platform to assess their typing skills in terms of words per minute (WPM) and accuracy rate. The test typically presents users with a passage or a series of random words that they need to type accurately and swiftly within a specified time frame.
+Speedy-Py typing test is a tool designed to evaluate typing speed and accuracy. It provides users with a platform to assess their typing skills in terms of words per minute (WPM) and accuracy rate. The test presents users with a paragraph that they need to type accurately and swiftly within a specified time frame.
 
 By practicing regularly with Speedy-Py, users can enhance their typing skills and become more efficient at keyboard-based tasks.
 
@@ -21,7 +21,7 @@ By practicing regularly with Speedy-Py, users can enhance their typing skills an
   * [Colour Scheme](#colour-scheme)
 - [Logic](#logic)
   * [Python Logic](#python-logic)
-  * [Aplication Code Structure](#aplication-code-structure)
+  * [Application Code Structure](#aplication-code-structure)
   * [Database structure](#database-structure)
 - [Features](#features)
   * [Existing Features](#existing-features)
@@ -101,9 +101,8 @@ As a user, I would like to:
 
 ##  Colour Scheme
 
-High contrast colors are used to show terminal outputs on a black background to improve readability and accessibility. Warnings are red, standard prompts are yellow, and general information is blue. 
-Summary of color scheme used in the terminal:
-Here's a brief summary of the color scheme used in the program:
+High contrast colors are used to show terminal outputs on a black background to improve readability and accessibility. Warnings are red, standard prompts are yellow and general information is blue. 
+Summary of the color scheme used in the terminal:
 
 * MAGENTA: Used for some headings.
 * RED: Indicates errors or prompts for confirmation before quitting or deleting.
@@ -126,13 +125,13 @@ As the flow chart was created at the outset of the project, it does not fully re
 
 For PDF version [click here](docs/flowchart-pdf.pdf)
 
-## Aplication Code Structure
+## Application Code Structure
 
 Python code is organized following modularization practices. This increases efficiency and readability of the code. It also assists in refactoring of the code for future improvements. However, [curses](https://docs.python.org/3/library/curses.html) module was used for the typing game. Curses library facilitates the creation of text-based user interfaces within the terminal, handling keyboard input, displaying text with color and formatting. Curses functions are contained in a wrapper. It simplifies the initialization and cleanup of the curses application by handling the initialization and termination of curses mode automatically. All the test related curses functions are contained in one file to avoid the application performance issues.
 
 ## Database structure
 
-Google Sheets service is used to store project's database in the spreadsheet.
+Google Sheets service is utilized to store project's database in the spreadsheet.
 
 Summary of the data structure:
 
@@ -146,7 +145,7 @@ Summary of the data structure:
 
 Spreadsheet Sample:
 
-![Speadsheet sample](docs/spreadsheet.png)
+![Spreadsheet sample](docs/spreadsheet.png)
 
 
 [Back to top](#contents)
@@ -157,14 +156,14 @@ Spreadsheet Sample:
 
 ### Introduction Section
 
-The program is run, terminal window displays the main menu of the typing speed test application. It prints the game logo followed by a numbered list of options using [Colorama]("https://pypi.org/project/colorama/").
+The program is run, terminal window displays the main menu of the typing speed test application. It prints the game logo in yellow using [Colorama]("https://pypi.org/project/colorama/") followed by a numbered list of options
 
 ![Terminal Intro](docs/terminal-intro.png)
 
 
 ### Options menu
 
-The menu continously displays options list using the loop. To continue using the application, the user is prompted to choose one of the options from 1 to 6. Following the user's selection, the function verifies the input to make sure it is within the permitted range of possibilities. An error message asking the user to select the correct option is presented if the input is invalid. The related action linked to the selected choice is carried out if the input is valid. This functionality ensures seamless navigation through the application's features and facilitates user interaction.
+The menu continuously displays options list using the loop. To continue using the application, the user is prompted to choose one of the options from 1 to 6. Following the user's selection, the function verifies the input to make sure it is within the permitted range of possibilities. An error message asking the user to select the correct option is presented if the input is invalid. The related action linked to the selected choice is carried out if the input is valid. This functionality ensures seamless navigation through the application's features and facilitates user interaction.
 
 <details><summary><b>Options Menu Functionality</b></summary>
 
@@ -172,10 +171,9 @@ The menu continously displays options list using the loop. To continue using the
 
 </details><br
 
-
 ### View Instructions
 
- It presents users with a set of guidelines to follow while taking the typing test. The instructions are printed in the terminal with colorized text to enhance readability and user experience. After displaying the instructions, the function prompts users to return to the main menu, facilitating seamless navigation within the application.
+It presents users with a set of guidelines to follow while taking the typing test. The instructions are printed in the terminal with colorized text to enhance readability and user experience. After displaying the instructions, the function prompts users to return to the main menu, facilitating seamless navigation within the application.
 
 <details><summary><b>View Instructions Display</b></summary>
 
@@ -185,28 +183,27 @@ The menu continously displays options list using the loop. To continue using the
 
 ### Test
 
-
- It begins by requesting user for their name. Name must be at least two characters. Then it generates a random paragraph for the user to type, which is displayed in the terminal with colorized text. The user is then prompted to begin typing, and their input is recorded. Once the user has finished typing, the function calculates and displays the results of the typing test, including accuracy and speed. It measures time taken in the background for calculations. This function serves as the core component of the typing speed test game, allowing users to assess and improve their typing skills within the terminal environment.Users are also given an option to either save test results or to return to the main menu.
+ It begins by requesting user for their name. Name must be at least two characters. Then it generates a random paragraph for the user to type, which is displayed in the terminal with colorized text. The user is then prompted to begin typing, and their input is recorded. Once the user has finished typing, the function calculates and displays the results of the typing test, including accuracy and speed. It measures time taken in the background for calculations. This function serves as the core component of the typing speed test game, allowing users to assess and improve their typing skills within the terminal environment. Users are also given an option to either save test results or to return to the main menu. If user chooses to save the test, it generates a unique ID for the entry. 
 
  <details><summary><b>Test Functionalities</b></summary>
 
- Name Validation:
+ ***Name Validation:***
 
  ![Name Validation](docs/name-validation.png)
 
- Name Entry:
+ ***Name Entry:***
 
  ![Name Entry](docs/name-entry.png)
 
-  Start Test:
+ ***Start Test:***
 
 ![Start Test](docs/start-test.png)
 
-Show Results:
+***Show Results:***
 
 ![Show Results](docs/show-results.png)
 
-Save test:
+***Save test:***
 
 ![Save Test](docs/save-test.png)
 
@@ -215,7 +212,7 @@ Save test:
 
 ### Typing Advice 
 
- It displays a list of 12 tips and tricks in the terminal, each designed to improve typing proficiency. It starts by presenting a list of 12 quick fixes in the terminal, all aimed at enhancing typing speed. To make the experience more interactive, users are required to press Enter in order to reveal each advice. Important methods including touch typing, good posture, finger positioning, and consistent practice are covered in the suggestions. The functionality also suggests that users take pauses, practice typing using games, and track their advancement over time. Users can improve their accuracy and speed while strengthening their typing skills by implementing these tips. At the end of the the function takes users back to the main menu so they can continue using the typing speed test application after applying these instructions.
+ It displays a list of 12 tips and tricks in the terminal, each designed to improve typing proficiency. It starts by presenting a list of 12 quick fixes in the terminal, all aimed at enhancing typing speed. To make the experience more interactive, users are required to press Enter in order to reveal each advice. Important methods including touch typing, good posture, finger positioning, and consistent practice are covered in the suggestions. The functionality also suggests that users take pauses, practice typing using games, and track their advancement over time. Users can improve their accuracy and speed while strengthening their typing skills by implementing these tips. At the end of the function takes users back to the main menu so they can continue using the typing speed test application after applying these instructions.
 
 <details><summary><b>Tips and Tricks Display</b></summary>
 
@@ -241,6 +238,7 @@ This functionality retrieves data from a spreadsheet and organizes it to display
 
 ![View Leaderboard](docs/view-leaderboard.png)
 
+***Prompt to enter ID:***
 
 ![Edit Leaderboard](docs/leaderboard-edit.png)
 
@@ -255,11 +253,11 @@ If the user chooses not to exit the application by entering "N" or an invalid re
 
 <details><summary><b>Exit Application</b></summary>
 
-Confirm exit:
+***Confirm exit:***
 
 ![Confirm Exit](docs/confirm-exit.png)
 
-Exit Message:
+***Exit Message:***
 
 ![Exit View](docs/exit-message.png)
 
@@ -297,7 +295,7 @@ While building the application, the general principles of accessibility where ad
 
 | Bug                                              | Status     | Description                                                                                                                           | Steps To Resolve                                                                              |
 | ------------------------------------------------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Leaderboard refresh                              | Resolved   | When results saved, they are no displayed in the leaderbord although recorded in the spreadsheet                                      | Refresh added to view_leaderbord function so it refreshes prior to display                    |
+| Leaderboard refresh                              | Resolved   | When results saved, they are no displayed in the leaderboard although recorded in the spreadsheet                                      | Refresh added to view_leaderboard function so it refreshes prior to display                    |
 | Menu loop                                        | Resolved   | If enter pressed when option selected, error showed                                                                                   | Removed time.sleep functionality                                                              |
 | Screen flickering                                | Resolved   | While typing deployed screen kept flickering.                                                                                         | Changed function from screen clear to erase                                                   |
 | Test stopped when backspace pressed              | Resolved   | During the test, when backspace pressed test terminated                                                                               | Updated key types in the function                                                             |
@@ -307,6 +305,8 @@ While building the application, the general principles of accessibility where ad
 | Delete result                                    | Unresolved | Application allows to delete other user results.                                                                                      | Possibility to introduce log in portal for ability to amend only results related to the user. |
 | Input accepted where Hit Enter feature available | Resolved   | User can add text in between the lines tips and tricks. The content is still displayed. The text doesn’t save when option is closed.  | Added getpass module to prevent terminal from echoing user input                              |
 | Backspace key                                    | Resolved   | Application terminated when backspace key pressed                                                                                     | Fixed variable declaration                                                                    |
+
+
 [Back to top](#contents)
 
 ## Code Validation
@@ -317,31 +317,31 @@ The python files have all been passed through [PEP8 CI Online](https://pep8ci.he
 
 <details><summary><b>PEP8 Test Results</b></summary>
 
-run.py:
+**run.py:**
 
 ![run.py](docs/pep8-run-py-result.png)
 
-utils.py:
+**utils.py:**
 
 ![utils.py](docs/pep8-utils-py-result.png)
 
-game.py:
+**game.py:**
 
 ![game.py](docs/pep8-game-py-result.png)
 
-constants.py:
+**constants.py:**
 
 ![constants.py](docs/pep8-constants-py-result.png)
 
-functions.py:
+**options.py:**
 
-![functions.py](docs/pep8-functions-py-result.png)
+![options.py](docs/pep8-functions-py-result.png)
 
-menu.py:
+**menu.py:**
 
 ![menu.py](docs/pep8-menu-py-result.png)
 
-spreadsheet.py: 
+**spreadsheet.py:**
 
 ![spreadsheet.py](docs/pep8-spreadsheet-py-result.png)
 
@@ -592,6 +592,6 @@ _Any changes required to the website, they can be made, committed and pushed to 
  
 
 ## Disclaimer
--   SpeedyPy app was created for educational purpose only. 
+-   Speedy-Py app was created for educational purposes only. 
 
 [Back to top](#contents)
