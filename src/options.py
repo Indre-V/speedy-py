@@ -4,6 +4,7 @@ import src.menu as commands
 import time
 import getpass
 
+
 def view_instructions():
     """
     Instructions for the typing test.

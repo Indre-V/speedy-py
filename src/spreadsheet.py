@@ -38,7 +38,8 @@ def view_leaderboard():
     """
     while True:
         data = fetch_data_from_spreadsheet()
-        data_sorted = sorted(data[1:], key=lambda x: int(x[4]), reverse=True)[:10]
+        data_sorted = sorted(data[1:],
+                             key=lambda x: int(x[4]), reverse=True)[:10]
 
         headers = data[0]
 
@@ -60,15 +61,15 @@ def view_leaderboard():
         if prompt.lower() == 'y':
             space()
             delete_results()
-            break 
+            break
         elif prompt.lower() == 'n':
             return_to_menu()
-            break  
+            break
         else:
             space()
             print(RED + "Invalid response. Please enter 'Y' or 'N'."
-                "\nWait for the table to reload ..." + RESET_COLOR)
-            time.sleep (2)
+                        "\nWait for the table to reload ..." + RESET_COLOR)
+            time.sleep(2)
             clear_terminal()
             view_leaderboard()
 

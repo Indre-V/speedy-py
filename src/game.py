@@ -45,7 +45,8 @@ def start_test(stdscr):
             input_text += chr(key)
 
         stdscr.erase()
-        stdscr.addstr(0, 0, welcome_message, curses.color_pair(1) | curses.A_BOLD)
+        stdscr.addstr(0, 0, welcome_message, curses.color_pair(1)
+                      | curses.A_BOLD)
 
         display_text(stdscr, paragraph, input_text)
         stdscr.refresh()
@@ -141,8 +142,12 @@ def calculate_accuracy(input_text, paragraph):
     input_words = input_text.split()
     paragraph_words = paragraph.split()
 
-    num_correct_words = sum(a == b for a, b in zip(input_words, paragraph_words))
-    accuracy_percentage = (num_correct_words / len(paragraph_words)) * 100
+    num_correct_words = sum(
+        a == b for a, b in zip(input_words, paragraph_words)
+    )
+    num_correct_words = sum(
+        a == b for a, b in zip(input_words, paragraph_words)
+    )
 
     return round(accuracy_percentage, 1)
 
@@ -160,7 +165,8 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
 
     stdscr.erase()
     stdscr.addstr(result_line1, curses.color_pair(1) | curses.A_BOLD)
-    stdscr.addstr(2, 0, result_line2 + "\n\n", curses.color_pair(3) | curses.A_BOLD)
+    stdscr.addstr(2, 0, result_line2 + "\n\n", curses.color_pair(3)
+                  | curses.A_BOLD)
 
     if wpm < 10:
         stdscr.addstr(
@@ -182,7 +188,6 @@ def show_results(stdscr, username, input_text, paragraph, time_start):
         )
 
     prompt_save_test(stdscr, username, accuracy, wpm)
-
 
 
 def prompt_save_test(stdscr, username, accuracy, wpm):
@@ -207,8 +212,12 @@ def prompt_save_test(stdscr, username, accuracy, wpm):
 
         if key == "y":
             stdscr.getch()
-            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            save_data(stdscr, [username, current_time, accuracy, wpm], "Leaderboard")
+            current_time = datetime.datetime.now().strftime(
+                "%Y-%m-%d %H:%M:%S")
+            save_data(
+                stdscr,
+                [username, current_time, accuracy, wpm],
+                "Leaderboard")
 
         elif key == "n":
             stdscr.getch()
@@ -255,7 +264,7 @@ def pract_accuracy(stdscr):
     Prompts to retest.
     """
     initialize_colors()
-    stdscr.erase() 
+    stdscr.erase()
     text = create_paragraph()
     display_text(stdscr, text, "")
     stdscr.refresh()
