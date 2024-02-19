@@ -12,49 +12,46 @@ By practicing regularly with Speedy-Py, users can enhance their typing skills an
 
 
 # Contents 
-- [Speedy-Py](#speedy-py)
-- [Contents](#contents)
+
 - [User Experience (UX)](#user-experience--ux-)
-  * [Colour Scheme](#colour-scheme)
-  * [Design Choices](#design-choices)
-  * [How to Play](#how-to-play)
   * [User Goals](#user-goals)
   * [User Stories](#user-stories)
   * [Website Goals and Objectives](#website-goals-and-objectives)
   * [Target Audience](#target-audience)
+  * [Colour Scheme](#colour-scheme)
 - [Logic](#logic)
   * [Python Logic](#python-logic)
-  * [Data Model](#data-model)
+  * [Aplication Code Structure](#aplication-code-structure)
   * [Database structure](#database-structure)
 - [Features](#features)
   * [Existing Features](#existing-features)
-    + [Title and Introduction Section](#title-and-introduction-section)
+    + [Introduction Section](#introduction-section)
     + [Options menu](#options-menu)
-    + [Game Over Menu](#game-over-menu)
-    + [Leaderboard](#leaderboard)
+    + [View Instructions](#view-instructions)
+    + [Test](#test)
+    + [Typing Advice](#typing-advice)
+    + [Practice Accuracy](#practice-accuracy)
+    + [View Leaderboard](#view-leaderboard)
+    + [Exit Application](#exit-application)
   * [Future Enhancements](#future-enhancements)
 - [Testing](#testing)
   * [Accessibility](#accessibility)
   * [Bugs](#bugs)
-  * [Responsiveness Tests](#responsiveness-tests)
   * [Code Validation](#code-validation)
     + [PEP8 Testing](#pep8-testing)
-    + [Error Handling](#error-handling)
   * [User Story Testing](#user-story-testing)
   * [Manual testing](#manual-testing)
   * [Lighthouse Testing](#lighthouse-testing)
-  * [Browser Testing](#browser-testing)
 - [Deployment](#deployment)
   * [To deploy the project](#to-deploy-the-project)
   * [To fork the project](#to-fork-the-project)
   * [To clone the project](#to-clone-the-project)
 - [Technology](#technology)
   * [Languages used](#languages-used)
-  * [Python Libraries:](#python-libraries-)
+  * [Python Libraries](#python-libraries)
   * [Tools](#tools)
 - [Credits](#credits)
   * [Disclaimer](#disclaimer)
-
 
 # User Experience (UX)
 
@@ -296,14 +293,18 @@ While building the application, the general principles of accessibility where ad
 
 ## Bugs 
 
-| Bug                                 | Status   | Description                                                                                       | Steps To Resolve                                                            |
-| ----------------------------------- | -------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Leaderboard refresh                 | Resolved | When results saved, they are no displayed in the leaderboard although recorded in the spreadsheet | Refresh added to view_leaderboard function so it refreshes prior to display |
-| Menu loop                           | Resolved | If enter pressed when option selected, error showed                                               | Removed time.sleep functionality                                            |
-| Screen flickering                   | Resolved | While typing deployed screen kept flickering.                                                     | Changed function from screen clear to erase                                 |
-| Test stopped when backspace pressed | Resolved | During the test, when backspace pressed test terminated                                           | Updated key types in the function                                           |
-| Live results                        | Resolved | When live test results functionality enabled, the deployed terminal kept freezing                 | Functionality removed due to performance limitations                        |
-
+| Bug                                              | Status     | Description                                                                                                                           | Steps To Resolve                                                                              |
+| ------------------------------------------------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Leaderboard refresh                              | Resolved   | When results saved, they are no displayed in the leaderbord although recorded in the spreadsheet                                      | Refresh added to view_leaderbord function so it refreshes prior to display                    |
+| Menu loop                                        | Resolved   | If enter pressed when option selected, error showed                                                                                   | Removed time.sleep functionality                                                              |
+| Screen flickering                                | Resolved   | While typing deployed screen kept flickering.                                                                                         | Changed function from screen clear to erase                                                   |
+| Test stopped when backspace pressed              | Resolved   | During the test, when backspace pressed test terminated                                                                               | Updated key types in the function                                                             |
+| Live results                                     | Resolved   | When live test results functionality enabled, the deployed terminal kept freezing                                                     | Functionality removed due to performance limitations                                          |
+| Practice accuracy content                        | Resolved   | When practice accuracy option opened, the results of typing test displayed.                                                           | Added erase function before practice test is ran.                                             |
+| Cursor position                                  | Unresolved | The curses is not displaying at the start of paragraph. Although the test functionality is working, some users may find it confusing. | More research is required regarding the capabilities of the curses module in Python.          |
+| Delete result                                    | Unresolved | Application allows to delete other user results.                                                                                      | Possibility to introduce log in portal for ability to amend only results related to the user. |
+| Input accepted where Hit Enter feature available | Resolved   | User can add text in between the lines tips and tricks. The content is still displayed. The text doesn’t save when option is closed.  | Added getpass module to prevent terminal from echoing user input                              |
+| Backspace key                                    | Resolved   | Application terminated when backspace key pressed                                                                                     | Fixed variable declaration                                                                    |
 [Back to top](#contents)
 
 ## Code Validation
@@ -344,11 +345,6 @@ spreadsheet.py:
 
 </details><br/>
 
-
-### Error Handling
-
-
-
 ## User Story Testing
 
 | User Story                                                                    | Result                                      | Pass | Screenshot                              |
@@ -369,7 +365,7 @@ spreadsheet.py:
 ## Manual testing
 
 The application was extensively tested. Failed tests have been recorded in Bugs section. 
-<details><summary><b>Manual testing results></summary>
+<details><summary><b>Manual testing results></b></summary>
 
 | Functionality     | Test Case                                                | Test Procedure                                                                                                                                                                                                       | Test Data           | Expected Outcome                                                                                                | Status | Comments                                                                                                         |
 | ----------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------- |
